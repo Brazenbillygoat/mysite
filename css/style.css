@@ -1,3 +1,14 @@
+
 body {
-    background-color: blue;
+    margin: 0;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+.header {
+    background-color: #111d5e;
+    color: #ffbd69;
+    margin-top: 0;
 }
