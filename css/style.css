@@ -7,8 +7,47 @@ h1 {
     margin-top: 0;
 }
 
-.header {
+.top-container {
     background-color: #111d5e;
     color: #ffbd69;
-    margin-top: 0;
+    
+}
+
+.middle-container {
+    height: 200px;
+    width: 200px;
+    background-color: burlywood;
+}
+
+.bottom-container {
+    height: 200px;
+    width: 200px;
+    background-color: goldenrod;
+}
+
+.blue {
+    background-color: blue;
+    display: inline-block;
+    height: 200px;
+    position: relative;
+    right: 204px;
+    width: 200px;
+}
+
+.red {
+    background-color: red;
+    display: inline-block;
+    height: 200px;
+    position: relative;
+    left: 392px;
+    width: 200px;
+}
+
+.yellow {
+    background-color: yellow;
+    display: inline-block;
+    height: 200px;
+    position: relative;
+    right: 208px;
+    width: 200px;
 }
