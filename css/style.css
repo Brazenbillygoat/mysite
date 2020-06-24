@@ -53,8 +53,9 @@ h3 {
     background-color: blue;
     display: inline-block;
     height: 200px;
-    position: relative;
-    right: 204px;
+    position: absolute;
+    left: 200px;
+    top: 1105px;
     width: 200px;
 }
 
@@ -62,8 +63,9 @@ h3 {
     background-color: red;
     display: inline-block;
     height: 200px;
-    position: relative;
-    left: 392px;
+    position: absolute;
+    left: 400px;
+    top: 1305px;
     width: 200px;
 }
 
@@ -71,7 +73,6 @@ h3 {
     background-color: yellow;
     display: inline-block;
     height: 200px;
-    position: relative;
-    right: 208px;
+    position: absolute;
     width: 200px;
 }
