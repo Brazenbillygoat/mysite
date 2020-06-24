@@ -1,4 +1,5 @@
 
+/* Element css specifications */
 body {
     margin: 0;
     text-align: center;
@@ -17,12 +18,36 @@ h3 {
     font-family: 'Merriweather', serif;
 }
 
+p {
+    font-family: 'Lato', sans-serif;
+}
+
+
+/* class css specifications */
+
+.mountain-img {
+    position: relative;
+    top: 10px;
+}
+
+.profile-pic {
+    border-radius: 100%;
+    height: 200px;
+    padding-top: 10px;
+}
+
+.sun-img {
+    height: 90px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
 .top-container {
     background-color: #111d5e;
     color: #ffbd69;
     padding-top: 100px;
-    position: relative;
-    
+    position: relative;  
 }
 
 .top-cloud {
@@ -38,41 +63,14 @@ h3 {
 }
 
 .middle-container {
-    height: 200px;
-    width: 200px;
     background-color: burlywood;
 }
 
+.frontend-list {
+    display: inline-block;
+}
+
 .bottom-container {
-    height: 200px;
-    width: 200px;
     background-color: goldenrod;
 }
 
-.blue {
-    background-color: blue;
-    display: inline-block;
-    height: 200px;
-    position: absolute;
-    left: 200px;
-    top: 1105px;
-    width: 200px;
-}
-
-.red {
-    background-color: red;
-    display: inline-block;
-    height: 200px;
-    position: absolute;
-    left: 400px;
-    top: 1305px;
-    width: 200px;
-}
-
-.yellow {
-    background-color: yellow;
-    display: inline-block;
-    height: 200px;
-    position: absolute;
-    width: 200px;
-}
