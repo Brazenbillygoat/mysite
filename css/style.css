@@ -18,6 +18,13 @@ h3 {
     font-family: 'Merriweather', serif;
 }
 
+h4 {
+    font-family: 'Merriweather', serif;
+    position: relative;
+    top: 15px;
+    margin-bottom: 10px;
+}
+
 p {
     font-family: 'Lato', sans-serif;
 }
@@ -70,7 +77,16 @@ p {
     display: inline-block;
 }
 
+.backend-list {
+    display: inline-block;
+}
+
 .bottom-container {
     background-color: goldenrod;
+}
+
+.footer-link {
+    display: inline-block;
+    padding: 20px 20px;
 }
 
