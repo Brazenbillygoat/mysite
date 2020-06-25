@@ -11,7 +11,8 @@ body {
 }
 
 h1 {
-    margin-top: 0;
+    font-size: 75px;
+    margin: 50px auto 0px auto;
 }
 
 h2 {
@@ -47,6 +48,11 @@ p {
     padding-top: 10px;
 }
 
+.sub-title {
+    font-size: 1.75rem;
+    margin-top: 0;
+}
+
 .sun-img {
     height: 90px;
     position: absolute;
@@ -63,7 +69,7 @@ p {
 
 .top-cloud {
     position: absolute;
-    right: 300px;
+    right: 200px;
     top: 50px;
 }
 
@@ -74,10 +80,12 @@ p {
 }
 
 .middle-container {
-    background-color: burlywood;
+    background-color: #cd7121;
     /* position: relative;
     mix-blend-mode: hard-light; */
 }
+
+.skill {}
 
 .skill-pic {
     height: 200px;
