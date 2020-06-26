@@ -17,10 +17,12 @@ h1 {
 
 h2 {
     font-family: 'Merriweather', serif;
+    margin: 0;
 }
 
 h3 {
     font-family: 'Merriweather', serif;
+    margin-bottom: 0;
 }
 
 h4 {
@@ -30,8 +32,18 @@ h4 {
     margin-bottom: 10px;
 }
 
+hr {
+    margin: 0;
+}
+
 p {
     font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 16px;
+}
+
+ul {
+    margin-top: 8px;
 }
 
 
@@ -81,15 +93,36 @@ p {
 
 .middle-container {
     background-color: #cd7121;
-    /* position: relative;
-    mix-blend-mode: hard-light; */
+    border-radius: -50%;
+    /* position: relative; */
 }
 
-.skill {}
+.base {
+    /* display: inline-block; */
+    position: relative;
+    top: 0;
+    bottom: 0;
+    padding: 60px;
+	width: auto;
+	height: 100px;
+	/* background-color: white; */
+    mix-blend-mode: soft-light;
+    background-image: url("../images/panorama-mtn-top.jpeg");
+    background-size: cover;
+}
 
-.skill-pic {
-    height: 200px;
-    width: 200px;
+/* .hole {
+    border-radius: 100%;
+    width: 300px;
+	height:300px;
+	margin: 0;
+	background-color: gray;
+} */
+
+#skills-section {
+    position: relative;
+    right: 0;
+    left: 0;
 }
 
 .frontend-list {
@@ -102,6 +135,12 @@ p {
 
 .bottom-container {
     background-color: goldenrod;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    left: 0;
+    /* bottom: 0; */
+    /* float: left; */
 }
 
 .footer-link {
