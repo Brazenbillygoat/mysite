@@ -47,7 +47,14 @@ ul {
 }
 
 
-/* class css specifications */
+/* TOP CONTAINER */
+
+.top-container {
+    background-color: #0fb6cc;
+    color: #ffbd69;
+    padding-top: 100px;
+    position: relative;  
+}
 
 .mountain-img {
     position: relative;
@@ -72,13 +79,6 @@ ul {
     top: 20px;
 }
 
-.top-container {
-    background-color: #0fb6cc;
-    color: #ffbd69;
-    padding-top: 100px;
-    position: relative;  
-}
-
 .top-cloud {
     position: absolute;
     right: 200px;
@@ -91,33 +91,24 @@ ul {
     bottom: 300px;
 }
 
+
+/* MIDDLE CONTAINER */
 .middle-container {
     background-color: #c78e44;
     border-radius: -50%;
-    /* position: relative; */
 }
 
 .base {
-    /* display: inline-block; */
     position: relative;
     top: 0;
     bottom: 0;
     padding: 60px;
 	width: auto;
 	height: 100px;
-	/* background-color: white; */
     mix-blend-mode: soft-light;
     background-image: url("../images/panorama-mtn-top.jpeg");
     background-size: cover;
 }
-
-/* .hole {
-    border-radius: 100%;
-    width: 300px;
-	height:300px;
-	margin: 0;
-	background-color: gray;
-} */
 
 #skills-section {
     padding-top: 20px;
@@ -126,14 +117,31 @@ ul {
     left: 0;
 }
 
-.frontend-list {
+.skill-row {
     display: inline-block;
+    vertical-align: top;
 }
 
-.backend-list {
-    display: inline-block;
+.frontend-skill {
+    margin-right: 5%;
 }
 
+.frontend-icon {
+    height: 100px;
+}
+
+.backend-skill {
+    margin-left: 5%;
+}
+
+.backend-icon {
+    height: 75px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    width: 80px;
+}
+
+/* BOTTOM CONTAINER */
 .bottom-container {
     background-color: rgb(218, 122, 32);
     display: inline-block;
