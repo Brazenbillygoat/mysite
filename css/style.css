@@ -33,7 +33,13 @@ h4 {
 }
 
 hr {
-    margin: 0;
+    border-color: grey;
+    border-style: dotted none none none;
+    border-width: 7px;
+    margin: 0 auto;
+    padding: 0;
+    width: 8%;
+    opacity: .5;
 }
 
 p {
@@ -93,12 +99,18 @@ ul {
 
 
 /* MIDDLE CONTAINER */
-.middle-container {
-    background-color: #c78e44;
-    border-radius: -50%;
+.profile {
+    background-image: 
+    linear-gradient(
+        rgb(100, 54, 24), #c78e44
+    );
 }
 
-.base {
+.middle-container {
+    background-color: #c78e44;
+}
+
+.hole {
     position: relative;
     top: 0;
     bottom: 0;
@@ -141,13 +153,20 @@ ul {
     width: 80px;
 }
 
+.contact-me {
+    background-image: 
+    linear-gradient(
+        #c78e44, rgb(218, 122, 32)
+    );
+    margin-top: 20px;
+}
+
 /* BOTTOM CONTAINER */
 .bottom-container {
     background-color: rgb(218, 122, 32);
-    display: inline-block;
-    position: absolute;
-    right: 0;
-    left: 0;
+    display: block;
+    position: relative;
+    bottom: 0;
 }
 
 #email-link {
