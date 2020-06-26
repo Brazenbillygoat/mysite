@@ -73,7 +73,7 @@ ul {
 }
 
 .top-container {
-    background-color: #111d5e;
+    background-color: #0fb6cc;
     color: #ffbd69;
     padding-top: 100px;
     position: relative;  
@@ -92,7 +92,7 @@ ul {
 }
 
 .middle-container {
-    background-color: #cd7121;
+    background-color: #c78e44;
     border-radius: -50%;
     /* position: relative; */
 }
@@ -120,6 +120,7 @@ ul {
 } */
 
 #skills-section {
+    padding-top: 20px;
     position: relative;
     right: 0;
     left: 0;
@@ -134,18 +135,22 @@ ul {
 }
 
 .bottom-container {
-    background-color: goldenrod;
+    background-color: rgb(218, 122, 32);
     display: inline-block;
     position: absolute;
     right: 0;
     left: 0;
-    /* bottom: 0; */
-    /* float: left; */
+}
+
+#email-link {
+    font-size: 1.75em;
+    color: #0f67cc;
 }
 
 .footer-link {
     display: inline-block;
+    font-size: 1.5em;
     padding: 20px 20px;
-    color: blue;
+    color: #0f67cc;
 }
 
