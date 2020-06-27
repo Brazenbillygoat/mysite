@@ -1,6 +1,10 @@
 
 /* Element css specifications */
 
+html {
+    background: gray;
+}
+
 body {
     background-image: url('..//images/behind-code.png');
     background-attachment: fixed;
