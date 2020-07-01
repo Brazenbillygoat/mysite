@@ -72,8 +72,9 @@ ul {
 }
 
 .profile-pic {
-    border-radius: 100%;
+    border-radius: 50%;
     height: 200px;
+    width: 200px;
     padding-top: 10px;
 }
 
@@ -127,6 +128,7 @@ ul {
 }
 
 #skills-section {
+    font-family: 'Merriweather', serif;
     padding-top: 20px;
     position: relative;
     right: 0;
@@ -140,6 +142,11 @@ ul {
 
 .frontend-skill {
     margin-right: 5%;
+
+}
+
+.frontend-list {
+    text-align: left;
 }
 
 .frontend-icon {
@@ -148,6 +155,11 @@ ul {
 
 .backend-skill {
     margin-left: 5%;
+}
+
+.backend-list {
+    margin-left: 90px;
+    text-align: left;
 }
 
 .backend-icon {
