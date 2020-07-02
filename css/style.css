@@ -141,8 +141,7 @@ ul {
 }
 
 .frontend-skill {
-    margin-right: 5%;
-
+    margin-left: 70px;
 }
 
 .frontend-list {
@@ -154,7 +153,7 @@ ul {
 }
 
 .backend-skill {
-    margin-left: 5%;
+    margin-left: 100px;
 }
 
 .backend-list {
