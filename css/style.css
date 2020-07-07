@@ -113,6 +113,8 @@ ul {
 
 .middle-container {
     background-color: #c78e44;
+    background-image: url("../images/underground.jpg");
+    background-repeat: repeat-x;
 }
 
 .hole {
@@ -129,15 +131,31 @@ ul {
 
 #skills-section {
     font-family: 'Merriweather', serif;
-    padding-top: 20px;
     position: relative;
     right: 0;
     left: 0;
 }
 
+.skills-title-bar {
+    background-color: #c78e4480;
+    height: 69px;
+}
+
+.skills-section-title {
+    padding-top: 20px;
+}
+
 .skill-row {
     display: inline-block;
     vertical-align: top;
+}
+
+.skills-lists-box {
+    background-color: #fecb8990;
+    border-radius: 5%;
+    margin: auto;
+    text-align: center;
+    width: 700px;
 }
 
 .frontend-skill {
@@ -166,6 +184,44 @@ ul {
     padding-top: 15px;
     padding-bottom: 10px;
     width: 80px;
+}
+
+/* PORTFOLIO SECTION */
+.portfolio-description-divide {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 10px;
+    width: 25%;
+}
+
+div.portfolio > div {
+    background-color: #0fb6cc;
+    border-radius: 1%;
+    display: block;
+    height: 210px;
+    margin: 5%;
+    position: relative;
+    width: 650px;
+}
+
+div.portfolio > div > a > img {
+    border: solid black 2px;
+    float: left;
+    height: 90%;
+    margin: 1.2%;
+    width: 30%;
+}
+
+.weather-website-skills {
+    text-align: left;
+    margin-left: 30%;
+}
+
+.todo-ruby {
+    position: relative;
+    left: 15%;
+    
 }
 
 .contact-me {
