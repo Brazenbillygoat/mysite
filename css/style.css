@@ -113,7 +113,13 @@ ul {
 
 .middle-container {
     background-color: #c78e44;
-    background-image: url("../images/underground.jpg");
+    background-image: 
+    linear-gradient(
+        #c78e44, rgb(100, 54, 24)
+    );
+    background-image: url("../images/underground.jpg"), url("../images/underground2.jpg");
+    
+    background-position: ;
     background-repeat: repeat-x;
 }
 
