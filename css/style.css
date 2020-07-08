@@ -1,6 +1,5 @@
 
 /* Element css specifications */
-
 html {
     background: gray;
 }
@@ -58,7 +57,6 @@ ul {
 
 
 /* TOP CONTAINER */
-
 .top-container {
     background-color: #0fb6cc;
     color: #ffbd69;
@@ -117,7 +115,7 @@ ul {
     linear-gradient(
         #c78e44, rgb(100, 54, 24)
     );
-    background: url("../images/laptop-with-plants.jpg") no-repeat center center fixed; 
+    background: linear-gradient( #000000, #00000010), url("../images/laptop-with-plants.jpg") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -193,15 +191,12 @@ ul {
     width: 80px;
 }
 
+
 /* PORTFOLIO SECTION */
 .portfolio {
     display: inline-block;
     padding-top: 50px;
     text-align: center;
-}
-
-.project {
-
 }
 
 .portfolio-description-divide {
@@ -245,8 +240,6 @@ ul {
 .project-skills > li {
     display: inline-block;
     margin: 4px;
-    /* zoom:1;
-    *display: inline; */
 }
 
 .project-skills:nth-child(odd) {
@@ -266,6 +259,7 @@ ul {
     );
     margin-top: 20px;
 }
+
 
 /* BOTTOM CONTAINER */
 .bottom-container {
