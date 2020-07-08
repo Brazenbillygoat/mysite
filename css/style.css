@@ -219,15 +219,24 @@ div.portfolio > div > a > img {
     width: 30%;
 }
 
-.weather-website-skills {
+.project:nth-child(odd) {
+    margin-left: 10%;
+    /* text-align: left; */
+}
+
+.project:nth-child(even) {
+    position: relative;
+    left: 35%;
+}
+
+.project-skills:nth-child(odd) {
     text-align: left;
     margin-left: 30%;
 }
 
-.todo-ruby {
-    position: relative;
-    left: 15%;
-    
+.project-skills:nth-child(even) {
+    text-align: left;
+    margin-left: 30%;
 }
 
 .contact-me {
