@@ -156,7 +156,7 @@ ul {
 }
 
 .skills-lists-box {
-    background: linear-gradient(#fecb89, #0fb6cc);
+    background: linear-gradient(#fecb89, #0fb6cc90);
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
     margin: auto;
@@ -229,6 +229,7 @@ ul {
     border: solid black;
     border-radius: 1%;
     display: block;
+    font-weight: bold;
     height: 223px;
     margin: 20px -10%;
     text-align: center;
