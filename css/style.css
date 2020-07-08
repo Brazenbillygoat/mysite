@@ -117,10 +117,11 @@ ul {
     linear-gradient(
         #c78e44, rgb(100, 54, 24)
     );
-    background-image: url("../images/underground.jpg"), url("../images/underground2.jpg");
-    
-    background-position: ;
-    background-repeat: repeat-x;
+    background: url("../images/laptop-with-plants.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .hole {
@@ -143,12 +144,13 @@ ul {
 }
 
 .skills-title-bar {
-    background-color: #c78e4480;
+    background-color: #fecb8990;
     height: 69px;
 }
 
 .skills-section-title {
     padding-top: 20px;
+    /* font-weight: bold; */
 }
 
 .skill-row {
@@ -159,7 +161,7 @@ ul {
 .skills-lists-box {
     background-color: #fecb8990;
     border-radius: 5%;
-    margin: auto;
+    margin: 20px auto auto auto;
     text-align: center;
     width: 700px;
 }
@@ -193,6 +195,12 @@ ul {
 }
 
 /* PORTFOLIO SECTION */
+.portfolio {
+    text-align: center;
+    display: inline-block;
+    padding-top: 50px;
+}
+
 .portfolio-description-divide {
     border-color: black;
     border-style: solid;
@@ -201,42 +209,46 @@ ul {
     width: 25%;
 }
 
-div.portfolio > div {
-    background-color: #0fb6cc;
-    border-radius: 1%;
-    display: block;
-    height: 210px;
-    margin: 5%;
-    position: relative;
-    width: 650px;
-}
-
 div.portfolio > div > a > img {
     border: solid black 2px;
     float: left;
     height: 90%;
-    margin: 1.2%;
-    width: 30%;
+    margin: 10px 1.2%;
+    width: 35%;
 }
 
 .project:nth-child(odd) {
-    margin-left: 10%;
-    /* text-align: left; */
+    background-color: #0fb6cc99;
+    border: solid black;
+    border-radius: 1%;
+    display: block;
+    height: auto;
+    margin: 20px -10%;
+    text-align: center;
+    width: 670px;
 }
 
 .project:nth-child(even) {
-    position: relative;
-    left: 35%;
+    background-color: #0fb6cc99;
+    border: solid black;
+    border-radius: 1%;
+    display: block;
+    height: auto;
+    margin-left: 5%;
+    text-align: center;
+    width: 670px;
 }
+
+
 
 .project-skills:nth-child(odd) {
     text-align: left;
-    margin-left: 30%;
+    margin-left: 35%;
 }
 
 .project-skills:nth-child(even) {
     text-align: left;
-    margin-left: 30%;
+    margin-left: 35%;
 }
 
 .contact-me {
