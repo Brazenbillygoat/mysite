@@ -236,7 +236,7 @@ ul {
 
 .project:nth-child(even) {
     background-color: #0fb6cc99;
-    border: solid white;
+    border: solid black;
     border-radius: 1%;
     display: block;
     height: 223px;
