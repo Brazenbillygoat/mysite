@@ -150,7 +150,6 @@ ul {
 
 .skills-section-title {
     padding-top: 20px;
-    /* font-weight: bold; */
 }
 
 .skill-row {
@@ -196,9 +195,13 @@ ul {
 
 /* PORTFOLIO SECTION */
 .portfolio {
-    text-align: center;
     display: inline-block;
     padding-top: 50px;
+    text-align: center;
+}
+
+.project {
+
 }
 
 .portfolio-description-divide {
@@ -209,10 +212,10 @@ ul {
     width: 25%;
 }
 
-div.portfolio > div > a > img {
+.project-image {
     border: solid black 2px;
     float: left;
-    height: 90%;
+    height: 200px;
     margin: 10px 1.2%;
     width: 35%;
 }
@@ -222,7 +225,7 @@ div.portfolio > div > a > img {
     border: solid black;
     border-radius: 1%;
     display: block;
-    height: auto;
+    height: 223px;
     margin: 20px -10%;
     text-align: center;
     width: 670px;
@@ -233,13 +236,18 @@ div.portfolio > div > a > img {
     border: solid black;
     border-radius: 1%;
     display: block;
-    height: auto;
+    height: 223px;
     margin-left: 5%;
     text-align: center;
     width: 670px;
 }
 
-
+.project-skills > li {
+    display: inline-block;
+    margin: 4px;
+    /* zoom:1;
+    *display: inline; */
+}
 
 .project-skills:nth-child(odd) {
     text-align: left;
