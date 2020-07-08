@@ -195,6 +195,7 @@ ul {
 /* PORTFOLIO SECTION */
 .portfolio {
     display: inline-block;
+    font-weight: bold;
     padding-top: 50px;
     text-align: center;
 }
@@ -239,6 +240,7 @@ ul {
     border: solid black;
     border-radius: 1%;
     display: block;
+    font-weight: bold;
     height: 223px;
     margin-left: 5%;
     text-align: center;
@@ -271,7 +273,7 @@ ul {
     border-top: solid 1px;
     border-left: solid 1px;
     border-right: solid 1px;
-    margin-top: 20px;
+    margin-top: 70px;
 }
 
 /* BOTTOM CONTAINER */
