@@ -55,6 +55,10 @@ ul {
     margin-top: 8px;
 }
 
+a:hover {
+    color: rgb(61, 24, 24);
+}
+
 
 /* TOP CONTAINER */
 .top-container {
@@ -222,6 +226,10 @@ ul {
     height: 200px;
     margin: 10px 1.2%;
     width: 35%;
+}
+
+.project-image:hover {
+    opacity: .8;
 }
 
 .project:nth-child(odd) {
