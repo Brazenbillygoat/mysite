@@ -1,16 +1,13 @@
 /* Element css specifications */
 html {
-    background: gray;
+    background-image: url('..//images/behind-code.png');
+    background-size: 100%;
 }
 
 body {
-    background-image: url('..//images/behind-code.png');
-    background-attachment: fixed;
-    background-size: cover;
     margin: 0;
     text-align: center;
     font-family: fantasy, serif;
-    margin-right: -90px;
 }
 
 h1 {
@@ -71,6 +68,7 @@ a:hover {
 .mountain-img {
     position: relative;
     top: 10px;
+    width: 98%;
 }
 
 .profile-pic {
@@ -99,9 +97,8 @@ a:hover {
 }
 
 .bottom-cloud {
-    position: absolute;
-    left: 300px;
-    bottom: 300px;
+    position: relative;
+    left: -30%;
 }
 
 
@@ -122,10 +119,7 @@ a:hover {
 }
 
 .hole {
-    position: relative;
-    top: 0;
-    bottom: 0;
-    padding: 60px;
+    padding: 10%;
     width: auto;
     height: 100px;
     mix-blend-mode: soft-light;
@@ -133,11 +127,11 @@ a:hover {
     background-size: cover;
 }
 
+
+/* SKILLS SECTION */
+
 #skills-section {
     font-family: 'Merriweather', serif;
-    position: relative;
-    right: 0;
-    left: 0;
 }
 
 .skills-title-bar {
@@ -158,13 +152,13 @@ a:hover {
     background: linear-gradient(#fecb89, #0fb6cc90);
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
-    margin: auto;
+    margin: 0;
     text-align: center;
-    width: 700px;
+    width: 100%;
 }
 
 .frontend-skill {
-    margin-left: 70px;
+    margin-right: 10%;
 }
 
 .frontend-list {
@@ -175,12 +169,8 @@ a:hover {
     height: 100px;
 }
 
-.backend-skill {
-    margin-left: 100px;
-}
-
 .backend-list {
-    margin-left: 90px;
+    padding-left: 40%;
     text-align: left;
 }
 
@@ -210,7 +200,7 @@ a:hover {
 .project-image:nth-child(odd) {
     border: solid black 2px;
     float: left;
-    height: 200px;
+    height: 35%;
     margin: 10px 1.2%;
     width: 35%;
 }
@@ -218,7 +208,7 @@ a:hover {
 .project-image:nth-child(even) {
     border: solid black 2px;
     float: left;
-    height: 200px;
+    height: 35%;
     margin: 10px 1.2%;
     width: 35%;
 }
@@ -227,33 +217,33 @@ a:hover {
     opacity: .8;
 }
 
-.project:nth-child(odd) {
+.project {
     background-color: #0fb6cc99;
     border: solid black;
     border-radius: 1%;
     display: block;
     font-weight: bold;
-    height: 223px;
-    margin: 20px -10%;
+    height: 35%;
+    margin: 20px;
     text-align: center;
-    width: 670px;
+    width: 70%;
 }
 
-.project:nth-child(even) {
+/* .project:nth-child(even) {
     background-color: #0fb6cc99;
     border: solid black;
     border-radius: 1%;
     display: block;
     font-weight: bold;
-    height: 223px;
-    margin-left: 5%;
+    height: 35%;
     text-align: center;
-    width: 670px;
+    width: 70%; */
 }
 
 .project-skills>li {
-    display: inline-block;
+    list-style: none;
     margin: 4px;
+    text-align: center;
 }
 
 .project-skills:nth-child(odd) {
