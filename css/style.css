@@ -201,7 +201,6 @@ a:hover {
 
 .project-image {
     border: solid black 2px;
-    display: inline-block;
     float: left;
     max-height: 120px;
     max-width: 180px;
