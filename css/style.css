@@ -127,6 +127,7 @@ a:hover {
     mix-blend-mode: soft-light;
     background-image: url("../images/panorama-mtn-top.jpeg");
     background-size: cover;
+    opacity: .15;
 }
 
 
