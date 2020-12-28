@@ -4,6 +4,7 @@ html {
     background-attachment: fixed;
     background-position: center;
     background-size: 100%;
+    scroll-behavior: smooth;
 }
 
 body {
