@@ -59,6 +59,25 @@ a:hover {
 }
 
 
+/* NAVBAR */
+
+.navbar-container {
+    background-attachment: fixed;
+    background-color: rgb(217, 204, 209);
+    /* height: 3rem; */
+}
+
+.contact-links {
+    position: relative;
+    right: 5px;
+    text-align: right;
+}
+
+.logo-image {
+    height: 2rem;
+}
+
+
 /* TOP CONTAINER */
 .top-container {
     background-color: #0fb6cc;
