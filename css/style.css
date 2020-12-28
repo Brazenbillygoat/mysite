@@ -8,9 +8,10 @@ html {
 }
 
 body {
-    margin: 0;
-    text-align: center;
     font-family: fantasy, serif;
+    margin: 0;
+    padding-top: 3rem;
+    text-align: center;
 }
 
 h1 {
@@ -64,7 +65,7 @@ a:hover {
 
 .navbar-container {
     background-attachment: fixed;
-    background-color: rgb(217, 204, 209);
+    background-color: rgb(162, 183, 203);
     /* height: 3rem; */
 }
 
@@ -83,7 +84,7 @@ a:hover {
 .nav-links {
     /* display: block; */
     /* position: relative; */
-    left: 2rem;
+    /* left: 2rem; */
 }
 
 
