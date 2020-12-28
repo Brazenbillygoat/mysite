@@ -69,14 +69,21 @@ a:hover {
 }
 
 .contact-links {
-    position: relative;
-    right: 5px;
+    /* display: block; */
+    /* position: relative;
+    right: 2rem; */
     text-align: right;
 }
 
 .logo-image {
     height: 1.3rem;
     margin-right: .4rem;
+}
+
+.nav-links {
+    /* display: block; */
+    /* position: relative; */
+    left: 2rem;
 }
 
 
