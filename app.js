@@ -10,7 +10,6 @@ const changeSubTitle = () => {
   ];
   subTitle.innerText = subTitles[messageNum];
   messageNum ++;
-  console.log(messageNum);
   if (messageNum > subTitles.length -1) {
     messageNum = 0;
   };
