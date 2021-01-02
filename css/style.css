@@ -64,7 +64,7 @@ a:hover {
 
 .navbar-container {
     background-attachment: fixed;
-    background-color: transparent;
+    background-color: rgba(50, 50, 50, .5);
     /* height: 3rem; */
 }
 
@@ -73,6 +73,7 @@ a:hover {
     /* position: relative;
     right: 2rem; */
     text-align: right;
+    /* background-color: green; */
 }
 
 .logo-image {
@@ -84,6 +85,10 @@ a:hover {
     /* display: block; */
     /* position: relative; */
     /* left: 2rem; */
+}
+
+.nav-links :hover {
+    background-color: green;
 }
 
 
