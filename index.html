@@ -6,13 +6,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hyrum Butler</title>
   <link rel="icon" href="./images/favicon.ico">
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <!-- Bootstrap Scripts -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
   <link rel="stylesheet" href="./css/style.css">
 
 </head>
 
 <body>
+
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top navbar-container">
+    <a class="navbar-brand" href="">Hyrum Butler</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list"
+      aria-controls="navbar-list" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="navbar-list">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#profile">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#work">Work</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact-me">Contact</a>
+        </li>
+      </ul>
+      <div class="contact-links">
+        <a href="https://github.com/Brazenbillygoat" target="blank"><img class="logo-image" src="./images/github-logo.png" alt="The github octocat logo"></a>
+        <a href="https://www.linkedin.com/in/hyrum-butler/" target="blank"><img class="logo-image" src="./images/linkedin-logo.png" alt="The github octocat logo"></a>
+      </div>
+    </div>
+  </nav>
 
   <div class="top-container">
     <img class="sun-img" src="./images/summertime.png" alt="Picture of the sun">
@@ -25,7 +60,7 @@
   </div>
 
   <div class="middle-container">
-    <div class="profile">
+    <div class="profile" id="profile">
       <img class="profile-pic" src="./images/profile-pic.jpeg" alt="Me stiffling a laugh">
       <h2>Hello.</h2>
       <p>I'm a Fullstack Software Developer that loves the outdoors <em>almost</em> as much as technology!</p>
@@ -33,7 +68,7 @@
   </div>
 
   <div class="hole">
-
+    
   </div>
 
   <div id="skills-section" class="middle-container">
@@ -62,13 +97,13 @@
             <li>Nodejs</li>
             <li>Express</li>
             <li>MongoDB</li>
-            <li>Git - Version control</li>
+            <li>Git - (Version control)</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <div class="portfolio">
+    <div id="work" class="portfolio">
       <div class="project">
         <a href="https://beta-climbers.herokuapp.com/" target="blank">
           <img class="project-image" src="./images/betaclimberwelcome.png" alt="A screenshot of my beta-climbers app">
@@ -85,7 +120,7 @@
             <li>CSS</li>
             <li>Ruby</li>
             <li>Rails</li>
-            <li>SQlite3</li>
+            <li>SQlite3 -> Postgres</li>
             <li>Bcrypt</li>
           </ul>
         </p>
@@ -111,7 +146,7 @@
         </p>
       </div>
 
-      <div class="contact-me">
+      <div id="contact-me" class="contact-me">
         <h2>Get In Touch.</h2>
         <h4>Email:</h4>
         <p>hyrum.butler3@gmail.com</p>
@@ -122,7 +157,7 @@
     </div>
   </div>
   <div class="bottom-container">
-    <a class="footer-link" href="https://www.linkedin.com/in/hyrum-butler-948226b4/" target="blank">LinkedIn</a>
+    <a class="footer-link" href="https://www.linkedin.com/in/hyrum-butler/" target="blank">LinkedIn</a>
     <a class="footer-link" href="https://www.codewars.com/users/Brazenbillygoat" target="blank">Codewars</a>
     <a class="footer-link" href="https://github.com/Brazenbillygoat" target="blank">Github</a>
     <p>Hyrum Butler</p>

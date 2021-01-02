@@ -1,15 +1,16 @@
 /* Element css specifications */
 html {
-    background-image: url('..//images/behind-code.png');
-    background-attachment: fixed;
-    background-position: center;
-    background-size: 100%;
+    scroll-behavior: smooth;
 }
 
 body {
+    background-attachment: fixed;
+    background-image: url('../images/behind-code.png');
+    background-position-x: -1.95rem;
+    background-size: cover;
+    font-family: fantasy, serif;
     margin: 0;
     text-align: center;
-    font-family: fantasy, serif;
 }
 
 h1 {
@@ -56,6 +57,33 @@ ul {
 
 a:hover {
     color: rgb(61, 24, 24);
+}
+
+
+/* NAVBAR */
+
+.navbar-container {
+    background-attachment: fixed;
+    background-color: transparent;
+    /* height: 3rem; */
+}
+
+.contact-links {
+    /* display: block; */
+    /* position: relative;
+    right: 2rem; */
+    text-align: right;
+}
+
+.logo-image {
+    height: 1.3rem;
+    margin-right: .4rem;
+}
+
+.nav-links {
+    /* display: block; */
+    /* position: relative; */
+    /* left: 2rem; */
 }
 
 
@@ -127,7 +155,7 @@ a:hover {
     mix-blend-mode: soft-light;
     background-image: url("../images/panorama-mtn-top.jpeg");
     background-size: cover;
-    opacity: .15;
+    opacity: .55;
 }
 
 
