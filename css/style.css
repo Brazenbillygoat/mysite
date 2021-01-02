@@ -1,16 +1,15 @@
 /* Element css specifications */
 html {
-    background-image: url('..//images/behind-code.png');
-    background-attachment: fixed;
-    background-position: center;
-    background-size: 100%;
     scroll-behavior: smooth;
 }
 
 body {
+    background-attachment: fixed;
+    background-image: url('../images/behind-code.png');
+    background-position-x: -1.95rem;
+    background-size: cover;
     font-family: fantasy, serif;
     margin: 0;
-    /* padding-top: 3rem; */
     text-align: center;
 }
 
@@ -156,7 +155,7 @@ a:hover {
     mix-blend-mode: soft-light;
     background-image: url("../images/panorama-mtn-top.jpeg");
     background-size: cover;
-    opacity: .15;
+    opacity: .55;
 }
 
 
