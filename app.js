@@ -8,12 +8,9 @@ const changeSubTitle = () => {
     "curious.",
     "hard-working."
   ];
-  // while (true) {
-    // debugger
-    subTitle.innerText = subTitles[messageNum];
-
-  // };
+  subTitle.innerText = subTitles[messageNum];
   messageNum ++;
+  console.log(messageNum);
   if (messageNum > subTitles.length -1) {
     messageNum = 0;
   };
