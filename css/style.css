@@ -10,6 +10,7 @@ body {
     background-size: cover;
     font-family: fantasy, serif;
     margin: 0;
+    padding-top: .5rem;
     text-align: center;
 }
 
@@ -64,7 +65,8 @@ a:hover {
 
 .navbar-container {
     background-attachment: fixed;
-    background-color: rgba(50, 50, 50, .5);
+    /* background-color: rgba(50, 50, 50, .5); */
+    background: linear-gradient(#000000, #00000010)
     /* height: 3rem; */
 }
 
@@ -79,6 +81,10 @@ a:hover {
 .logo-image {
     height: 1.3rem;
     margin-right: .4rem;
+}
+
+#github-logo {
+
 }
 
 .nav-links {
