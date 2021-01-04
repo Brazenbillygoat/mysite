@@ -4,11 +4,15 @@ let subTitle = document.getElementById("sub-title");
 let messageNum = 0;
 const changeSubTitle = () => {
   let subTitles = [
-    "a programmer.",
+    "passionate.",
     "curious.",
-    "hard-working."
+    "hard-working.",
+    "a programmer"
   ];
-  subTitle.innerText = subTitles[messageNum];
+  setTimeout(() => {
+    subTitle.style.opacity = 1;
+    subTitle.innerText = subTitles[messageNum];
+  }, 1000);
   messageNum ++;
   if (messageNum > subTitles.length -1) {
     messageNum = 0;
@@ -16,5 +20,6 @@ const changeSubTitle = () => {
 }
 
 setInterval(() => {
-  changeSubTitle()
-}, 5000);
+  subTitle.style.opacity = 0;
+  changeSubTitle();
+}, 4000);
