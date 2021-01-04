@@ -7,7 +7,7 @@ const changeSubTitle = () => {
     "passionate.",
     "curious.",
     "hard-working.",
-    "a programmer"
+    "programmer."
   ];
   setTimeout(() => {
     subTitle.style.opacity = 1;
