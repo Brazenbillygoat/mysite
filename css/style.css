@@ -218,7 +218,7 @@ a:hover {
 }
 
 .backend-icon {
-    height: 75px;
+    height: 100px;
     padding-top: 15px;
     padding-bottom: 10px;
     width: 80px;
@@ -257,7 +257,7 @@ a:hover {
 .project {
     background-color: #0fb6cc99;
     border: solid black;
-    border-radius: 1%;
+    border-radius: 10px;
     display: block;
     font-weight: bold;
     /* max-height: 45%; */
