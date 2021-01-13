@@ -167,15 +167,22 @@ a:hover {
 /* ABOUT SECTION */
 .about-section {
     background-color: rgb(215, 170, 114);
-    padding-top: 10px;
+    padding-top: 6rem;
 }
 
 .my-story-hr {
     border-color: black;
     border-style: solid;
     border-width: 1px;
+    display: inline-block;
     margin-bottom: 10px;
     width: 25%;
+}
+
+.my-story-title {
+    display: inline-block;
+    margin-left: 5rem;
+    margin-right: 5rem;
 }
 
 
