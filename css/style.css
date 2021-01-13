@@ -162,15 +162,6 @@ a:hover {
     background-size: cover;
 }
 
-.hole {
-    padding: 10%;
-    width: auto;
-    height: 100px;
-    mix-blend-mode: soft-light;
-    background-image: url("../images/panorama-mtn-top.jpeg");
-    background-size: cover;
-    opacity: .55;
-}
 
 
 /* ABOUT SECTION */
@@ -185,6 +176,27 @@ a:hover {
     border-width: 1px;
     margin-bottom: 10px;
     width: 25%;
+}
+
+
+.story-hole-spacer {
+    background: linear-gradient(rgb(215, 170, 114), rgb(215, 170, 114, .7));
+    height: 1rem;
+}
+
+.hole {
+    padding: 10%;
+    width: auto;
+    height: 100px;
+    mix-blend-mode: soft-light;
+    background-image: url("../images/panorama-mtn-top.jpeg");
+    background-size: cover;
+    opacity: .55;
+}
+
+.hole-skills-spacer {
+    background: linear-gradient(rgb(215, 170, 114, .7), rgb(253, 204, 144));
+    height: 1rem;
 }
 
 
