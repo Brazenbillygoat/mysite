@@ -177,7 +177,11 @@ a:hover {
 }
 
 .my-story-hr {
-    border-style: solid 5px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 10px;
+    width: 25%;
 }
 
 
