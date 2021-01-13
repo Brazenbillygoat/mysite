@@ -185,6 +185,10 @@ a:hover {
     margin-right: 5rem;
 }
 
+.story-skills {
+    font-family: Arial, sans-serif;
+}
+
 
 .story-hole-spacer {
     background: linear-gradient(rgb(215, 170, 114), rgb(215, 170, 114, .7));
