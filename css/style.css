@@ -175,7 +175,8 @@ a:hover {
 
 /* ABOUT SECTION */
 .about-section {
-    background: linear-gradient(#fecb89, #0fb6cc90);
+    background-color: rgb(215, 170, 114);
+    padding-top: 10px;
 }
 
 .my-story-hr {
