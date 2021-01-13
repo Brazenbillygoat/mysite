@@ -36,7 +36,7 @@ h4 {
     margin-bottom: 10px;
 }
 
-hr {
+/* hr {
     border-color: grey;
     border-style: dotted none none none;
     border-width: 7px;
@@ -44,7 +44,7 @@ hr {
     padding: 0;
     width: 8%;
     opacity: .5;
-}
+} */
 
 p {
     font-family: 'Lato', sans-serif;
@@ -168,6 +168,16 @@ a:hover {
     background-image: url("../images/panorama-mtn-top.jpeg");
     background-size: cover;
     opacity: .55;
+}
+
+
+/* ABOUT SECTION */
+.about-section {
+    border-top-left-radius: 10%;
+}
+
+.my-story-hr {
+    border-style: solid 5px;
 }
 
 
