@@ -168,6 +168,7 @@ a:hover {
 .about-section {
     background-color: rgb(215, 170, 114);
     padding-top: 6rem;
+    padding-bottom: 2rem;
 }
 
 .my-story-hr {
@@ -185,9 +186,9 @@ a:hover {
     margin-right: 5rem;
 }
 
-.story-skills {
+/* .story-skills {
     font-family: Arial, sans-serif;
-}
+} */
 
 
 .story-hole-spacer {
