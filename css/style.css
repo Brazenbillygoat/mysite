@@ -344,9 +344,10 @@ a:hover {
 }
 
 .blog-image {
+    border-radius: 10px;
     display: block;
-    height: 5rem;
-    max-width: 5rem;
+    height: 12rem;
+    max-width: 18rem;
 }
 
 .email-link {
