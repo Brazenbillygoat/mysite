@@ -343,6 +343,11 @@ a:hover {
     bottom: 0;
 }
 
+.blog-image {
+    height: 5rem;
+    max-width: 5rem;
+}
+
 .email-link {
     font-size: 1.50em;
     color: #0f67cc;
