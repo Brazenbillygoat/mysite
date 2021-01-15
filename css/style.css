@@ -354,8 +354,26 @@ a:hover {
 }
 
 .blog-caption-title {
+    color: whitesmoke;
     margin-top: 1rem;
+    text-decoration: none;
 }
+
+.blog-caption-title:hover {
+    color: wheat;
+    text-decoration: none;
+}
+
+.blog-title-link {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+.blog-title-link:hover {
+    color: wheat;
+    text-decoration: none;
+}
+
 
 .carousel-caption {
     position: relative;
