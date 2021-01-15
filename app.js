@@ -1,4 +1,5 @@
 
+// CHANGING FONT ON LANDING PAGE
 let subTitle = document.getElementById("sub-title");
 
 let messageNum = 0;

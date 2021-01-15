@@ -343,6 +343,10 @@ a:hover {
     bottom: 0;
 }
 
+.blog-section-title {
+    margin-top: 2rem;
+}
+
 .blog-image {
     border-radius: 10px;
     /* display: block; */
@@ -353,27 +357,30 @@ a:hover {
     margin-right: auto;
 }
 
+.blog-image:hover {
+    filter: drop-shadow(2rem 2rem 2rem #0fb6cc70) contrast(135%);
+}
+
 .blog-caption-title {
-    color: whitesmoke;
+    /* color: whitesmoke; */
     margin-top: 1rem;
-    text-decoration: none;
+    /* text-decoration: none; */
 }
 
 .blog-caption-title:hover {
-    color: wheat;
-    text-decoration: none;
+    /* color: wheat; */
+    /* text-decoration: none; */
 }
 
 .blog-title-link {
-    color: whitesmoke;
+    color: rgb(238, 227, 206);
     text-decoration: none;
 }
 
 .blog-title-link:hover {
-    color: wheat;
+    color: whitesmoke;
     text-decoration: none;
 }
-
 
 .carousel-caption {
     position: relative;
