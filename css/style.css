@@ -348,6 +348,15 @@ a:hover {
     display: block;
     height: 12rem;
     max-width: 18rem;
+    margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-caption {
+    position: relative;
+    left: auto;
+    right: auto;
 }
 
 .email-link {
