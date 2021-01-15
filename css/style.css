@@ -353,6 +353,10 @@ a:hover {
     margin-right: auto;
 }
 
+.blog-caption-title {
+    margin-top: 1rem;
+}
+
 .carousel-caption {
     position: relative;
     left: auto;
