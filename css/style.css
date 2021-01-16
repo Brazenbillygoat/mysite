@@ -280,7 +280,25 @@ a:hover {
 }
 
 
-/* PORTFOLIO SECTION */
+/* WORK SECTION */
+.my-work-hr {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: whitesmoke;
+    display: inline-block;
+    margin-bottom: 10px;
+    width: 25%;
+}
+
+.work-section-title {
+    color: rgba(245, 245, 245, 0.705);
+    display: inline-block;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    padding-bottom: 2rem;
+}
+
 .portfolio {
     display: inline-block;
     padding-top: 50px;
