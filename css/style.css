@@ -248,7 +248,7 @@ a:hover {
 }
 
 .backend-skill {
-    /* text-align: center; */
+    margin-left: 3rem;
 }
 
 .backend-list {
@@ -265,7 +265,7 @@ a:hover {
 }
 
 .team-list {
-    padding-left: 3rem;
+    padding-left: 5rem;
     text-align: left;
 }
 
