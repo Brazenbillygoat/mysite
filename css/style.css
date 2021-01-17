@@ -413,6 +413,12 @@ a:hover {
     right: auto;
 }
 
+
+/* CONTACT INFO */
+.contact-info-section-title {
+    margin-top: 4rem;
+}
+
 .email-link {
     font-size: 1.50em;
     color: #0f67cc;
