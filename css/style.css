@@ -67,13 +67,10 @@ a:hover {
     margin-right: .4rem;
 }
 
-
-
-.nav-links {
-    /* display: block; */
-    /* position: relative; */
-    /* left: 2rem; */
+.custom-nav-link-style {
+    padding-left: 1.5rem;
 }
+
 
 .nav-links :hover {
     background-color: green;
