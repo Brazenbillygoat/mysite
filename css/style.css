@@ -9,7 +9,6 @@ body {
     background-position-x: -1.95rem;
     background-size: cover;
     font-family: fantasy, serif;
-    margin: 0;
     padding-top: .5rem;
     text-align: center;
 }
@@ -68,7 +67,8 @@ a:hover {
 }
 
 .top-of-page-link {
-
+    font-size: 1.5rem;
+    padding-top: 1rem;
 }
 
 .custom-nav-link-style {
@@ -112,14 +112,14 @@ a:hover {
 .sun-img {
     height: 90px;
     position: absolute;
-    left: 20px;
-    top: 20px;
+    left: 2rem;
+    top: 3.5rem;
 }
 
 .top-cloud {
     position: absolute;
     right: 200px;
-    top: 50px;
+    top: 3rem;
 }
 
 .bottom-cloud {
