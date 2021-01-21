@@ -236,26 +236,24 @@ a:hover {
     width: 100%;
 }
 
+.frontend-icon {
+    height: 6.25rem;
+}
+
 .frontend-skill {
     margin-right: 1rem;
 }
 
 .frontend-list {
+    display:-moz-inline-stack;
+    display:inline-block;
+    zoom:1;
+    *display:inline;
+}
+
+.frontend-list > li {
     text-align: left;
-}
-
-.frontend-icon {
-    height: 6.25rem;
-}
-
-.backend-skill {
-    margin-left: 3rem;
-}
-
-.backend-list {
-    padding-left: 40%;
-    margin-right: 5rem;
-    text-align: left;
+    /* margin-left: 2rem; */
 }
 
 .backend-icon {
@@ -265,9 +263,20 @@ a:hover {
     width: 80px;
 }
 
-.team-list {
-    padding-left: 5rem;
+.backend-skill {
+    margin-left: 3rem;
+}
+
+.backend-list {
+    display:-moz-inline-stack;
+    display:inline-block;
+    zoom:1;
+    *display:inline;
+}
+
+.backend-list > li {
     text-align: left;
+    /* margin-left: 2rem; */
 }
 
 .team-icon {
@@ -278,6 +287,18 @@ a:hover {
     margin-bottom: .12rem;
     padding-bottom: .7rem;
     width: 5rem;
+}
+
+.team-list {
+    display:-moz-inline-stack;
+    display:inline-block;
+    zoom:1;
+    *display:inline;
+}
+
+.team-list > li {
+    text-align: left;
+    margin-left: 2rem;
 }
 
 
