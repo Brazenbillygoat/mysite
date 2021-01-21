@@ -381,8 +381,8 @@ a:hover {
     background-image:
         linear-gradient(
             #0fb6cc, #c78e44);
-    border-top-left-radius: 5%;
-    border-top-right-radius: 5%;
+    border-top-left-radius: 55px;
+    border-top-right-radius: 55px;
     border-top: solid 1px;
     border-left: solid 1px;
     border-right: solid 1px;
