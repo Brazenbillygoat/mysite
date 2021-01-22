@@ -1,4 +1,11 @@
 
+// SETTING UP MY POPUP VIDEOS
+$(document).ready(function() {
+  $(".popup").magnificPopup({
+    type: "iframe"
+  })
+})
+
 // CHANGING FONT ON LANDING PAGE
 let subTitle = document.getElementById("sub-title");
 
