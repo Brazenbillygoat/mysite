@@ -399,6 +399,8 @@ a:hover {
 .blog-section-title {
     display: inline-block;
     margin-top: 2rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
 }
 
 .tech-blog-hr {
@@ -412,7 +414,6 @@ a:hover {
 
 .blog-image {
     border-radius: 10px;
-    /* display: block; */
     height: 12rem;
     max-width: 18rem;
     margin-top: 3rem;
