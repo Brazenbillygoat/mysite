@@ -304,7 +304,6 @@ a:hover {
 
 /* WORK SECTION */
 .my-work-hr {
-    /* border-color: black; */
     border-style: solid;
     border-width: 1px;
     border-color: rgba(245, 245, 245, 0.705);
@@ -398,6 +397,7 @@ a:hover {
 }
 
 .blog-section-title {
+    display: inline-block;
     margin-top: 2rem;
 }
 
