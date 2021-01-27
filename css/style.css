@@ -134,6 +134,7 @@ a:hover {
         linear-gradient(rgb(100, 54, 24), #d8a96b);
     border-top-left-radius: 7.4%;
     border-top-right-radius: 7.4%;
+    padding-top: 3rem;
 }
 
 .middle-container {
@@ -151,7 +152,7 @@ a:hover {
 /* ABOUT SECTION */
 .about-section {
     background-color: rgb(215, 170, 114);
-    padding-top: 6rem;
+    padding-top: 4rem;
     padding-bottom: 2rem;
 }
 
