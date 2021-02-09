@@ -348,8 +348,18 @@ a:hover {
 }
 
 .project-title {
-    padding-right: 21%;
+    padding-top: .5rem;
     text-align: center;
+}
+
+#beta-climbers {
+    padding-right: 25%;
+}
+
+.presentation-button {
+    color: black;
+    padding-right: 25%;
+    text-decoration: none;
 }
 
 .project-image {
