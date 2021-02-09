@@ -347,6 +347,11 @@ a:hover {
     width: 70%;
 }
 
+.project-title {
+    padding-right: 21%;
+    text-align: center;
+}
+
 .project-image {
     border: solid black 2px;
     float: left;
