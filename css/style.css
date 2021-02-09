@@ -335,6 +335,18 @@ a:hover {
     width: 25%;
 }
 
+.project {
+    background-color: rgb(15, 182, 204, .7);
+    border: solid black;
+    border-radius: 10px;
+    display: block;
+    font-weight: bold;
+    min-height: 200px;
+    margin: 5% 15% 5%;
+    text-align: center;
+    width: 70%;
+}
+
 .project-image {
     border: solid black 2px;
     float: left;
@@ -347,18 +359,6 @@ a:hover {
 
 .project-image:hover {
     opacity: .8;
-}
-
-.project {
-    background-color: rgb(15, 182, 204, .7);
-    border: solid black;
-    border-radius: 10px;
-    display: block;
-    font-weight: bold;
-    min-height: 200px;
-    margin: 20px;
-    text-align: center;
-    width: 70%;
 }
 
 .project-skills>li {
