@@ -353,13 +353,20 @@ a:hover {
 }
 
 #beta-climbers {
-    padding-right: 25%;
+    padding-right: 22%;
 }
 
 .project-link {
-    color: black;
-    padding-right: 25%;
+    padding-right: 22%;
     text-decoration: none;
+}
+
+div.project-link a {
+    color:black;
+}
+
+div.project-link a:hover {
+    color:whitesmoke;
 }
 
 .project-image {
