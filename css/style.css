@@ -383,6 +383,15 @@ div.project-link a:hover {
     opacity: .8;
 }
 
+.project-play-button {
+    /* position: relative;
+    left: 1%;
+    top: 1%; */
+    display: inline-block;
+    margin-left: -100%;
+    margin-top: 1.5%;
+}
+
 .project-skills>li {
     list-style: none;
     margin: 4px;
