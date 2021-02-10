@@ -343,10 +343,12 @@ a:hover {
     font-weight: bold;
     min-height: 200px;
     margin: 5% 15% 5%;
-    position: relative;
+    /* position: relative; */
     text-align: center;
     width: 70%;
 }
+
+
 
 .project-image {
     border: solid black 2px;
