@@ -343,6 +343,7 @@ a:hover {
     font-weight: bold;
     min-height: 200px;
     margin: 5% 15% 5%;
+    position: relative;
     text-align: center;
     width: 70%;
 }
@@ -360,12 +361,13 @@ a:hover {
 }
 
 .project-play-button {
-    /* position: relative;
-    left: 1%;
-    top: 1%; */
-    display: inline-block;
-    margin-left: -100%;
-    margin-top: 1.5%;
+    position: absolute;
+    left: 45%;
+    top: 15%;
+    /* display: inline-block; */
+    /* margin-left: -100%;
+    margin-top: 1.5%; */
+    z-index: 1;
 }
 
 .project-title {
