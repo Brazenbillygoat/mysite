@@ -13,9 +13,9 @@ let messageNum = 0;
 const changeSubTitle = () => {
   let subTitles = [
     "passionate.",
-    "curious.",
-    "hard-working.",
-    "programmer."
+    "systems thinker.",
+    "integration builder.",
+    "software engineer."
   ];
   setTimeout(() => {
     subTitle.style.opacity = 1;
