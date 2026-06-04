@@ -1,171 +1,212 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hyrum Butler</title>
+    <link rel="icon" href="./images/favicon.ico" />
+    <!-- Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hyrum Butler</title>
-  <link rel="icon" href="./images/favicon.ico">
-  <!-- Fonts -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="css/magnific-popup.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
 
-  <!-- Magnific Popup -->
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <link rel="stylesheet" href="./css/style.css">
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top navbar-container">
+      <a class="navbar-brand top-of-page-link" href="#top">Hyrum Butler</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbar-list"
+        aria-controls="navbar-list"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-</head>
+      <div class="collapse navbar-collapse" id="navbar-list">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item custom-nav-link-style">
+            <a class="nav-link" href="#profile">Profile</a>
+          </li>
+          <li class="nav-item custom-nav-link-style">
+            <a class="nav-link" href="#skills-section">Skills</a>
+          </li>
+          <li class="nav-item custom-nav-link-style">
+            <a class="nav-link" href="#work">Work</a>
+          </li>
+          <li class="nav-item custom-nav-link-style">
+            <a class="nav-link" href="#blog-section">Technical Blog</a>
+          </li>
+          <li class="nav-item custom-nav-link-style">
+            <a class="nav-link" href="#contact-info-section-title">Contact</a>
+          </li>
+        </ul>
+        <div class="contact-links">
+          <a id="github-logo" href="https://github.com/Brazenbillygoat" target="blank"
+            ><img class="logo-image" src="./images/github-logo.png" alt="The github octocat logo"
+          /></a>
+          <a href="https://www.linkedin.com/in/hyrum-butler/" target="blank"
+            ><img class="logo-image" src="./images/linkedin-logo.png" alt="The github octocat logo"
+          /></a>
+        </div>
+      </div>
+    </nav>
 
-<body>
+    <div class="top-container">
+      <img class="sun-img" src="./images/summertime.png" alt="Picture of the sun" />
+      <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div> -->
+      <img class="top-cloud" src="images/cloud.png" alt="Cloud image" />
+      <h1>Hyrum Butler</h1>
+      <h2 id="sub-title" class="sub-title">Full-stack software engineer.</h2>
+      <img class="bottom-cloud" src="images/cloud.png" alt="Cloud image" />
+      <img class="mountain-img" src="images/mountain.png" alt="Mountain image" />
+    </div>
 
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top navbar-container">
-    <a class="navbar-brand top-of-page-link" href="#top">Hyrum Butler</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list"
-      aria-controls="navbar-list" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-
-    <div class="collapse navbar-collapse" id="navbar-list">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item custom-nav-link-style">
-          <a class="nav-link" href="#profile">Profile</a>
-        </li>
-        <li class="nav-item custom-nav-link-style">
-          <a class="nav-link" href="#skills-section">Skills</a>
-        </li>
-        <li class="nav-item custom-nav-link-style">
-          <a class="nav-link" href="#work">Work</a>
-        </li>
-        <li class="nav-item custom-nav-link-style">
-          <a class="nav-link" href="#blog-section">Technical Blog</a>
-        </li>
-        <li class="nav-item custom-nav-link-style">
-          <a class="nav-link" href="#contact-info-section-title">Contact</a>
-        </li>
-      </ul>
-      <div class="contact-links">
-        <a id="github-logo" href="https://github.com/Brazenbillygoat" target="blank"><img class="logo-image" src="./images/github-logo.png" alt="The github octocat logo"></a>
-        <a href="https://www.linkedin.com/in/hyrum-butler/" target="blank"><img class="logo-image" src="./images/linkedin-logo.png" alt="The github octocat logo"></a>
+    <div class="middle-container">
+      <div class="profile" id="profile">
+        <img class="profile-pic" src="./images/profile-pic.jpeg" alt="Me stiffling a laugh" />
+        <h2>Hello.</h2>
+        <p>
+          I'm a Fullstack Software Developer that loves the outdoors <em>almost</em> as much as
+          technology!
+        </p>
+        <p>I like turning complicated systems into usable software.</p>
+        <!-- <p>Coding is a lot like mountain climbing to me: the more you work at it the better the view gets. </p>
+      <iframe width="560" height="315" src="https://youtu.be/X2MY4EMXBnY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
       </div>
     </div>
-  </nav>
 
-  <div class="top-container">
-    <img class="sun-img" src="./images/summertime.png" alt="Picture of the sun">
-    <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div> -->
-    <img class="top-cloud" src="images/cloud.png" alt="Cloud image">
-    <h1>Hyrum Butler</h1>
-    <h2 id="sub-title" class="sub-title">Full-stack software engineer.</h2>
-    <img class="bottom-cloud" src="images/cloud.png" alt="Cloud image">
-    <img class="mountain-img" src="images/mountain.png" alt="Mountain image">
-  </div>
+    <div id="about-section" class="about-section">
+      <div class="my-story">
+        <hr class="my-story-hr" />
+        <h2 class="my-story-title">My Story</h2>
+        <hr class="my-story-hr" />
+        <p>
+          I’m a full-stack software engineer with 5+ years of experience building enterprise web
+          applications across modern and legacy stacks. Most recently at AVIXA, I worked on member
+          dashboards, Salesforce integrations, Sitefinity CMS features, a Next.js/Storyblok
+          migration, Mapbox-powered search tools, and .NET 8 authentication services. I like to
+          understand a system before changing it, but I know real production work sometimes needs
+          quick decisions. I’m comfortable balancing speed with care: finding the important context,
+          making the right tradeoffs, and shipping changes that fit the system. I’m strongest in
+          messy real-world systems they don't always line up with what the docs say.
 
-  <div class="middle-container">
-    <div class="profile" id="profile">
-      <img class="profile-pic" src="./images/profile-pic.jpeg" alt="Me stiffling a laugh">
-      <h2>Hello.</h2>
-      <p>I'm a Fullstack Software Developer that loves the outdoors <em>almost</em> as much as technology!</p>
-      <p>I like turning complicated systems into usable software.</p>
-      <!-- <p>Coding is a lot like mountain climbing to me: the more you work at it the better the view gets. </p>
-      <iframe width="560" height="315" src="https://youtu.be/X2MY4EMXBnY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-    </div>
-  </div>
-
-  <div id="about-section" class="about-section">
-    <div class="my-story">
-      <hr class="my-story-hr"><h2 class="my-story-title">My Story</h2><hr class="my-story-hr">
-      <p>I’m a full-stack software engineer with 5+ years of experience building enterprise web applications across modern and legacy stacks. Most recently at AVIXA, I worked on member dashboards, Salesforce integrations, Sitefinity CMS features, a Next.js/Storyblok migration, Mapbox-powered search tools, and .NET 8 authentication services.
-
-      I like to understand a system before changing it, but I know real production work sometimes needs quick decisions. I’m comfortable balancing speed with care: finding the important context, making the right tradeoffs, and shipping changes that fit the system.
-
-      I’m strongest in messy real-world systems they don't always line up with what the docs say.
-
-        <!-- <p>My skills include:</p>
+          <!-- <p>My skills include:</p>
         <ul class="story-skills">
           Ruby, Rails, SQL, Javascript, React, Redux, HTML, CSS, Git (version control), Rest APIs, and Bootstrap.
         </ul> -->
-      </p>
-    </div>
-  </div>
-
-  <div class="story-hole-spacer"></div>
-  <div class="hole"></div>
-  <div class="hole-skills-spacer"></div>
-
-  <div id="skills-section" class="middle-container">
-    <div class="skills-title-bar">
-      <hr class="my-skills-hr">
-      <h2 class="skills-section-title">My Skills</h2>
-      <hr class="my-skills-hr">
-    </div>
-    <div class="skills-lists-box">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <img class="frontend-icon" src="./images/frontend-icon.png"
-              alt="HTML carrots only containing a forward slash">
-            <h3>Frontend</h3>
-            <ul class="frontend-list">
-              <li>HTML</li>
-              <li>CSS</li>
-              <li>Javascript</li>
-              <li>React</li>
-              <li>Redux</li>
-              <li>Bootstrap</li>
-              <li>Rest APIs</li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <img class="backend-icon" src="./images/backend-icon.png" alt="Gear in front of a database page">
-            <h3>Backend</h3>
-            <ul class="backend-list">
-              <li>Ruby</li>
-              <li>Rails</li>
-              <li>SQL</li>
-              <li>SQLite3</li>
-              <li>PostgreSQL</li>
-              <li>Git</li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <img class="team-icon" src="./images/team-icon.png"
-              alt="HTML carrots only containing a forward slash">
-            <h3>Teams</h3>
-            <ul class="team-list">
-              <li>Agile/Scrum</li>
-              <li>Pair Programming</li>
-              <li>Presenting</li>
-              <li>Project Management</li>
-            </ul>
-          </div>
-        </div>
+        </p>
       </div>
     </div>
 
-    <div id="work" class="portfolio">
-      <hr class="my-work-hr"><h2 class="work-section-title">My Work</h2><hr class="my-work-hr">
-      <div class="project">
-        
-        <a class="popup project-presentation-link" href="https://www.youtube.com/watch?v=X2MY4EMXBnY">
-          <img class="project-image" src="./images/betaclimberwelcome.png" alt="A screenshot of my beta-climbers app.">
-          <!-- <img class="project-play-button" src="./images/play-button.png" alt="Play button overlayed on the project thumbnail."> -->
-        </a>
-        <h3 id="beta-climbers" class="project-title">Beta Climbers</h3>
-        <div class="project-link">
-          <a href="https://beta-climbers.herokuapp.com/" target="blank">Visit Site</a>
-          |
-          <a href="https://github.com/Brazenbillygoat/betaclimbers" target="blank">View Code</a>
+    <div class="story-hole-spacer"></div>
+    <div class="hole"></div>
+    <div class="hole-skills-spacer"></div>
+
+    <div id="skills-section" class="middle-container">
+      <div class="skills-title-bar">
+        <hr class="my-skills-hr" />
+        <h2 class="skills-section-title">My Skills</h2>
+        <hr class="my-skills-hr" />
+      </div>
+      <div class="skills-lists-box">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <img
+                class="frontend-icon"
+                src="./images/frontend-icon.png"
+                alt="HTML carrots only containing a forward slash"
+              />
+              <h3>Frontend</h3>
+              <ul class="frontend-list">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>Javascript</li>
+                <li>React</li>
+                <li>Redux</li>
+                <li>Bootstrap</li>
+                <li>Rest APIs</li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <img
+                class="backend-icon"
+                src="./images/backend-icon.png"
+                alt="Gear in front of a database page"
+              />
+              <h3>Backend</h3>
+              <ul class="backend-list">
+                <li>Ruby</li>
+                <li>Rails</li>
+                <li>SQL</li>
+                <li>SQLite3</li>
+                <li>PostgreSQL</li>
+                <li>Git</li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <img
+                class="team-icon"
+                src="./images/team-icon.png"
+                alt="HTML carrots only containing a forward slash"
+              />
+              <h3>Teams</h3>
+              <ul class="team-list">
+                <li>Agile/Scrum</li>
+                <li>Pair Programming</li>
+                <li>Presenting</li>
+                <li>Project Management</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <p>
-          A social app for climbers to stay in touch and share info about climbing routes.
-          Made using HTML, CSS, and Ruby on Rails for the entire MVC interactions.
-          Climbers(users) can signup and edit their own information but not another climbers information.
-        </p>
-          <hr class="portfolio-description-divide">
+      </div>
+
+      <div id="work" class="portfolio">
+        <hr class="my-work-hr" />
+        <h2 class="work-section-title">My Work</h2>
+        <hr class="my-work-hr" />
+        <div class="project">
+          <a
+            class="popup project-presentation-link"
+            href="https://www.youtube.com/watch?v=X2MY4EMXBnY"
+          >
+            <img
+              class="project-image"
+              src="./images/betaclimberwelcome.png"
+              alt="A screenshot of my beta-climbers app."
+            />
+            <!-- <img class="project-play-button" src="./images/play-button.png" alt="Play button overlayed on the project thumbnail."> -->
+          </a>
+          <h3 id="beta-climbers" class="project-title">Beta Climbers</h3>
+          <div class="project-link">
+            <a href="https://beta-climbers.herokuapp.com/" target="blank">Visit Site</a>
+            |
+            <a href="https://github.com/Brazenbillygoat/betaclimbers" target="blank">View Code</a>
+          </div>
+          <p>
+            A social app for climbers to stay in touch and share info about climbing routes. Made
+            using HTML, CSS, and Ruby on Rails for the entire MVC interactions. Climbers(users) can
+            signup and edit their own information but not another climbers information.
+          </p>
+          <hr class="portfolio-description-divide" />
           <ul class="project-skills">
             <li>HTML</li>
             <li>CSS</li>
@@ -175,24 +216,32 @@
             <li>Bcrypt</li>
             <li>Web APIs</li>
           </ul>
-      </div>
-
-      <div class="project">
-        <a class="popup project-presentation-link" href="https://www.youtube.com/watch?v=wdIBMDcOk6o" target="blank">
-          <img class="project-image" src="./images/adeliwelcome.png" alt="A screenshot of adeli's website">
-        </a>
-        <h3 class="project-title">aDeli Restaurant, Manassas</h3>
-        <div class="project-link">
-          <a href="https://happy-bartik-85cabe.netlify.app/" target="blank">Visit Site</a>
-          |
-          <a href="https://github.com/Brazenbillygoat/adeli-frontend" target="blank">View Code</a>
         </div>
-        <p>
-          Pure vanilla javascript frontend allowing a user to switch between menus and simulate a cart.
-          Pop-up menu selection giving the user a choice of size depending on the menu item selected.
-          The cart persists between site visit with local storage.
-        </p>
-          <hr class="portfolio-description-divide">
+
+        <div class="project">
+          <a
+            class="popup project-presentation-link"
+            href="https://www.youtube.com/watch?v=wdIBMDcOk6o"
+            target="blank"
+          >
+            <img
+              class="project-image"
+              src="./images/adeliwelcome.png"
+              alt="A screenshot of adeli's website"
+            />
+          </a>
+          <h3 class="project-title">aDeli Restaurant, Manassas</h3>
+          <div class="project-link">
+            <a href="https://happy-bartik-85cabe.netlify.app/" target="blank">Visit Site</a>
+            |
+            <a href="https://github.com/Brazenbillygoat/adeli-frontend" target="blank">View Code</a>
+          </div>
+          <p>
+            Pure vanilla javascript frontend allowing a user to switch between menus and simulate a
+            cart. Pop-up menu selection giving the user a choice of size depending on the menu item
+            selected. The cart persists between site visit with local storage.
+          </p>
+          <hr class="portfolio-description-divide" />
           <ul class="project-skills">
             <li>HTML</li>
             <li>CSS</li>
@@ -201,27 +250,40 @@
             <li>Local storage</li>
             <li>Postgres</li>
           </ul>
-      </div>
-
-      <div class="project">
-        <a class="popup project-presentation-link" href="https://www.youtube.com/watch?v=uhNcH-GwcW0" target="blank">
-          <img class="project-image" src="./images/neighborhoodheroeswelcome.png" alt="A screenshot of my neighborhood heroes app">
-        </a>
-        <h3 class="project-title">Neighborhood Heroes</h3>
-        <div class="project-link">
-          <a href="https://neighborhood-heroes-frontend.herokuapp.com/home" target="blank">Visit Site</a>
-          |
-          <a href="https://github.com/Brazenbillygoat/neighborhood-heros-frontend" target="blank">View Code</a>
         </div>
-        <p>
-          An app for users to create custom tournaments and compete with eachother by creating and logging tasks for points.
-          React and Redux are used for smooth and quick actions during user interface.
-          This application has a lot of potential avenues for exploring user2user features and I looking
-          forward to using this as a bit of a playground for such as time goes on.
-          <br>The app is hosted by Heroku(a free hosting service)
-          and is thus a little slow upon intial opening, but that is not a reflection of the code.
-        </p>
-          <hr class="portfolio-description-divide">
+
+        <div class="project">
+          <a
+            class="popup project-presentation-link"
+            href="https://www.youtube.com/watch?v=uhNcH-GwcW0"
+            target="blank"
+          >
+            <img
+              class="project-image"
+              src="./images/neighborhoodheroeswelcome.png"
+              alt="A screenshot of my neighborhood heroes app"
+            />
+          </a>
+          <h3 class="project-title">Neighborhood Heroes</h3>
+          <div class="project-link">
+            <a href="https://neighborhood-heroes-frontend.herokuapp.com/home" target="blank"
+              >Visit Site</a
+            >
+            |
+            <a href="https://github.com/Brazenbillygoat/neighborhood-heros-frontend" target="blank"
+              >View Code</a
+            >
+          </div>
+          <p>
+            An app for users to create custom tournaments and compete with eachother by creating and
+            logging tasks for points. React and Redux are used for smooth and quick actions during
+            user interface. This application has a lot of potential avenues for exploring user2user
+            features and I looking forward to using this as a bit of a playground for such as time
+            goes on.
+            <br />The app is hosted by Heroku(a free hosting service) and is thus a little slow upon
+            intial opening, but that is not a reflection of the code.
+          </p>
+          <hr class="portfolio-description-divide" />
           <ul class="project-skills">
             <li>HTML</li>
             <li>CSS</li>
@@ -234,104 +296,170 @@
             <li>Bcrypt</li>
             <li>Custom Built API</li>
           </ul>
-      </div>
-
-      <div id="contact-me" class="contact-me">
-        <hr class="tech-blog-hr">
-        <h2 id="blog-section" class="blog-section-title">Technical Blog</h2>
-        <hr class="tech-blog-hr">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="4500">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-          </ol>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <a class="blog-image-link" href="https://medium.com/@hyrum.butler3/3-common-git-pitfalls-and-how-to-self-correct-ea9bfdfcb564" target="blank">
-                <img class="d-block w-100 blog-image" src="./images/git-pitfalls.jpeg" alt="3 common git pitfalls and how to self correct blog tile picture.">
-              </a>
-              <div class="carousel-caption d-none d-md-block">
-                <h5 class="blog-caption-title">
-                  <a class="blog-title-link" href="https://medium.com/@hyrum.butler3/3-common-git-pitfalls-and-how-to-self-correct-ea9bfdfcb564" target="blank">
-                    3 Common Git Pitfalls and How to Self-correct
-                  </a>
-                  </h5>
-                  <!-- <p>...</p> -->
-              </div>
-            </div>
-            <div class="carousel-item">
-              <a class="blog-image-link" href="https://hyrum-butler.medium.com/the-command-line-terminal-console-shell-76f5c4c34f1c" target="blank">
-                <img class="d-block w-100 blog-image" src="./images/commandline-blog.png" alt="The Command Line, Terminal, Console, Shell, blog title picture.">
-              </a>
-              <div class="carousel-caption d-none d-md-block">
-                <h5 class="blog-caption-title">
-                  <a class="blog-title-link" href="https://hyrum-butler.medium.com/the-command-line-terminal-console-shell-76f5c4c34f1c" target="blank">
-                    The Command Line || Terminal || Console || Shell
-                  </a>
-                </h5>
-                <!-- <p>...</p> -->
-              </div>
-            </div>
-            <div class="carousel-item">
-              <a class="blog-image-link" href="https://medium.com/@hyrum.butler3/working-with-a-team-git-flow-ea0eeb6fe93b" target="blank">
-                <img class="d-block w-100 blog-image" src="./images/team-git-flow.jpeg" alt="Working with a Team -- gitflow blog title picture.">
-              </a>
-              <div class="carousel-caption d-none d-md-block">
-                <h5 class="blog-caption-title">
-                  <a class="blog-title-link" href="https://medium.com/@hyrum.butler3/working-with-a-team-git-flow-ea0eeb6fe93b" target="blank">
-                    Working with a Team -- Git-flow
-                  </a>
-                </h5>
-                <!-- <p>...</p> -->
-              </div>
-            </div>
-            <div class="carousel-item">
-              <a class="blog-image-link" href="https://medium.com/@hyrum.butler3/contributing-to-open-source-bf27dc60d526" target="blank">
-                <img class="d-block w-100 blog-image" src="./images/contributing-open-source.jpeg" alt="Contributing to opensource blog title picture.">
-              </a>
-              <div class="carousel-caption d-none d-md-block">
-                <h5 class="blog-caption-title">
-                  <a class="blog-title-link" href="https://medium.com/@hyrum.butler3/contributing-to-open-source-bf27dc60d526" target="blank">
-                    Contributing to Open Source
-                  </a>
-                </h5>
-                <!-- <p>...</p> -->
-              </div>
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
         </div>
 
-        <h2 class="contact-info-section-title">Get In Touch</h2>
-        <h4>Email:</h4>
-        <p>hyrum.butler3@gmail.com</p>
-        <h4>Phone number:</h4>
-        <p>(540)-816-9487</p>
-        <a class="btn email-link" href="mailto:hyrum.butler3@gmail.com">CONTACT ME</a>
+        <div id="contact-me" class="contact-me">
+          <hr class="tech-blog-hr" />
+          <h2 id="blog-section" class="blog-section-title">Technical Blog</h2>
+          <hr class="tech-blog-hr" />
+          <div
+            id="carouselExampleIndicators"
+            class="carousel slide"
+            data-ride="carousel"
+            data-interval="4500"
+          >
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <a
+                  class="blog-image-link"
+                  href="https://medium.com/@hyrum.butler3/3-common-git-pitfalls-and-how-to-self-correct-ea9bfdfcb564"
+                  target="blank"
+                >
+                  <img
+                    class="d-block w-100 blog-image"
+                    src="./images/git-pitfalls.jpeg"
+                    alt="3 common git pitfalls and how to self correct blog tile picture."
+                  />
+                </a>
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="blog-caption-title">
+                    <a
+                      class="blog-title-link"
+                      href="https://medium.com/@hyrum.butler3/3-common-git-pitfalls-and-how-to-self-correct-ea9bfdfcb564"
+                      target="blank"
+                    >
+                      3 Common Git Pitfalls and How to Self-correct
+                    </a>
+                  </h5>
+                  <!-- <p>...</p> -->
+                </div>
+              </div>
+              <div class="carousel-item">
+                <a
+                  class="blog-image-link"
+                  href="https://hyrum-butler.medium.com/the-command-line-terminal-console-shell-76f5c4c34f1c"
+                  target="blank"
+                >
+                  <img
+                    class="d-block w-100 blog-image"
+                    src="./images/commandline-blog.png"
+                    alt="The Command Line, Terminal, Console, Shell, blog title picture."
+                  />
+                </a>
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="blog-caption-title">
+                    <a
+                      class="blog-title-link"
+                      href="https://hyrum-butler.medium.com/the-command-line-terminal-console-shell-76f5c4c34f1c"
+                      target="blank"
+                    >
+                      The Command Line || Terminal || Console || Shell
+                    </a>
+                  </h5>
+                  <!-- <p>...</p> -->
+                </div>
+              </div>
+              <div class="carousel-item">
+                <a
+                  class="blog-image-link"
+                  href="https://medium.com/@hyrum.butler3/working-with-a-team-git-flow-ea0eeb6fe93b"
+                  target="blank"
+                >
+                  <img
+                    class="d-block w-100 blog-image"
+                    src="./images/team-git-flow.jpeg"
+                    alt="Working with a Team -- gitflow blog title picture."
+                  />
+                </a>
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="blog-caption-title">
+                    <a
+                      class="blog-title-link"
+                      href="https://medium.com/@hyrum.butler3/working-with-a-team-git-flow-ea0eeb6fe93b"
+                      target="blank"
+                    >
+                      Working with a Team -- Git-flow
+                    </a>
+                  </h5>
+                  <!-- <p>...</p> -->
+                </div>
+              </div>
+              <div class="carousel-item">
+                <a
+                  class="blog-image-link"
+                  href="https://medium.com/@hyrum.butler3/contributing-to-open-source-bf27dc60d526"
+                  target="blank"
+                >
+                  <img
+                    class="d-block w-100 blog-image"
+                    src="./images/contributing-open-source.jpeg"
+                    alt="Contributing to opensource blog title picture."
+                  />
+                </a>
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="blog-caption-title">
+                    <a
+                      class="blog-title-link"
+                      href="https://medium.com/@hyrum.butler3/contributing-to-open-source-bf27dc60d526"
+                      target="blank"
+                    >
+                      Contributing to Open Source
+                    </a>
+                  </h5>
+                  <!-- <p>...</p> -->
+                </div>
+              </div>
+            </div>
+            <a
+              class="carousel-control-prev"
+              href="#carouselExampleIndicators"
+              role="button"
+              data-slide="prev"
+            >
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#carouselExampleIndicators"
+              role="button"
+              data-slide="next"
+            >
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+          <h2 class="contact-info-section-title">Get In Touch</h2>
+          <h4>Email:</h4>
+          <p>hyrum.butler3@gmail.com</p>
+          <h4>Phone number:</h4>
+          <p>(540)-816-9487</p>
+          <a class="btn email-link" href="mailto:hyrum.butler3@gmail.com">CONTACT ME</a>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="bottom-container">
-    <a class="footer-link" href="https://www.linkedin.com/in/hyrum-butler/" target="blank">LinkedIn</a>
-    <a class="footer-link" href="https://www.codewars.com/users/Brazenbillygoat" target="blank">Codewars</a>
-    <a class="footer-link" href="https://github.com/Brazenbillygoat" target="blank">Github</a>
-    <p>Hyrum Butler</p>
-  </div>
+    <div class="bottom-container">
+      <a class="footer-link" href="https://www.linkedin.com/in/hyrum-butler/" target="blank"
+        >LinkedIn</a
+      >
+      <a class="footer-link" href="https://www.codewars.com/users/Brazenbillygoat" target="blank"
+        >Codewars</a
+      >
+      <a class="footer-link" href="https://github.com/Brazenbillygoat" target="blank">Github</a>
+      <p>Hyrum Butler</p>
+    </div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="src/jquery.magnific-popup.min.js"></script>
-<script src="src/app.js"></script>
-</body>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="src/jquery.magnific-popup.min.js"></script>
+    <script src="src/app.js"></script>
+  </body>
 </html>
