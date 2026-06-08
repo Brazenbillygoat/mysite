@@ -77,16 +77,18 @@ const updateParallaxLayers = () => {
     // These values come from the HTML data values.
     const xStart = getCssLength(layer.dataset.xStart);
     const xEnd = getCssLength(layer.dataset.xEnd);
-    // These values come from the HTML data values.
     const yStart = getCssLength(layer.dataset.yStart);
     const yEnd = getCssLength(layer.dataset.yEnd);
+    const scaleStart = Number(layer.dataset.scaleStart || 1);
+    const scaleEnd = Number(layer.dataset.scaleEnd || 1);
 
     // Interpolate between start and end based on current scroll progress.
     const xOffset = xStart + (xEnd - xStart) * progress;
     const yOffset = yStart + (yEnd - yStart) * progress;
+    const scale = scaleStart + (scaleEnd - scaleStart) * progress;
 
     // Apply the calculated X/Y offsets with translate3d so movement stays on the compositor path.
-    layer.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0)`;
+    layer.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0) scale(${scale})`;
   });
 
   parallaxTicking = false;
