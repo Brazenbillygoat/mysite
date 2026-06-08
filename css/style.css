@@ -86,21 +86,29 @@ a:hover {
 .top-container {
     background-color: #0fb6cc;
     color: #ffbd69;
+    min-height: 100vh;
+    overflow: hidden;
     padding-top: 100px;
     position: relative;
 }
 
-.mountain-img {
-    position: relative;
-    top: 10px;
-    width: 98%;
+.scene-layer {
+    pointer-events: none;
+    position: absolute;
+    will-change: transform;
 }
 
-.profile-pic {
-    border-radius: 50%;
-    height: 200px;
-    width: 200px;
-    padding-top: 10px;
+.text-layer {
+    position: relative;
+    z-index: 5;
+}
+
+.mountain-img {
+    display: block;
+    margin-top: 2rem;
+    position: relative;
+    width: 98%;
+    z-index: 4;
 }
 
 .sub-title {
@@ -111,27 +119,28 @@ a:hover {
 
 .sun-img {
     height: 90px;
-    position: absolute;
     left: 2rem;
     top: 3.5rem;
+    z-index: 1;
 }
 
 .top-cloud {
-    position: absolute;
     right: 200px;
     top: 3rem;
+    z-index: 2;
 }
 
 .bottom-cloud {
-    position: relative;
-    left: -30%;
+    left: 15%;
+    top: 45%;
+    z-index: 3;
 }
 
 
 /* MIDDLE CONTAINER */
 .profile {
     background-image:
-        linear-gradient(rgb(100, 54, 24), #d8a96b);
+    linear-gradient(rgb(100, 54, 24), #d8a96b);
     border-top-left-radius: 7.4%;
     border-top-right-radius: 7.4%;
     padding-top: 3rem;
@@ -139,7 +148,7 @@ a:hover {
 
 .middle-container {
     background-image:
-        linear-gradient(#c78e44, rgb(100, 54, 24));
+    linear-gradient(#c78e44, rgb(100, 54, 24));
     background: linear-gradient(#000000, #00000010), url("../images/laptop-with-plants.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -147,6 +156,12 @@ a:hover {
     background-size: cover;
 }
 
+.profile-pic {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    padding-top: 10px;
+}
 
 
 /* ABOUT SECTION */
