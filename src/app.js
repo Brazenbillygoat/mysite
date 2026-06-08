@@ -1,37 +1,30 @@
-
 // SETTING UP MY POPUP VIDEOS
-$(document).ready(function() {
+$(document).ready(function () {
   $(".popup").magnificPopup({
-    type: "iframe"
-  })
-})
+    type: "iframe",
+  });
+});
 
 // CHANGING FONT ON LANDING PAGE
 let subTitle = document.getElementById("sub-title");
 
 let messageNum = 0;
 const changeSubTitle = () => {
-  let subTitles = [
-    "passionate.",
-    "systems thinker.",
-    "integration builder.",
-    "software engineer."
-  ];
+  let subTitles = ["passionate.", "systems thinker.", "integration builder.", "software engineer."];
   setTimeout(() => {
     subTitle.style.opacity = 1;
     subTitle.innerText = subTitles[messageNum];
   }, 1000);
-  messageNum ++;
-  if (messageNum > subTitles.length -1) {
+  messageNum++;
+  if (messageNum > subTitles.length - 1) {
     messageNum = 0;
-  };
-}
+  }
+};
 
 setInterval(() => {
   subTitle.style.opacity = 0;
   changeSubTitle();
 }, 4000);
-
 
 // PARALLAX HERO SCENE
 
@@ -60,20 +53,40 @@ const getScrollProgress = () => {
   return Math.min(Math.max(progress, 0), 1);
 };
 
+// Convert simple CSS length values from data attributes into pixels for transform math.
+// Supports rem for readable scene-scale movement, px for exact offsets, and plain numbers as pixels.
+const getCssLength = (value, fallback = "0rem") => {
+  const rawValue = value || fallback;
+
+  if (rawValue.endsWith("rem")) {
+    const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    return parseFloat(rawValue) * rootFontSize;
+  }
+
+  if (rawValue.endsWith("px")) {
+    return parseFloat(rawValue);
+  }
+
+  return Number(rawValue || 0);
+};
+
 const updateParallaxLayers = () => {
   const progress = getScrollProgress();
 
   parallaxLayers.forEach((layer) => {
-    // These values come from the HTML, e.g. data-y-start="0" data-y-end="70".
-    const yStart = Number(layer.dataset.yStart || 0);
-    const yEnd = Number(layer.dataset.yEnd || 0);
+    // These values come from the HTML data values.
+    const xStart = getCssLength(layer.dataset.xStart);
+    const xEnd = getCssLength(layer.dataset.xEnd);
+    // These values come from the HTML data values.
+    const yStart = getCssLength(layer.dataset.yStart);
+    const yEnd = getCssLength(layer.dataset.yEnd);
 
     // Interpolate between start and end based on current scroll progress.
-    // Example: start 0, end 100, progress 0.5 => 50px.
+    const xOffset = xStart + (xEnd - xStart) * progress;
     const yOffset = yStart + (yEnd - yStart) * progress;
 
-    // Use transform instead of top/margin so the browser can animate cheaply.
-    layer.style.transform = `translate3d(0, ${yOffset}px, 0)`;
+    // Apply the calculated X/Y offsets with translate3d so movement stays on the compositor path.
+    layer.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0)`;
   });
 
   parallaxTicking = false;
