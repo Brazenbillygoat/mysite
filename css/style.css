@@ -81,7 +81,21 @@ a:hover {
 
 /* TOP CONTAINER */
 .top-container {
-  background-color: #0fb6cc;
+  /*
+    JS updates these sky stops from hero scroll progress.
+    Keeping the colors in CSS variables lets the browser repaint one gradient
+    instead of forcing layout changes or adding extra DOM layers.
+  */
+  --sky-top: #65d9f0;
+  --sky-middle: #0fb6cc;
+  --sky-bottom: #b7eef7;
+
+  background: linear-gradient(
+    180deg,
+    var(--sky-top) 0%,
+    var(--sky-middle) 58%,
+    var(--sky-bottom) 100%
+  );
   color: #ffbd69;
   min-height: 100vh;
   overflow: hidden;
@@ -114,18 +128,88 @@ a:hover {
   transition: opacity 2s;
 }
 
-.sun-img {
+.sun-character {
   height: 115px;
   left: clamp(6rem, 8vw, 11rem);
   top: 6rem;
+  width: 115px;
   z-index: 1;
 }
 
+.sun-img {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.sun-face {
+  /*
+    The face is layered over the existing sun image.
+    Percentage positioning keeps it aligned as the sun scales during parallax.
+  */
+  height: 42%;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  top: 38%;
+  transform: translateX(-50%);
+  width: 46%;
+}
+
+.sun-eye {
+  background: #fff7d6;
+  border: 2px solid #6f4b1d;
+  border-radius: 50%;
+  height: 28%;
+  position: absolute;
+  top: 0;
+  width: 28%;
+}
+
+.sun-eye-left {
+  left: 8%;
+}
+
+.sun-eye-right {
+  right: 8%;
+}
+
+.sun-pupil {
+  /*
+    JS writes --pupil-x and --pupil-y from mouse position.
+    Defaults keep the face centered when the mouse has not moved yet.
+  */
+  --pupil-x: 0px;
+  --pupil-y: 0px;
+
+  background: #3d2b14;
+  border-radius: 50%;
+  display: block;
+  height: 38%;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(calc(-50% + var(--pupil-x)), calc(-50% + var(--pupil-y)));
+  width: 38%;
+}
+
+.sun-mouth {
+  border-bottom: 3px solid #6f4b1d;
+  border-radius: 0 0 999px 999px;
+  bottom: 25%;
+  height: 28%;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 42%;
+}
+
 @media (max-width: 768px) {
-  .sun-img {
+  .sun-character {
     height: 80px;
     left: 1.5rem;
     top: 6.5rem;
+    width: 80px;
   }
 }
 
