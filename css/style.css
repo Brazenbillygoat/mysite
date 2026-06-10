@@ -114,14 +114,6 @@ a:hover {
   z-index: 5;
 }
 
-.mountain-img {
-  display: block;
-  margin-top: 2rem;
-  position: relative;
-  width: 98%;
-  z-index: 4;
-}
-
 .sub-title {
   font-size: 1.75rem;
   margin-top: 0;
@@ -129,11 +121,18 @@ a:hover {
 }
 
 .sun-character {
+  cursor: pointer;
   height: 115px;
   left: clamp(6rem, 8vw, 11rem);
+  pointer-events: auto;
   top: 6rem;
   width: 115px;
   z-index: 1;
+}
+
+.sun-character.is-awakened {
+  cursor: default;
+  pointer-events: none;
 }
 
 .sun-img {
@@ -149,11 +148,17 @@ a:hover {
   */
   height: 42%;
   left: 50%;
+  opacity: 0;
   pointer-events: none;
   position: absolute;
   top: 38%;
   transform: translateX(-50%);
+  transition: opacity 1s ease;
   width: 46%;
+}
+
+.sun-character.is-awakened .sun-face {
+  opacity: 1;
 }
 
 .sun-eye {
@@ -163,7 +168,13 @@ a:hover {
   height: 28%;
   position: absolute;
   top: 0;
+  transform-origin: center;
+  transition: transform 0.1s ease;
   width: 28%;
+}
+
+.sun-character.is-blinking .sun-eye {
+  transform: scaleY(0.12);
 }
 
 .sun-eye-left {
@@ -234,11 +245,100 @@ a:hover {
   z-index: 3;
 }
 
+.forest-line {
+  bottom: -1px;
+  height: clamp(190px, 28vw, 360px);
+  left: 0;
+  overflow: visible;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 5;
+}
+
+.forest-line::after {
+  background: linear-gradient(
+    180deg,
+    rgba(8, 39, 23, 0) 0%,
+    rgba(8, 39, 23, 0.95) 34%,
+    rgb(100, 54, 24) 100%
+  );
+  bottom: 0;
+  content: "";
+  height: 42%;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 4;
+}
+
+.forest-layer {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  transform-origin: bottom center;
+  width: 100%;
+}
+
+.forest-layer svg {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.forest-layer-back {
+  height: 52%;
+  opacity: 0.65;
+  z-index: 1;
+}
+
+.forest-layer-mid {
+  height: 68%;
+  opacity: 0.85;
+  z-index: 2;
+}
+
+.forest-layer-front {
+  height: 88%;
+  z-index: 3;
+}
+
+.skier {
+  left: 42%;
+  top: 58%;
+  width: 28px;
+  height: 22px;
+  z-index: 6;
+}
+
+.skier-body {
+  background: #1d1b18;
+  border-radius: 999px;
+  display: block;
+  height: 14px;
+  transform: rotate(-22deg);
+  width: 8px;
+}
+
+.skier-skis {
+  border-bottom: 2px solid #1d1b18;
+  display: block;
+  margin-top: 2px;
+  transform: rotate(-12deg);
+  width: 28px;
+}
+
+.mountain-img {
+  display: block;
+  margin-top: 2rem;
+  position: relative;
+  width: 98%;
+  z-index: 4;
+}
+
 /* MIDDLE CONTAINER */
 .profile {
   background-image: linear-gradient(rgb(100, 54, 24), #d8a96b);
-  border-top-left-radius: 7.4%;
-  border-top-right-radius: 7.4%;
   padding-top: 3rem;
 }
 
@@ -355,10 +455,7 @@ a:hover {
 }
 
 .frontend-list {
-  display: -moz-inline-stack;
   display: inline-block;
-  zoom: 1;
-  *display: inline;
 }
 
 .frontend-list > li {
@@ -378,10 +475,7 @@ a:hover {
 }
 
 .backend-list {
-  display: -moz-inline-stack;
   display: inline-block;
-  zoom: 1;
-  *display: inline;
 }
 
 .backend-list > li {
@@ -400,10 +494,7 @@ a:hover {
 }
 
 .team-list {
-  display: -moz-inline-stack;
   display: inline-block;
-  zoom: 1;
-  *display: inline;
 }
 
 .team-list > li {
