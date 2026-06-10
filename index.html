@@ -69,17 +69,34 @@
     </nav>
 
     <div class="top-container" id="top">
-      <img
-        class="scene-layer sun-img"
-        src="./images/summertime.png"
-        alt="Picture of the sun"
+      <div
+        class="scene-layer sun-character"
         data-x-start="0"
         data-x-end="20rem"
         data-y-start="0"
         data-y-end="100rem"
         data-scale-start="1"
         data-scale-end="5"
-      />
+        aria-label="Picture of the sun"
+        role="img"
+      >
+        <img class="sun-img" src="./images/summertime.png" alt="" />
+
+        <!--
+        Screen readers should ignore the face pieces, aria-hidden="true". They are visual decoration,
+        while the wrapper above provides the accessible sun label.
+      -->
+        <div class="sun-face" aria-hidden="true">
+          <span class="sun-eye sun-eye-left">
+            <span class="sun-pupil"></span>
+          </span>
+          <span class="sun-eye sun-eye-right">
+            <span class="sun-pupil"></span>
+          </span>
+          <span class="sun-mouth"></span>
+        </div>
+      </div>
+
       <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div> -->
       <img
         class="scene-layer top-cloud"
