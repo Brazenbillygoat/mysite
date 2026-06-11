@@ -40,6 +40,9 @@ const sunCharacter = document.querySelector(".sun-character");
 // These are the sun's pupils that will track the user's mouse position with a custom effect.
 const sunPupils = document.querySelectorAll(".sun-pupil");
 
+// The final skier resting at the end of the story, revealed after all cabin unlocks are earned.
+const finalSkierRest = document.querySelector(".final-skier-rest");
+
 // Mouse must be this close to the sun before the sun prefers the cursor over the skier.
 const sunGazeRadius = 220;
 
@@ -48,19 +51,32 @@ const pupilMaxOffset = 3;
 
 const cabinCharacter = document.querySelector(".cabin-character");
 const skier = document.querySelector(".mountain-skier");
+const pathMarkersLayer = document.querySelector(".path-markers");
+const cabinUnlocksLayer = document.querySelector(".cabin-unlocks");
 
-// Cabin advances one step per click until activated.
+const skierStates = {
+  hidden: "hidden",
+  running: "running",
+  crashed: "crashed",
+  resting: "resting",
+  complete: "complete",
+};
+
+const progressionState = {
+  cabinState: "sleeping",
+  cabinLevel: 0,
+  skierState: skierStates.hidden,
+};
+
 const cabinStates = ["sleeping", "smoking", "lit", "activated"];
-let cabinStateIndex = 0;
 
 // One skier run progresses by this much scroll after launch.
-const skierRunScrollDistance = 900;
+const skierRunScrollDistance = 200;
 
 // Crash is decided once when a run starts.
 const crashChance = 0.22;
 
 let skierRun = {
-  status: "hidden",
   scrollStartY: 0,
   progress: 0,
   hasCrash: false,
@@ -70,7 +86,6 @@ let skierRun = {
 
 // We track scroll direction to know when to launch a new run after finishing and rewinding back up.
 let previousScrollY = window.scrollY;
-let successfulSkierRuns = 0;
 
 // Component-local state only. Refreshing the page puts the sun back to sleep.
 let sunAwakened = false;
@@ -218,7 +233,10 @@ const setSunPupilTarget = (target) => {
 };
 
 const getSkierGazeTarget = () => {
-  if (!skier || skierRun.status === "hidden" || skierRun.status === "finished") return null;
+  // The sun only tracks the skier while a run is active or crashed on-screen.
+  if (!skier || progressionState.skierState === skierStates.hidden) {
+    return null;
+  }
 
   const skierBounds = skier.getBoundingClientRect();
 
@@ -327,10 +345,9 @@ const updateMousePosition = (event) => {
 const skierPaths = {
   mainMountain: [
     { x: 42, y: 42 },
-    { x: 47, y: 49 },
-    { x: 44, y: 56 },
-    { x: 52, y: 63 },
-    { x: 58, y: 70 },
+    { x: 47, y: 48 },
+    { x: 44, y: 53 },
+    { x: 51, y: 59 },
   ],
 };
 
@@ -352,12 +369,193 @@ const getPathPoint = (path, progress) => {
   };
 };
 
+const cabinUnlocks = [
+  {
+    level: 1,
+    className: "cabin-unlock-campfire",
+    svg: `
+      <svg viewBox="0 0 40 36" aria-hidden="true">
+        <path d="M8 30 L32 30" stroke="#3f2414" stroke-width="4" stroke-linecap="round" />
+        <path d="M13 31 L28 23" stroke="#5b351c" stroke-width="4" stroke-linecap="round" />
+        <path d="M27 31 L12 23" stroke="#5b351c" stroke-width="4" stroke-linecap="round" />
+        <path d="M20 7 C14 15 17 20 20 24 C24 19 27 15 20 7 Z" fill="#e94b24" />
+        <path d="M21 14 C18 18 19 22 21 25 C24 21 25 18 21 14 Z" fill="#ffd36f" />
+      </svg>
+    `,
+  },
+  {
+    level: 2,
+    className: "cabin-unlock-clothesline",
+    svg: `
+      <svg viewBox="0 0 80 40" aria-hidden="true">
+        <path d="M8 8 V36 M72 8 V36" stroke="#4b2c16" stroke-width="4" stroke-linecap="round" />
+        <path d="M10 12 C28 18 52 18 70 12" stroke="#2b1a10" stroke-width="2" fill="none" />
+        <path d="M24 15 H38 V30 H24 Z" fill="#d94935" />
+        <path d="M44 16 H57 V29 H44 Z" fill="#f1d58a" />
+      </svg>
+    `,
+  },
+  {
+    level: 3,
+    className: "cabin-unlock-fish-rack",
+    svg: `
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M10 40 L24 8 L38 40 M15 22 H33" stroke="#4b2c16" stroke-width="4" fill="none" stroke-linecap="round" />
+        <path d="M18 25 C23 20 30 21 34 25 C30 29 23 30 18 25 Z" fill="#9aa6a1" />
+        <path d="M16 25 L11 21 L11 29 Z" fill="#78847f" />
+      </svg>
+    `,
+  },
+  {
+    level: 4,
+    className: "cabin-unlock-wood-pile",
+    svg: `
+      <svg viewBox="0 0 56 28" aria-hidden="true">
+        <path d="M8 20 H34 M16 13 H46 M25 21 H50" stroke="#6f3f20" stroke-width="8" stroke-linecap="round" />
+        <circle cx="8" cy="20" r="4" fill="#c89554" />
+        <circle cx="16" cy="13" r="4" fill="#c89554" />
+        <circle cx="25" cy="21" r="4" fill="#c89554" />
+      </svg>
+    `,
+  },
+  {
+    level: 5,
+    className: "cabin-unlock-hot-spring",
+    svg: `
+      <svg viewBox="0 0 64 44" aria-hidden="true">
+        <ellipse cx="32" cy="28" rx="24" ry="10" fill="#6fb6bd" />
+        <ellipse cx="32" cy="27" rx="18" ry="6" fill="#b9edf0" />
+        <path d="M23 15 C18 10 28 8 23 3 M34 15 C29 10 39 8 34 3 M45 15 C40 10 50 8 45 3" stroke="#dbe7df" stroke-width="3" fill="none" stroke-linecap="round" />
+      </svg>
+    `,
+  },
+  {
+    level: 6,
+    className: "cabin-unlock-sauna",
+    svg: `
+      <svg viewBox="0 0 60 54" aria-hidden="true">
+        <path d="M10 24 L30 8 L50 24 V46 H10 Z" fill="#7a4828" />
+        <path d="M10 24 L30 8 L50 24" fill="none" stroke="#3f2414" stroke-width="5" stroke-linejoin="round" />
+        <path d="M25 32 H36 V46 H25 Z" fill="#2b1a10" />
+      </svg>
+    `,
+  },
+  {
+    level: 7,
+    className: "cabin-unlock-guest-cabin",
+    svg: `
+      <svg viewBox="0 0 70 56" aria-hidden="true">
+        <path d="M8 25 L35 7 L62 25 Z" fill="#3f2414" />
+        <path d="M16 24 H54 V48 H16 Z" fill="#6f3f20" />
+        <path d="M31 34 H40 V48 H31 Z" fill="#2b1a10" />
+        <path d="M20 31 H29 V39 H20 Z M43 31 H52 V39 H43 Z" fill="#ffd36f" />
+      </svg>
+    `,
+  },
+];
+
+const maxCabinLevel = Math.max(...cabinUnlocks.map((unlock) => unlock.level));
+
+const cabinUnlockLayouts = [
+  // Current village position.
+  // Level 1: Campfire
+  { level: 1, cabin: { x: 40, y: 48 }, supply: { x: 51, y: 63 } },
+
+  // Level 2: Clothesline
+  { level: 2, cabin: { x: 44, y: 43 }, supply: { x: 56, y: 62 } },
+
+  // Level 3: Fish drying rack
+  { level: 3, cabin: { x: 40, y: 47 }, supply: { x: 50, y: 66 } },
+
+  // Level 4: Wood pile
+  { level: 4, cabin: { x: 48, y: 49 }, supply: { x: 56, y: 66 } },
+
+  // Level 5: Hot spring
+  { level: 5, cabin: { x: 44, y: 40 }, supply: { x: 47, y: 64 } },
+
+  // Level 6: Sauna
+  { level: 6, cabin: { x: 53, y: 53 }, supply: { x: 61, y: 63 } },
+
+  // Level 7: Guest cabin
+  { level: 7, cabin: { x: 60, y: 48 }, supply: { x: 63, y: 66 } },
+];
+
+const getCabinUnlockLayout = (level) => cabinUnlockLayouts.find((layout) => layout.level === level);
+
+const getCabinStateIndex = () => cabinStates.indexOf(progressionState.cabinState);
+
+const renderPathMarkers = () => {
+  if (!pathMarkersLayer) return;
+
+  pathMarkersLayer.textContent = "";
+
+  skierPaths.mainMountain.forEach((node, index) => {
+    if (index === 0) return;
+
+    const marker = document.createElement("span");
+    marker.className = "path-marker";
+    marker.style.left = `${node.x}%`;
+    marker.style.top = `${node.y}%`;
+    pathMarkersLayer.append(marker);
+  });
+};
+
+const renderCabinUnlocks = () => {
+  if (!cabinUnlocksLayer) return;
+
+  cabinUnlocksLayer.textContent = "";
+
+  cabinUnlocks.forEach((unlock) => {
+    const layout = getCabinUnlockLayout(unlock.level);
+    if (!layout) return;
+
+    // Locked supplies wait near the supply cabin; unlocked supplies move to their exact village spot.
+    const isUnlocked = unlock.level <= progressionState.cabinLevel;
+    const slot = isUnlocked ? layout.cabin : layout.supply;
+
+    const item = document.createElement("span");
+    item.className = `cabin-unlock ${unlock.className}`;
+    item.classList.toggle("is-supply", !isUnlocked);
+    item.style.left = `${slot.x}%`;
+    item.style.top = `${slot.y}%`;
+    item.innerHTML = unlock.svg.trim();
+
+    cabinUnlocksLayer.append(item);
+  });
+};
+
+const setCabinLevel = (nextLevel) => {
+  progressionState.cabinLevel = Math.max(0, nextLevel);
+  renderCabinUnlocks();
+};
+
+const completeCabinProgression = () => {
+  progressionState.skierState = skierStates.complete;
+
+  skier.classList.add("is-hidden");
+  skier.classList.remove("is-skiing", "is-fallen", "is-resting");
+  skier.setAttribute("aria-hidden", "true");
+
+  if (finalSkierRest) {
+    const campfireLayout = getCabinUnlockLayout(1);
+
+    // Final rest sits beside the campfire, reusing the campfire's village slot.
+    if (campfireLayout) {
+      finalSkierRest.style.left = `${campfireLayout.cabin.x + 1.2}%`;
+      finalSkierRest.style.top = `${campfireLayout.cabin.y}%`;
+    }
+
+    finalSkierRest.classList.add("is-visible");
+  }
+};
+
 const resetSkierRun = () => {
   if (!skier) return;
 
-  // Reset only skier state. Cabin smoke/lights stay as-is.
+  // Reset only skier state. Cabin activation and unlock progress stay as-is.
+  progressionState.skierState = skierStates.hidden;
+
   skierRun = {
-    status: "hidden",
     scrollStartY: 0,
     progress: 0,
     hasCrash: false,
@@ -366,12 +564,13 @@ const resetSkierRun = () => {
   };
 
   skier.classList.add("is-hidden");
-  skier.classList.remove("is-skiing", "is-fallen", "is-finished");
+  skier.classList.remove("is-skiing", "is-fallen", "is-finished", "is-resting");
   skier.setAttribute("aria-hidden", "true");
 };
 
 const launchSkierRun = () => {
   if (!skier) return;
+  if (progressionState.skierState === skierStates.complete) return;
 
   // New run clears the sun's crash reaction because the skier is back on course.
   if (sunCharacter) {
@@ -379,8 +578,9 @@ const launchSkierRun = () => {
   }
 
   // New runs always start at path progress 0 from the current scroll position.
+  progressionState.skierState = skierStates.running;
+
   skierRun = {
-    status: "skiing",
     scrollStartY: window.scrollY,
     progress: 0,
     hasCrash: Math.random() < crashChance,
@@ -393,7 +593,7 @@ const launchSkierRun = () => {
     skierRun.crashProgress = 0.35 + Math.random() * 0.45;
   }
 
-  skier.classList.remove("is-hidden", "is-fallen", "is-finished");
+  skier.classList.remove("is-hidden", "is-fallen", "is-finished", "is-resting");
   skier.classList.add("is-skiing");
   skier.setAttribute("aria-hidden", "false");
 
@@ -401,20 +601,35 @@ const launchSkierRun = () => {
 };
 
 const finishSkierRun = () => {
-  // Finished runs leave the scene; cabin can launch another run.
-  successfulSkierRuns += 1;
-  skierRun.status = "finished";
-  skier.classList.add("is-hidden");
-  skier.classList.remove("is-skiing", "is-fallen");
-  skier.setAttribute("aria-hidden", "true");
+  // Successful runs grow the cabin area one level at a time.
+  setCabinLevel(progressionState.cabinLevel + 1);
+
+  if (progressionState.cabinLevel >= maxCabinLevel) {
+    completeCabinProgression();
+    return;
+  }
+
+  progressionState.skierState = skierStates.resting;
+
+  const finishPoint = getPathPoint(skierPaths.mainMountain, 1);
+
+  skier.style.left = `${finishPoint.x}%`;
+  skier.style.top = `${finishPoint.y}%`;
+  skier.style.transform = `rotate(0deg)`;
+  skier.classList.remove("is-skiing", "is-fallen", "is-hidden");
+  skier.classList.add("is-resting");
+  skier.setAttribute("aria-hidden", "false");
 };
 
 const crashSkierRun = () => {
-  // Fallen skier locks at the crash point and ignores future scroll movement.
-  skierRun.status = "fallen";
+  // Crashes cost one cabin level instead of wiping all progression.
+  setCabinLevel(progressionState.cabinLevel - 1);
+  progressionState.skierState = skierStates.crashed;
+
   skierRun.lockedProgress = skierRun.crashProgress;
   skier.classList.remove("is-skiing");
   skier.classList.add("is-fallen");
+
   if (sunCharacter) {
     sunCharacter.classList.add("is-oof");
 
@@ -434,7 +649,7 @@ const updateSkierRun = () => {
   // If the user rewinds above the launch point, scrolling down starts a fresh run. Crashed skiers do not restart this way; they still require clicking the skier.
   if (
     skier &&
-    skierRun.status === "finished" &&
+    progressionState.skierState === skierStates.resting &&
     window.scrollY <= skierRun.scrollStartY &&
     scrollingDown
   ) {
@@ -442,7 +657,7 @@ const updateSkierRun = () => {
     return;
   }
 
-  if (!skier || skierRun.status !== "skiing") return;
+  if (!skier || progressionState.skierState !== skierStates.running) return;
 
   // If the user scrolls upward before the skier starts moving, move the launch anchor up too. This prevents dead scroll space before the skier begins on the next downward scroll.
   if (skierRun.progress === 0 && currentScrollY < skierRun.scrollStartY) {
@@ -482,20 +697,24 @@ const updateSkierRun = () => {
 const applyCabinState = () => {
   if (!cabinCharacter) return;
 
-  // Classes are cumulative: lit cabin should still smoke, activated cabin should still be lit.
+  // Classes are cumulative: activated cabins keep the smoke and light treatment.
+  const cabinStateIndex = getCabinStateIndex();
+
   cabinCharacter.classList.toggle("is-smoking", cabinStateIndex >= 1);
   cabinCharacter.classList.toggle("is-lit", cabinStateIndex >= 2);
   cabinCharacter.classList.toggle("is-activated", cabinStateIndex >= 3);
 };
 
 const advanceCabin = () => {
+  const cabinStateIndex = getCabinStateIndex();
+
   if (cabinStateIndex < cabinStates.length - 1) {
     // First clicks wake the cabin one visual state at a time.
-    cabinStateIndex += 1;
+    progressionState.cabinState = cabinStates[cabinStateIndex + 1];
     applyCabinState();
 
-    // Keep activated as a real state: lit means the cabin has lights, activated means the cabin has become the skier launcher. The third click enters activated and immediately launches so there is no dead click.
-    if (cabinStateIndex === cabinStates.length - 1) {
+    // Activation also launches the first ski run so there is no dead click.
+    if (progressionState.cabinState === "activated") {
       launchSkierRun();
     }
 
@@ -699,6 +918,8 @@ const requestParallaxUpdate = () => {
 if (parallaxScene && parallaxLayers.length) {
   // Set the correct positions on page load before the user scrolls.
   updateParallaxLayers();
+  renderPathMarkers();
+  renderCabinUnlocks();
 
   if (cabinCharacter) {
     // Cabin clicks progress the wake-up sequence, then launch skier runs after activation.
@@ -707,8 +928,13 @@ if (parallaxScene && parallaxLayers.length) {
   }
 
   if (skier) {
-    // Clicking the skier clears only the skier run; cabin state stays active.
-    skier.addEventListener("click", resetSkierRun);
+    skier.addEventListener("click", () => {
+      // Final completion is intentionally locked. Refreshing the page starts the loop over.
+      if (progressionState.skierState === skierStates.complete) return;
+
+      // Before completion, clicking the skier clears only the current run.
+      resetSkierRun();
+    });
   }
 
   if (sunCharacter) {
