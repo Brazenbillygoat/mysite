@@ -68,6 +68,10 @@ let skierRun = {
   lockedProgress: null,
 };
 
+// We track scroll direction to know when to launch a new run after finishing and rewinding back up.
+let previousScrollY = window.scrollY;
+let successfulSkierRuns = 0;
+
 // Component-local state only. Refreshing the page puts the sun back to sleep.
 let sunAwakened = false;
 let latestMousePosition = null;
@@ -369,6 +373,11 @@ const resetSkierRun = () => {
 const launchSkierRun = () => {
   if (!skier) return;
 
+  // New run clears the sun's crash reaction because the skier is back on course.
+  if (sunCharacter) {
+    sunCharacter.classList.remove("is-oof");
+  }
+
   // New runs always start at path progress 0 from the current scroll position.
   skierRun = {
     status: "skiing",
@@ -393,6 +402,7 @@ const launchSkierRun = () => {
 
 const finishSkierRun = () => {
   // Finished runs leave the scene; cabin can launch another run.
+  successfulSkierRuns += 1;
   skierRun.status = "finished";
   skier.classList.add("is-hidden");
   skier.classList.remove("is-skiing", "is-fallen");
@@ -415,10 +425,32 @@ const crashSkierRun = () => {
 };
 
 const updateSkierRun = () => {
+  const currentScrollY = window.scrollY;
+
+  // Track scroll direction so a finished skier can restart only when descending again.
+  const scrollingDown = currentScrollY > previousScrollY;
+  previousScrollY = currentScrollY;
+
+  // If the user rewinds above the launch point, scrolling down starts a fresh run. Crashed skiers do not restart this way; they still require clicking the skier.
+  if (
+    skier &&
+    skierRun.status === "finished" &&
+    window.scrollY <= skierRun.scrollStartY &&
+    scrollingDown
+  ) {
+    launchSkierRun();
+    return;
+  }
+
   if (!skier || skierRun.status !== "skiing") return;
 
+  // If the user scrolls upward before the skier starts moving, move the launch anchor up too. This prevents dead scroll space before the skier begins on the next downward scroll.
+  if (skierRun.progress === 0 && currentScrollY < skierRun.scrollStartY) {
+    skierRun.scrollStartY = currentScrollY;
+  }
+
   // Progress starts from the scroll position where this run launched.
-  const scrollDelta = Math.max(window.scrollY - skierRun.scrollStartY, 0);
+  const scrollDelta = Math.max(currentScrollY - skierRun.scrollStartY, 0);
   const runProgress = Math.min(scrollDelta / skierRunScrollDistance, 1);
 
   // If this run has a crash, lock the skier at that point.
