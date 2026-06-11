@@ -1,0 +1,16 @@
+{
+  "name": "my-site",
+  "private": true,
+  "dependencies": {
+    "magnific-popup": "1.1.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "vite": "^8.0.16"
+  },
+  "scripts": {
+    "dev": "vite",
+    "format": "prettier --write \"**/*.{html,css,js,json,md}\"",
+    "format:check": "prettier --check \"**/*.{html,css,js,json,md}\""
+  }
+}
