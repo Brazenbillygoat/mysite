@@ -471,8 +471,19 @@ a:hover {
   height: 9px;
   left: 2px;
   position: absolute;
-  top: 0;
+  top: 4px;
   width: 9px;
+}
+
+.path-marker-cap {
+  background: #10100e;
+  border-radius: 8px 8px 2px 2px;
+  height: 5px;
+  left: 1px;
+  position: absolute;
+  top: 0;
+  width: 11px;
+  z-index: 1;
 }
 
 .cabin-unlocks {

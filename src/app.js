@@ -471,9 +471,9 @@ const cabinUnlockLayouts = [
   { level: 4, cabin: { x: 48, y: 49 }, supply: { x: 56, y: 66 } },
 
   // Level 5: Hot spring
-  { level: 5, cabin: { x: 44, y: 40 }, supply: { x: 47, y: 64 } },
+  { level: 5, cabin: { x: 44, y: 40 }, supply: { x: 57, y: 64 } },
 
-  // Level 6: Sauna
+  // Level 6: Sauna building
   { level: 6, cabin: { x: 53, y: 53 }, supply: { x: 61, y: 63 } },
 
   // Level 7: Guest cabin
@@ -494,6 +494,7 @@ const renderPathMarkers = () => {
 
     const marker = document.createElement("span");
     marker.className = "path-marker";
+    marker.innerHTML = `<span class="path-marker-cap"></span>`;
     marker.style.left = `${node.x}%`;
     marker.style.top = `${node.y}%`;
     pathMarkersLayer.append(marker);
