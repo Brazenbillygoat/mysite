@@ -336,12 +336,21 @@ a:hover {
   z-index: 3;
 }
 
+.mountain-stage {
+  /* Mountain gameplay coordinates are relative to this box, not the full hero viewport. */
+  margin: 2rem auto 0;
+  position: relative;
+  width: 98%;
+  z-index: 4;
+}
+
 .cabin-character {
   cursor: pointer;
   height: 52px;
   left: 44%;
   pointer-events: auto;
-  top: 43%;
+  position: absolute;
+  top: 35%;
   width: 70px;
   z-index: 6;
 }
@@ -410,7 +419,7 @@ a:hover {
   left: 40%;
   pointer-events: none;
   position: absolute;
-  top: 48%;
+  top: 39%;
   transform: translate(-50%, -50%) scaleX(-1);
   width: 24px;
   z-index: 7;
@@ -549,7 +558,9 @@ a:hover {
 .supplies-cabin {
   height: 42px;
   left: 54%;
-  top: 61%;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
   width: 54px;
   z-index: 5;
 }
@@ -591,7 +602,8 @@ a:hover {
   height: 18px;
   left: 40%;
   pointer-events: auto;
-  top: 42%;
+  position: absolute;
+  top: 34%;
   transform-origin: center;
   width: 23px;
   z-index: 5;
@@ -657,9 +669,9 @@ a:hover {
 
 .mountain-img {
   display: block;
-  margin-top: 2rem;
+  margin-top: 0;
   position: relative;
-  width: 98%;
+  width: 100%;
   z-index: 4;
 }
 
