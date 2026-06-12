@@ -256,8 +256,12 @@ const getSunGazeTarget = () => {
   const xDistance = latestMousePosition.x - sunCenterX;
   const yDistance = latestMousePosition.y - sunCenterY;
   const mouseDistance = Math.sqrt(xDistance * xDistance + yDistance * yDistance);
+  const skierTarget = getSkierGazeTarget();
 
-  // Nearby mouse wins. Otherwise the sun watches the skier, or relaxes to neutral.
+  // Skier motion is the main scene cue; mouse gaze only wins when there is no visible skier target.
+  if (skierTarget) return skierTarget;
+
+  // Without a skier target, nearby mouse movement keeps the awakened sun interactive.
   return mouseDistance <= sunGazeRadius ? latestMousePosition : getSkierGazeTarget();
 };
 
