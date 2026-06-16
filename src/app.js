@@ -347,6 +347,7 @@ const updateMousePosition = (event) => {
 
 // MOUNTAIN DATA
 
+// TODO: Let's get longer paths in here and have the skier move along them instead of just jumping to crash points. We can also add multiple paths and have the skier choose randomly at each fork for more variety.
 // Fixed skier paths for now; this can later hold generated paths or multiple named routes.
 const skierPaths = {
   mainMountain: [
