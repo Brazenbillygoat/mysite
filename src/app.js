@@ -137,11 +137,15 @@ const getPathPoint = (path, progress) => {
 
   const start = path[segmentIndex];
   const end = path[segmentIndex + 1];
+  const xDiff = end.x - start.x;
+  const yDiff = end.y - start.y;
+
+  const direction = xDiff >= 0 ? 1 : -1;
 
   return {
     x: lerp(start.x, end.x, segmentProgress),
     y: lerp(start.y, end.y, segmentProgress),
-    angle: Math.atan2(end.y - start.y, end.x - start.x) * (180 / Math.PI),
+    angle: Math.min(Math.abs(yDiff / xDiff) * 45, 90) * direction,
   };
 };
 
