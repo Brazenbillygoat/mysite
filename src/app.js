@@ -347,14 +347,14 @@ const updateMousePosition = (event) => {
 
 // MOUNTAIN DATA
 
-// TODO: Let's get longer paths in here and have the skier move along them instead of just jumping to crash points. We can also add multiple paths and have the skier choose randomly at each fork for more variety.
 // Fixed skier paths for now; this can later hold generated paths or multiple named routes.
+// Every point here becomes a path light except for 0
 const skierPaths = {
   mainMountain: [
-    { x: 42, y: 34 },
-    { x: 47, y: 39 },
+    { x: 42, y: 24 },
+    { x: 52, y: 37 },
     { x: 44, y: 43 },
-    { x: 51, y: 48 },
+    { x: 69, y: 55 },
   ],
 };
 
@@ -363,8 +363,8 @@ const cabinUnlocks = [
     level: 1,
     name: "Campfire",
     className: "cabin-unlock-campfire",
-    cabin: { x: 40, y: 39 },
-    supply: { x: 51, y: 52 },
+    cabin: { x: 41, y: 25 },
+    supply: { x: 71, y: 57 },
     svg: `
       <svg viewBox="0 0 40 36" aria-hidden="true">
         <path d="M8 30 L32 30" stroke="#3f2414" stroke-width="4" stroke-linecap="round" />
@@ -379,8 +379,8 @@ const cabinUnlocks = [
     level: 2,
     name: "Clothesline",
     className: "cabin-unlock-clothesline",
-    cabin: { x: 44, y: 35 },
-    supply: { x: 56, y: 51 },
+    cabin: { x: 43, y: 23 },
+    supply: { x: 70, y: 51 },
     svg: `
       <svg viewBox="0 0 80 40" aria-hidden="true">
         <path d="M8 8 V36 M72 8 V36" stroke="#4b2c16" stroke-width="4" stroke-linecap="round" />
@@ -394,8 +394,8 @@ const cabinUnlocks = [
     level: 3,
     name: "Fish Drying Rack",
     className: "cabin-unlock-fish-rack",
-    cabin: { x: 40, y: 38 },
-    supply: { x: 50, y: 54 },
+    cabin: { x: 41, y: 24 },
+    supply: { x: 71, y: 56 },
     svg: `
       <svg viewBox="0 0 48 48" aria-hidden="true">
         <path d="M10 40 L24 8 L38 40 M15 22 H33" stroke="#4b2c16" stroke-width="4" fill="none" stroke-linecap="round" />
@@ -408,8 +408,8 @@ const cabinUnlocks = [
     level: 4,
     name: "Wood Pile",
     className: "cabin-unlock-wood-pile",
-    cabin: { x: 48, y: 40 },
-    supply: { x: 56, y: 54 },
+    cabin: { x: 48, y: 26 },
+    supply: { x: 72, y: 54 },
     svg: `
       <svg viewBox="0 0 56 28" aria-hidden="true">
         <path d="M8 20 H34 M16 13 H46 M25 21 H50" stroke="#6f3f20" stroke-width="8" stroke-linecap="round" />
@@ -423,8 +423,8 @@ const cabinUnlocks = [
     level: 5,
     name: "Hot Spring",
     className: "cabin-unlock-hot-spring",
-    cabin: { x: 44, y: 33 },
-    supply: { x: 57, y: 52 },
+    cabin: { x: 41, y: 28 },
+    supply: { x: 70, y: 52 },
     svg: `
       <svg viewBox="0 0 64 44" aria-hidden="true">
         <ellipse cx="32" cy="28" rx="24" ry="10" fill="#6fb6bd" />
@@ -437,8 +437,8 @@ const cabinUnlocks = [
     level: 6,
     name: "Sauna",
     className: "cabin-unlock-sauna",
-    cabin: { x: 53, y: 43 },
-    supply: { x: 61, y: 52 },
+    cabin: { x: 45, y: 21 },
+    supply: { x: 70.5, y: 52 },
     svg: `
       <svg viewBox="0 0 60 54" aria-hidden="true">
         <path d="M10 24 L30 8 L50 24 V46 H10 Z" fill="#7a4828" />
@@ -451,8 +451,8 @@ const cabinUnlocks = [
     level: 7,
     name: "Guest Cabin",
     className: "cabin-unlock-guest-cabin",
-    cabin: { x: 60, y: 39 },
-    supply: { x: 63, y: 54 },
+    cabin: { x: 61.5, y: 28 },
+    supply: { x: 70.5, y: 52 },
     svg: `
       <svg viewBox="0 0 70 56" aria-hidden="true">
         <path d="M8 25 L35 7 L62 25 Z" fill="#3f2414" />
