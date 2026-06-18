@@ -350,7 +350,7 @@ a:hover {
   left: 44%;
   pointer-events: auto;
   position: absolute;
-  top: 35%;
+  top: 20%;
   width: 70px;
   z-index: 6;
 }
@@ -557,7 +557,7 @@ a:hover {
 
 .supplies-cabin {
   height: 42px;
-  left: 54%;
+  left: 69%;
   pointer-events: none;
   position: absolute;
   top: 50%;
