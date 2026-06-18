@@ -239,7 +239,7 @@ const setSunPupilTarget = (target) => {
 
 const getSkierGazeTarget = () => {
   // The sun only tracks the skier while a run is active or crashed on-screen.
-  if (!skier || progressionState.skierState === skierStates.hidden) {
+  if (!skier || progressionState.skierState === skierStates.hidden || progressionState.skierState === skierStates.complete) {
     return null;
   }
 
