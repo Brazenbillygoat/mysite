@@ -37,6 +37,7 @@ const cabinCharacter = document.querySelector(".cabin-character");
 const skier = document.querySelector(".mountain-skier");
 const pathMarkersLayer = document.querySelector(".path-markers");
 const cabinUnlocksLayer = document.querySelector(".cabin-unlocks");
+const easyRouteMarker = document.querySelector(".route-marker-easy");
 const forestMist = document.querySelector(".forest-mist");
 const forestLine = document.querySelector(".forest-line");
 
@@ -61,17 +62,17 @@ const progressionState = {
 
 const cabinStates = ["sleeping", "smoking", "lit", "activated"];
 
-const skierRunScrollDistance = 200;
+// Time-based route duration keeps skier control separate from scenery scroll.
+const skierRunDuration = 1800;
 const crashChance = 0.22;
 
 let skierRun = {
-  scrollStartY: 0,
+  animationFrameId: null,
+  startedAt: 0,
   progress: 0,
   hasCrash: false,
   crashProgress: null,
 };
-
-let previousScrollY = window.scrollY;
 
 let sunAwakened = false;
 let latestMousePosition = null;
@@ -358,6 +359,7 @@ const skierPaths = {
     { x: 42, y: 24 },
     { x: 52, y: 37 },
     { x: 44, y: 43 },
+    { x: 56, y: 48 },
     { x: 69, y: 55 },
   ],
 };
@@ -531,6 +533,21 @@ const completeCabinProgression = () => {
 
 // SKIER RUN STATE
 
+// Stop any in-progress skier animation before starting, resetting, crashing, or finishing a run.
+const cancelSkierAnimation = () => {
+  if (!skierRun.animationFrameId) return;
+
+  window.cancelAnimationFrame(skierRun.animationFrameId);
+  skierRun.animationFrameId = null;
+};
+
+// Keep route availability tied to game state.
+const setRouteMarkerEnabled = (isEnabled) => {
+  if (!easyRouteMarker) return;
+
+  easyRouteMarker.disabled = !isEnabled;
+};
+
 const setSkierState = (nextState) => {
   if (!skier) return;
 
@@ -549,11 +566,38 @@ const setSkierState = (nextState) => {
   );
 };
 
+const stageSkierAtRouteStart = () => {
+  if (!skier) return;
+  if (progressionState.skierState === skierStates.running) return;
+
+    // Reset to the route start without launching; later this can move to a ski lift control.
+  skierRun = {
+    animationFrameId: null,
+    startedAt: 0,
+    progress: 0,
+    hasCrash: false,
+    crashProgress: null,
+  };
+
+  // Activation reveals the skier at the first route point without starting the run.
+  const startPoint = getPathPoint(skierPaths.mainMountain, 0);
+
+  skier.style.left = `${startPoint.x}%`;
+  skier.style.top = `${startPoint.y}%`;
+  skier.style.transform = `rotate(${startPoint.angle}deg)`;
+  setSkierState(skierStates.resting);
+  setRouteMarkerEnabled(true);
+};
+
 const resetSkierRun = () => {
   if (!skier) return;
 
+  // Reset clears the active animation and returns the skier to the hidden starting state.
+  cancelSkierAnimation();
+
   skierRun = {
-    scrollStartY: 0,
+    animationFrameId: null,
+    startedAt: 0,
     progress: 0,
     hasCrash: false,
     crashProgress: null,
@@ -564,29 +608,38 @@ const resetSkierRun = () => {
 const launchSkierRun = () => {
   if (!skier) return;
   if (progressionState.skierState === skierStates.complete) return;
+  if (progressionState.skierState === skierStates.running) return;
 
   // New run clears the sun's crash reaction because the skier is back on course.
   if (sunCharacter) {
     sunCharacter.classList.remove("is-oof");
   }
 
+  cancelSkierAnimation();
+  // Route is unavailable while the skier is already on it.
+  setRouteMarkerEnabled(false);
+
   skierRun = {
-    scrollStartY: window.scrollY,
+    animationFrameId: null,
+    startedAt: performance.now(),
     progress: 0,
     hasCrash: Math.random() < crashChance,
     crashProgress: null,
   };
 
-  // Crash is decided once per run so scrolling stays deterministic.
+  // Crash is decided once per run so animation stays deterministic.
   if (skierRun.hasCrash) {
     skierRun.crashProgress = 0.35 + Math.random() * 0.45;
   }
 
   setSkierState(skierStates.running);
-  updateSkierRun();
+  updateSkierRun(skierRun.startedAt);
 };
 
 const finishSkierRun = () => {
+  // Successful run is over, so the route can be launched again.
+  setRouteMarkerEnabled(true);
+
   // Successful runs grow the cabin area one level at a time.
   setCabinLevel(progressionState.cabinLevel + 1);
 
@@ -604,6 +657,9 @@ const finishSkierRun = () => {
 };
 
 const crashSkierRun = () => {
+  // Crashed run is over, so the route can be attempted again.
+  setRouteMarkerEnabled(true);
+
   // Crashes cost one cabin level instead of wiping all progression.
   setCabinLevel(progressionState.cabinLevel - 1);
   setSkierState(skierStates.crashed);
@@ -617,34 +673,12 @@ const crashSkierRun = () => {
   }
 };
 
-const updateSkierRun = () => {
-  const currentScrollY = window.scrollY;
-
-  // Track scroll direction so a finished skier can restart only when descending again.
-  const scrollingDown = currentScrollY > previousScrollY;
-  previousScrollY = currentScrollY;
-
-  // If the user rewinds above the launch point, scrolling down starts a fresh run. Crashed skiers do not restart this way; they still require clicking the skier.
-  if (
-    skier &&
-    progressionState.skierState === skierStates.resting &&
-    window.scrollY <= skierRun.scrollStartY &&
-    scrollingDown
-  ) {
-    launchSkierRun();
-    return;
-  }
-
+const updateSkierRun = (frameTime = performance.now()) => {
   if (!skier || progressionState.skierState !== skierStates.running) return;
 
-  // If the user scrolls upward before the skier starts moving, move the launch anchor up too. This prevents dead scroll space before the skier begins on the next downward scroll.
-  if (skierRun.progress === 0 && currentScrollY < skierRun.scrollStartY) {
-    skierRun.scrollStartY = currentScrollY;
-  }
-
-  // Progress starts from the scroll position where this run launched.
-  const scrollDelta = Math.max(currentScrollY - skierRun.scrollStartY, 0);
-  const runProgress = Math.min(scrollDelta / skierRunScrollDistance, 1);
+  // Progress is based on elapsed animation time, not page scroll.
+  const elapsed = frameTime - skierRun.startedAt;
+  const runProgress = Math.min(elapsed / skierRunDuration, 1);
 
   // If this run has a crash, lock the skier at that point.
   if (skierRun.hasCrash && skierRun.crashProgress && runProgress >= skierRun.crashProgress) {
@@ -668,7 +702,11 @@ const updateSkierRun = () => {
 
   if (skierRun.progress >= 1) {
     finishSkierRun();
+    return;
   }
+
+  // Continue the run on the browser's next paint frame.
+  skierRun.animationFrameId = window.requestAnimationFrame(updateSkierRun);
 };
 
 // CABIN INTERACTIONS
@@ -691,16 +729,17 @@ const advanceCabin = () => {
     progressionState.cabinState = cabinStates[cabinStateIndex + 1];
     applyCabinState();
 
-    // Activation also launches the first ski run so there is no dead click.
+    // Activation unlocks the route marker; the player chooses when to launch the skier.
     if (progressionState.cabinState === "activated") {
-      launchSkierRun();
+      setRouteMarkerEnabled(true);
+      stageSkierAtRouteStart();
     }
 
     return;
   }
 
-  // After activation, cabin clicks launch fresh skier runs.
-  launchSkierRun();
+  // After activation, cabin clicks no longer launch runs; route markers own that interaction.
+  setRouteMarkerEnabled(true);
 };
 
 const handleCabinKeydown = (event) => {
@@ -708,6 +747,13 @@ const handleCabinKeydown = (event) => {
 
   event.preventDefault();
   advanceCabin();
+};
+
+const handleEasyRouteClick = () => {
+  if (!easyRouteMarker || easyRouteMarker.disabled) return;
+
+  // Route marker owns skier launch now that scroll is only scenery.
+  launchSkierRun();
 };
 
 // FOREST GENERATION
@@ -855,8 +901,6 @@ const updateParallaxLayers = () => {
     layer.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0) scale(${scale})`;
   });
 
-  updateSkierRun();
-
   if (forestBack) {
     forestBack.style.transform = `translateY(${-progress * 12}px) scaleX(${1 + progress * 0.4}) scaleY(${1 + progress * 1.8})`;
   }
@@ -895,9 +939,13 @@ if (parallaxScene && parallaxLayers.length) {
   renderCabinUnlocks();
 
   if (cabinCharacter) {
-    // Cabin clicks progress the wake-up sequence, then launch skier runs after activation.
+    // Cabin clicks progress the wake-up sequence; route markers launch skier runs after activation.
     cabinCharacter.addEventListener("click", advanceCabin);
     cabinCharacter.addEventListener("keydown", handleCabinKeydown);
+  }
+
+  if (easyRouteMarker) {
+    easyRouteMarker.addEventListener("click", handleEasyRouteClick);
   }
 
   if (skier) {

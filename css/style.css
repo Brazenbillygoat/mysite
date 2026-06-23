@@ -555,6 +555,86 @@ a:hover {
   width: 54px;
 }
 
+/* Route marker button: a real button styled to look like an in-scene trail sign. */
+.route-marker {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  height: 23px;
+  left: 45%;
+  padding: 0;
+  pointer-events: auto;
+  position: absolute;
+  top: 29%;
+  transform: translate(-50%, -100%);
+  width: 8px;
+  z-index: 7;
+}
+
+/* Disabled until the cabin reaches the activated state. */
+.route-marker:disabled {
+  cursor: default;
+}
+
+/* Wooden post below the sign face. */
+.route-marker-post {
+  background: #4b2c16;
+  border-radius: 999px;
+  bottom: 0;
+  height: 20px;
+  left: 10px;
+  position: absolute;
+  width: 3px;
+}
+
+/* Sign face that holds the ski difficulty symbol. */
+.route-marker-sign {
+  align-items: center;
+  background: #f2d39a;
+  border: 2px solid #4b2c16;
+  border-radius: 3px;
+  box-shadow: 0 2px 0 rgba(43, 26, 16, 0.28);
+  display: flex;
+  height: 12px;
+  justify-content: center;
+  left: 1px;
+  position: absolute;
+  top: 0;
+  width: 12px;
+}
+
+/* Green circle = easiest ski trail. Dim while disabled, full color when enabled. */
+.route-marker-symbol {
+  background: #2f9e44;
+  border-radius: 50%;
+  display: block;
+  height: 6px;
+  opacity: 0.42;
+  width: 6px;
+}
+
+/* Enabled route gets a soft glow so it reads as available. */
+.route-marker:not(:disabled) .route-marker-sign {
+  box-shadow:
+    0 2px 0 rgba(43, 26, 16, 0.28),
+    0 0 10px rgba(47, 158, 68, 0.75);
+}
+
+.route-marker:not(:disabled) .route-marker-symbol {
+  opacity: 1;
+}
+
+/* Remove the default button focus ring so the custom in-scene focus style owns it. */
+.route-marker:focus {
+  outline: none;
+}
+
+/* Keyboard focus ring for accessibility without changing the visual shape. */
+.route-marker:focus-visible {
+  outline: 3px solid #fff7d6;
+  outline-offset: 3px;
+}
+
 .supplies-cabin {
   height: 42px;
   left: 69%;
