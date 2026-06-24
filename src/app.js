@@ -370,7 +370,7 @@ const cabinUnlocks = [
     name: "Campfire",
     className: "cabin-unlock-campfire",
     cabin: { x: 41, y: 25 },
-    supply: { x: 71, y: 57 },
+    supply: { x: 80, y: 65 },
     svg: `
       <svg viewBox="0 0 40 36" aria-hidden="true">
         <path d="M8 30 L32 30" stroke="#3f2414" stroke-width="4" stroke-linecap="round" />
@@ -386,7 +386,7 @@ const cabinUnlocks = [
     name: "Clothesline",
     className: "cabin-unlock-clothesline",
     cabin: { x: 43, y: 23 },
-    supply: { x: 70, y: 51 },
+    supply: { x: 80, y: 60 },
     svg: `
       <svg viewBox="0 0 80 40" aria-hidden="true">
         <path d="M8 8 V36 M72 8 V36" stroke="#4b2c16" stroke-width="4" stroke-linecap="round" />
@@ -401,7 +401,7 @@ const cabinUnlocks = [
     name: "Fish Drying Rack",
     className: "cabin-unlock-fish-rack",
     cabin: { x: 41, y: 24 },
-    supply: { x: 71, y: 56 },
+    supply: { x: 80, y: 64 },
     svg: `
       <svg viewBox="0 0 48 48" aria-hidden="true">
         <path d="M10 40 L24 8 L38 40 M15 22 H33" stroke="#4b2c16" stroke-width="4" fill="none" stroke-linecap="round" />
@@ -415,7 +415,7 @@ const cabinUnlocks = [
     name: "Wood Pile",
     className: "cabin-unlock-wood-pile",
     cabin: { x: 48, y: 26 },
-    supply: { x: 72, y: 54 },
+    supply: { x: 81, y: 62 },
     svg: `
       <svg viewBox="0 0 56 28" aria-hidden="true">
         <path d="M8 20 H34 M16 13 H46 M25 21 H50" stroke="#6f3f20" stroke-width="8" stroke-linecap="round" />
@@ -430,7 +430,7 @@ const cabinUnlocks = [
     name: "Hot Spring",
     className: "cabin-unlock-hot-spring",
     cabin: { x: 41, y: 28 },
-    supply: { x: 70, y: 52 },
+    supply: { x: 79, y: 60 },
     svg: `
       <svg viewBox="0 0 64 44" aria-hidden="true">
         <ellipse cx="32" cy="28" rx="24" ry="10" fill="#6fb6bd" />
@@ -444,7 +444,7 @@ const cabinUnlocks = [
     name: "Sauna",
     className: "cabin-unlock-sauna",
     cabin: { x: 45, y: 21 },
-    supply: { x: 70.5, y: 52 },
+    supply: { x: 79.5, y: 60 },
     svg: `
       <svg viewBox="0 0 60 54" aria-hidden="true">
         <path d="M10 24 L30 8 L50 24 V46 H10 Z" fill="#7a4828" />
@@ -458,7 +458,7 @@ const cabinUnlocks = [
     name: "Guest Cabin",
     className: "cabin-unlock-guest-cabin",
     cabin: { x: 61.5, y: 28 },
-    supply: { x: 70.5, y: 52 },
+    supply: { x: 79.5, y: 60 },
     svg: `
       <svg viewBox="0 0 70 56" aria-hidden="true">
         <path d="M8 25 L35 7 L62 25 Z" fill="#3f2414" />
