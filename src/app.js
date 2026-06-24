@@ -38,6 +38,8 @@ const skier = document.querySelector(".mountain-skier");
 const pathMarkersLayer = document.querySelector(".path-markers");
 const cabinUnlocksLayer = document.querySelector(".cabin-unlocks");
 const easyRouteMarker = document.querySelector(".route-marker-easy");
+const liftTopTerminal = document.querySelector(".lift-terminal-top");
+const liftBottomTerminal = document.querySelector(".lift-terminal-bottom");
 const forestMist = document.querySelector(".forest-mist");
 const forestLine = document.querySelector(".forest-line");
 
@@ -48,9 +50,10 @@ const pupilMaxOffset = 3;
 
 const skierStates = {
   hidden: "hidden",
+  ready: "ready",
   running: "running",
   crashed: "crashed",
-  resting: "resting",
+  finished: "finished",
   complete: "complete",
 };
 
@@ -361,6 +364,7 @@ const skierPaths = {
     { x: 44, y: 43 },
     { x: 56, y: 48 },
     { x: 69, y: 55 },
+    { x: 76, y: 65 },
   ],
 };
 
@@ -443,7 +447,7 @@ const cabinUnlocks = [
     level: 6,
     name: "Sauna",
     className: "cabin-unlock-sauna",
-    cabin: { x: 45, y: 21 },
+    cabin: { x: 44, y: 21 },
     supply: { x: 79.5, y: 60 },
     svg: `
       <svg viewBox="0 0 60 54" aria-hidden="true">
@@ -559,7 +563,13 @@ const setSkierState = (nextState) => {
   );
   skier.classList.toggle("is-skiing", nextState === skierStates.running);
   skier.classList.toggle("is-fallen", nextState === skierStates.crashed);
-  skier.classList.toggle("is-resting", nextState === skierStates.resting);
+
+  // Ready and finished are different game states, but both look like an idle skier.
+  skier.classList.toggle(
+    "is-resting",
+    nextState === skierStates.ready || nextState === skierStates.finished
+  );
+
   skier.setAttribute(
     "aria-hidden",
     nextState === skierStates.hidden || nextState === skierStates.complete ? "true" : "false"
@@ -570,7 +580,7 @@ const stageSkierAtRouteStart = () => {
   if (!skier) return;
   if (progressionState.skierState === skierStates.running) return;
 
-    // Reset to the route start without launching; later this can move to a ski lift control.
+  // For now the lift stages instantly. Later, lift animation can end by calling this function.
   skierRun = {
     animationFrameId: null,
     startedAt: 0,
@@ -585,30 +595,14 @@ const stageSkierAtRouteStart = () => {
   skier.style.left = `${startPoint.x}%`;
   skier.style.top = `${startPoint.y}%`;
   skier.style.transform = `rotate(${startPoint.angle}deg)`;
-  setSkierState(skierStates.resting);
+  setSkierState(skierStates.ready);
   setRouteMarkerEnabled(true);
-};
-
-const resetSkierRun = () => {
-  if (!skier) return;
-
-  // Reset clears the active animation and returns the skier to the hidden starting state.
-  cancelSkierAnimation();
-
-  skierRun = {
-    animationFrameId: null,
-    startedAt: 0,
-    progress: 0,
-    hasCrash: false,
-    crashProgress: null,
-  };
-  setSkierState(skierStates.hidden);
 };
 
 const launchSkierRun = () => {
   if (!skier) return;
-  if (progressionState.skierState === skierStates.complete) return;
-  if (progressionState.skierState === skierStates.running) return;
+  // The run only starts when the skier is already staged at the top.
+  if (progressionState.skierState !== skierStates.ready) return;
 
   // New run clears the sun's crash reaction because the skier is back on course.
   if (sunCharacter) {
@@ -637,9 +631,6 @@ const launchSkierRun = () => {
 };
 
 const finishSkierRun = () => {
-  // Successful run is over, so the route can be launched again.
-  setRouteMarkerEnabled(true);
-
   // Successful runs grow the cabin area one level at a time.
   setCabinLevel(progressionState.cabinLevel + 1);
 
@@ -653,13 +644,10 @@ const finishSkierRun = () => {
   skier.style.left = `${finishPoint.x}%`;
   skier.style.top = `${finishPoint.y}%`;
   skier.style.transform = `rotate(0deg)`;
-  setSkierState(skierStates.resting);
+  setSkierState(skierStates.finished);
 };
 
 const crashSkierRun = () => {
-  // Crashed run is over, so the route can be attempted again.
-  setRouteMarkerEnabled(true);
-
   // Crashes cost one cabin level instead of wiping all progression.
   setCabinLevel(progressionState.cabinLevel - 1);
   setSkierState(skierStates.crashed);
@@ -721,6 +709,17 @@ const applyCabinState = () => {
   cabinCharacter.classList.toggle("is-activated", cabinStateIndex >= 3);
 };
 
+const disableCabinInteraction = () => {
+  if (!cabinCharacter) return;
+
+  // The cabin only wakes the first skier. After that, lift/route controls own the loop.
+  cabinCharacter.removeEventListener("click", advanceCabin);
+  cabinCharacter.removeEventListener("keydown", handleCabinKeydown);
+  cabinCharacter.removeAttribute("role");
+  cabinCharacter.removeAttribute("tabindex");
+  cabinCharacter.classList.add("is-disabled");
+};
+
 const advanceCabin = () => {
   const cabinStateIndex = getCabinStateIndex();
 
@@ -733,6 +732,7 @@ const advanceCabin = () => {
     if (progressionState.cabinState === "activated") {
       setRouteMarkerEnabled(true);
       stageSkierAtRouteStart();
+      disableCabinInteraction();
     }
 
     return;
@@ -754,6 +754,18 @@ const handleEasyRouteClick = () => {
 
   // Route marker owns skier launch now that scroll is only scenery.
   launchSkierRun();
+};
+
+const handleLiftTerminalClick  = () => {
+  // Lift terminals are the temporary reset: finished/crashed skiers go back to the top.
+  if (
+    progressionState.skierState !== skierStates.finished &&
+    progressionState.skierState !== skierStates.crashed
+  ) {
+    return;
+  }
+
+  stageSkierAtRouteStart();
 };
 
 // FOREST GENERATION
@@ -948,14 +960,12 @@ if (parallaxScene && parallaxLayers.length) {
     easyRouteMarker.addEventListener("click", handleEasyRouteClick);
   }
 
-  if (skier) {
-    skier.addEventListener("click", () => {
-      // Final completion is intentionally locked. Refreshing the page starts the loop over.
-      if (progressionState.skierState === skierStates.complete) return;
+  if (liftTopTerminal) {
+    liftTopTerminal.addEventListener("click", handleLiftTerminalClick);
+  }
 
-      // Before completion, clicking the skier clears only the current run.
-      resetSkierRun();
-    });
+  if (liftBottomTerminal) {
+    liftBottomTerminal.addEventListener("click", handleLiftTerminalClick );
   }
 
   if (sunCharacter) {

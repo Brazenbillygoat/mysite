@@ -355,8 +355,9 @@ a:hover {
   z-index: 6;
 }
 
-.cabin-character.is-activated {
-  cursor: pointer;
+.cabin-character.is-disabled {
+  cursor: default;
+  pointer-events: none;
 }
 
 .cabin-svg {
@@ -404,6 +405,112 @@ a:hover {
 .cabin-character.is-activated .cabin-window {
   fill: #ffd36f;
   filter: drop-shadow(0 0 4px rgba(255, 211, 111, 0.75));
+}
+
+/* Lift styling */
+.mountain-lift {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 6;
+}
+
+.lift-svg {
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* SVG path for the lift cable. The curve gives the cable a little sag. */
+.lift-cable {
+  fill: none;
+  stroke: #2b1a10;
+  stroke-linecap: round;
+  stroke-width: 0.2;
+}
+
+.lift-tower,
+.lift-terminal {
+  position: absolute;
+}
+
+.lift-tower {
+  height: 34px;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
+  width: 22px;
+}
+
+.lift-tower-top {
+  left: 48%;
+  top: 27%;
+}
+
+.lift-tower-middle {
+  left: 61%;
+  top: 31%;
+}
+
+.lift-tower-bottom {
+  left: 78%;
+  top: 65%;
+}
+
+.lift-tower-post {
+  background: #4b2c16;
+  bottom: 0;
+  height: 30px;
+  left: 9px;
+  position: absolute;
+  width: 4px;
+}
+
+/* Small crossbar so the post reads like lift equipment, not a random stick. */
+.lift-tower-crossbar {
+  background: #4b2c16;
+  height: 3px;
+  left: 1px;
+  position: absolute;
+  top: 3px;
+  width: 20px;
+}
+
+.lift-tower-wheel {
+  background: #d9a441;
+  border: 2px solid #2b1a10;
+  border-radius: 50%;
+  height: 8px;
+  left: 6px;
+  position: absolute;
+  top: -2px;
+  width: 8px;
+}
+
+.lift-terminal {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  height: 32px;
+  padding: 0;
+  pointer-events: auto;
+  width: 32px;
+}
+
+.lift-terminal:focus {
+  outline: none;
+}
+
+.lift-terminal-top {
+  left: 47%;
+  top: 21%;
+}
+
+.lift-terminal-bottom {
+  left: 77%;
+  top: 58%;
 }
 
 .path-markers,
