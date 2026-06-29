@@ -144,8 +144,8 @@
 
         <div class="mountain-lift" aria-hidden="true">
           <svg class="lift-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path class="lift-cable" d="M 48.5 23 C 53 27, 58 31, 61 27" />
-            <path class="lift-cable" d="M 61 27 C 67 43, 72 56, 78 61" />
+            <path class="lift-cable" data-lift-cable-segment d="M 48.5 23 C 53 27, 58 31, 61 27" />
+            <path class="lift-cable" data-lift-cable-segment d="M 61 27 C 67 43, 72 56, 78 61" />
           </svg>
 
           <span class="lift-tower lift-tower-top">
@@ -176,6 +176,17 @@
             type="button"
             aria-label="Ride lift to route start"
           ></button>
+
+          <span class="lift-car" aria-hidden="true">
+            <span class="lift-car-wheel"></span>
+            <span class="lift-car-hanger"></span>
+            <span class="lift-car-seat"></span>
+            <span class="lift-car-skier">
+              <span class="lift-car-skier-head"></span>
+              <span class="lift-car-skier-body"></span>
+              <span class="lift-car-skier-ski"></span>
+            </span>
+          </span>
         </div>
 
         <div class="path-markers" aria-hidden="true"></div>

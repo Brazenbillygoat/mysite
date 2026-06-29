@@ -519,6 +519,107 @@ a:hover {
   top: 58%;
 }
 
+/* JS places .lift-car at a sampled point on the SVG cable. Draw the chair downward from that anchor. */
+.lift-car {
+  display: none;
+  height: 34em;
+  left: 78%;
+  pointer-events: none;
+  position: absolute;
+  top: 61%;
+  transform: translate(-50%, 0);
+  width: 28em;
+  z-index: 8;
+}
+
+.lift-car.is-visible {
+  display: block;
+}
+
+/* Wheel sits directly on the sampled cable point so the car feels attached to the line. */
+.lift-car-wheel {
+  background: #d9a441;
+  border: 2px solid #2b1a10;
+  border-radius: 50%;
+  height: 8em;
+  left: 10em;
+  position: absolute;
+  top: -4em;
+  width: 8em;
+}
+
+.lift-car-hanger {
+  background: #2b1a10;
+  height: 15em;
+  left: 13em;
+  position: absolute;
+  top: 3em;
+  width: 2em;
+}
+
+.lift-car-seat {
+  background: #4b2c16;
+  border-radius: 2em;
+  height: 8em;
+  left: 5em;
+  position: absolute;
+  top: 18em;
+  width: 19em;
+}
+
+.lift-car-seat::before {
+  background: #2b1a10;
+  content: "";
+  height: 12em;
+  left: 2em;
+  position: absolute;
+  top: -10em;
+  width: 3em;
+}
+
+/* Keep the passenger as simple CSS shapes so it scales with the rest of the mountain props. */
+.lift-car-skier {
+  background: transparent;
+  height: 16em;
+  left: 10em;
+  position: absolute;
+  top: 5em;
+  width: 12em;
+}
+
+.lift-car-skier-head {
+  background: #d9a441;
+  border: 1px solid #2b1a10;
+  border-radius: 50%;
+  height: 6em;
+  left: 4em;
+  position: absolute;
+  top: 0;
+  width: 6em;
+}
+
+.lift-car-skier-body {
+  background: #10100e;
+  border-radius: 2em;
+  height: 9em;
+  left: 5em;
+  position: absolute;
+  top: 6em;
+  transform: rotate(-12deg);
+  width: 5em;
+}
+
+.lift-car-skier-ski {
+  background: #10100e;
+  border-radius: 999px;
+  height: 2em;
+  left: 0;
+  position: absolute;
+  top: 16em;
+  transform: rotate(8deg);
+  width: 15em;
+}
+
 .path-markers,
 .cabin-unlocks {
   inset: 0;
