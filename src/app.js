@@ -36,6 +36,7 @@ const finalSkierRest = document.querySelector(".final-skier-rest");
 const cabinCharacter = document.querySelector(".cabin-character");
 const skier = document.querySelector(".mountain-skier");
 const pathMarkersLayer = document.querySelector(".path-markers");
+const suppliesCabin = document.querySelector(".supplies-cabin");
 const cabinUnlocksLayer = document.querySelector(".cabin-unlocks");
 const easyRouteMarker = document.querySelector(".route-marker-easy");
 const liftTopTerminal = document.querySelector(".lift-terminal-top");
@@ -79,8 +80,8 @@ let skierRun = {
   crashProgress: null,
 };
 
-const liftReturnDelay = 1000;
-const liftReturnDuration = 4600;
+const liftReturnDelay = 4000;
+const liftReturnDuration = 4000;
 
 let liftReturn = {
   timeoutId: null,
@@ -650,6 +651,13 @@ const hideSkierForLift = () => {
   skier.setAttribute("aria-hidden", "true");
 };
 
+// Crash recovery cue stays on only during the short wait before the lift picks up the skier.
+const setRecoveryCueVisible = (isVisible) => {
+  if (!suppliesCabin) return;
+
+  suppliesCabin.classList.toggle("is-recovery-needed", isVisible);
+};
+
 const scheduleLiftReturn = () => {
   if (!liftCar || !liftCableSegments.length) return;
 
@@ -660,6 +668,7 @@ const scheduleLiftReturn = () => {
     liftReturn.startedAt = performance.now();
 
     updateLiftCarPosition(0);
+    setRecoveryCueVisible(false);
     hideSkierForLift();
     liftCar.classList.add("is-visible");
     updateLiftReturn(liftReturn.startedAt);
@@ -701,6 +710,7 @@ const stageSkierAtRouteStart = () => {
   if (!skier) return;
   if (progressionState.skierState === skierStates.running) return;
   cancelLiftReturn();
+  setRecoveryCueVisible(false);
 
   // Reset all run/lift animation state before placing the skier back at the route start.
   skierRun = {
@@ -774,6 +784,7 @@ const crashSkierRun = () => {
   // Crashes cost one cabin level instead of wiping all progression.
   setCabinLevel(progressionState.cabinLevel - 1);
   setSkierState(skierStates.crashed);
+  setRecoveryCueVisible(true);
   scheduleLiftReturn();
 
   if (sunCharacter) {

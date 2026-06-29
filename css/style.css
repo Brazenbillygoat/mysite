@@ -892,6 +892,65 @@ a:hover {
   stroke-width: 1.5;
 }
 
+/* Crash cue: a tiny ski patrol sign near supplies, lit only until the return lift starts. */
+.ski-patrol-cue {
+  bottom: -1em;
+  height: 24em;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: -7em;
+  transition:
+    opacity 160ms ease,
+    filter 160ms ease;
+  width: 18em;
+}
+
+.supplies-cabin.is-recovery-needed .ski-patrol-cue {
+  filter: drop-shadow(0 0 5px rgba(214, 48, 49, 0.85));
+  opacity: 1;
+}
+
+.ski-patrol-cue-post {
+  background: #4b2c16;
+  bottom: 0;
+  height: 16em;
+  left: 8em;
+  position: absolute;
+  width: 3em;
+}
+
+.ski-patrol-cue-sign {
+  background: #fff7d6;
+  border: 2px solid #4b2c16;
+  border-radius: 2em;
+  height: 12em;
+  left: 2em;
+  position: absolute;
+  top: 0;
+  width: 14em;
+}
+
+.ski-patrol-cue-cross::before,
+.ski-patrol-cue-cross::after {
+  background: #d63031;
+  content: "";
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ski-patrol-cue-cross::before {
+  height: 8em;
+  width: 3em;
+}
+
+.ski-patrol-cue-cross::after {
+  height: 3em;
+  width: 8em;
+}
+
 .mountain-skier {
   height: 18em;
   left: 40%;
