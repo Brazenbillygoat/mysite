@@ -338,6 +338,12 @@ a:hover {
 
 .mountain-stage {
   /* Mountain gameplay coordinates are relative to this box, not the full hero viewport. */
+  /*
+    Mountain props use em dimensions so changing this scoped font-size scales
+    the whole game layer with the image without transform conflicts.
+  */
+  --mountain-prop-unit: 1px;
+  font-size: var(--mountain-prop-unit);
   margin: 2rem auto 0;
   position: relative;
   width: 98%;
@@ -346,12 +352,12 @@ a:hover {
 
 .cabin-character {
   cursor: pointer;
-  height: 52px;
+  height: 52em;
   left: 44%;
   pointer-events: auto;
   position: absolute;
   top: 20%;
-  width: 70px;
+  width: 70em;
   z-index: 6;
 }
 
@@ -438,65 +444,65 @@ a:hover {
 }
 
 .lift-tower {
-  height: 34px;
+  height: 34em;
   pointer-events: none;
   transform: translate(-50%, -100%);
-  width: 22px;
+  width: 22em;
 }
 
 .lift-tower-top {
   left: 48.5%;
-  top: 27%;
+  top: 26%;
 }
 
 .lift-tower-middle {
   left: 61%;
-  top: 31%;
+  top: 30%;
 }
 
 .lift-tower-bottom {
   left: 78%;
-  top: 65%;
+  top: 64%;
 }
 
 .lift-tower-post {
   background: #4b2c16;
   bottom: 0;
-  height: 30px;
-  left: 9px;
+  height: 30em;
+  left: 9em;
   position: absolute;
-  width: 4px;
+  width: 4em;
 }
 
 /* Small crossbar so the post reads like lift equipment, not a random stick. */
 .lift-tower-crossbar {
   background: #4b2c16;
-  height: 3px;
-  left: 1px;
+  height: 3em;
+  left: 1em;
   position: absolute;
-  top: 3px;
-  width: 20px;
+  top: 3em;
+  width: 20em;
 }
 
 .lift-tower-wheel {
   background: #d9a441;
   border: 2px solid #2b1a10;
   border-radius: 50%;
-  height: 8px;
-  left: 6px;
+  height: 8em;
+  left: 6em;
   position: absolute;
-  top: -2px;
-  width: 8px;
+  top: -2em;
+  width: 8em;
 }
 
 .lift-terminal {
   background: transparent;
   border: 0;
   cursor: pointer;
-  height: 32px;
+  height: 32em;
   padding: 0;
   pointer-events: auto;
-  width: 32px;
+  width: 32em;
 }
 
 .lift-terminal:focus {
@@ -513,6 +519,107 @@ a:hover {
   top: 58%;
 }
 
+/* JS places .lift-car at a sampled point on the SVG cable. Draw the chair downward from that anchor. */
+.lift-car {
+  display: none;
+  height: 34em;
+  left: 78%;
+  pointer-events: none;
+  position: absolute;
+  top: 61%;
+  transform: translate(-50%, 0);
+  width: 28em;
+  z-index: 8;
+}
+
+.lift-car.is-visible {
+  display: block;
+}
+
+/* Wheel sits directly on the sampled cable point so the car feels attached to the line. */
+.lift-car-wheel {
+  background: #d9a441;
+  border: 2px solid #2b1a10;
+  border-radius: 50%;
+  height: 8em;
+  left: 10em;
+  position: absolute;
+  top: -4em;
+  width: 8em;
+}
+
+.lift-car-hanger {
+  background: #2b1a10;
+  height: 15em;
+  left: 13em;
+  position: absolute;
+  top: 3em;
+  width: 2em;
+}
+
+.lift-car-seat {
+  background: #4b2c16;
+  border-radius: 2em;
+  height: 8em;
+  left: 5em;
+  position: absolute;
+  top: 18em;
+  width: 19em;
+}
+
+.lift-car-seat::before {
+  background: #2b1a10;
+  content: "";
+  height: 12em;
+  left: 2em;
+  position: absolute;
+  top: -10em;
+  width: 3em;
+}
+
+/* Keep the passenger as simple CSS shapes so it scales with the rest of the mountain props. */
+.lift-car-skier {
+  background: transparent;
+  height: 16em;
+  left: 10em;
+  position: absolute;
+  top: 5em;
+  width: 12em;
+}
+
+.lift-car-skier-head {
+  background: #d9a441;
+  border: 1px solid #2b1a10;
+  border-radius: 50%;
+  height: 6em;
+  left: 4em;
+  position: absolute;
+  top: 0;
+  width: 6em;
+}
+
+.lift-car-skier-body {
+  background: #10100e;
+  border-radius: 2em;
+  height: 9em;
+  left: 5em;
+  position: absolute;
+  top: 6em;
+  transform: rotate(-12deg);
+  width: 5em;
+}
+
+.lift-car-skier-ski {
+  background: #10100e;
+  border-radius: 999px;
+  height: 2em;
+  left: 0;
+  position: absolute;
+  top: 16em;
+  transform: rotate(8deg);
+  width: 15em;
+}
+
 .path-markers,
 .cabin-unlocks {
   inset: 0;
@@ -522,13 +629,13 @@ a:hover {
 
 .final-skier-rest {
   display: none;
-  height: 24px;
+  height: 24em;
   left: 40%;
   pointer-events: none;
   position: absolute;
   top: 39%;
   transform: translate(-50%, -50%) scaleX(-1);
-  width: 24px;
+  width: 24em;
   z-index: 7;
 }
 
@@ -561,10 +668,10 @@ a:hover {
 }
 
 .path-marker {
-  height: 24px;
+  height: 24em;
   position: absolute;
   transform: translate(-50%, -100%);
-  width: 14px;
+  width: 14em;
 }
 
 .path-marker::before {
@@ -572,10 +679,10 @@ a:hover {
   border-radius: 999px;
   bottom: 0;
   content: "";
-  height: 18px;
-  left: 6px;
+  height: 18em;
+  left: 6em;
   position: absolute;
-  width: 3px;
+  width: 3em;
 }
 
 .path-marker::after {
@@ -584,21 +691,21 @@ a:hover {
   border-radius: 50%;
   box-shadow: 0 0 7px rgba(255, 211, 111, 0.65);
   content: "";
-  height: 9px;
-  left: 2px;
+  height: 9em;
+  left: 2em;
   position: absolute;
-  top: 4px;
-  width: 9px;
+  top: 4em;
+  width: 9em;
 }
 
 .path-marker-cap {
   background: #10100e;
   border-radius: 8px 8px 2px 2px;
-  height: 5px;
-  left: 1px;
+  height: 5em;
+  left: 1em;
   position: absolute;
   top: 0;
-  width: 11px;
+  width: 11em;
   z-index: 1;
 }
 
@@ -628,38 +735,38 @@ a:hover {
 }
 
 .cabin-unlock-campfire {
-  height: 26px;
-  width: 28px;
+  height: 26em;
+  width: 28em;
 }
 
 .cabin-unlock-clothesline {
-  height: 28px;
-  width: 58px;
+  height: 28em;
+  width: 58em;
 }
 
 .cabin-unlock-fish-rack {
-  height: 32px;
-  width: 38px;
+  height: 32em;
+  width: 38em;
 }
 
 .cabin-unlock-wood-pile {
-  height: 20px;
-  width: 36px;
+  height: 20em;
+  width: 36em;
 }
 
 .cabin-unlock-hot-spring {
-  height: 34px;
-  width: 46px;
+  height: 34em;
+  width: 46em;
 }
 
 .cabin-unlock-sauna {
-  height: 42px;
-  width: 46px;
+  height: 42em;
+  width: 46em;
 }
 
 .cabin-unlock-guest-cabin {
-  height: 44px;
-  width: 54px;
+  height: 44em;
+  width: 54em;
 }
 
 /* Route marker button: a real button styled to look like an in-scene trail sign. */
@@ -667,14 +774,14 @@ a:hover {
   background: transparent;
   border: 0;
   cursor: pointer;
-  height: 23px;
+  height: 23em;
   left: 45%;
   padding: 0;
   pointer-events: auto;
   position: absolute;
   top: 29%;
   transform: translate(-50%, -100%);
-  width: 8px;
+  width: 8em;
   z-index: 7;
 }
 
@@ -688,10 +795,10 @@ a:hover {
   background: #4b2c16;
   border-radius: 999px;
   bottom: 0;
-  height: 20px;
-  left: 10px;
+  height: 20em;
+  left: 10em;
   position: absolute;
-  width: 3px;
+  width: 3em;
 }
 
 /* Sign face that holds the ski difficulty symbol. */
@@ -699,15 +806,15 @@ a:hover {
   align-items: center;
   background: #f2d39a;
   border: 2px solid #4b2c16;
-  border-radius: 3px;
+  border-radius: 3em;
   box-shadow: 0 2px 0 rgba(43, 26, 16, 0.28);
   display: flex;
-  height: 12px;
+  height: 12em;
   justify-content: center;
-  left: 1px;
+  left: 1em;
   position: absolute;
   top: 0;
-  width: 12px;
+  width: 12em;
 }
 
 /* Green circle = easiest ski trail. Dim while disabled, full color when enabled. */
@@ -715,9 +822,9 @@ a:hover {
   background: #2f9e44;
   border-radius: 50%;
   display: block;
-  height: 6px;
+  height: 6em;
   opacity: 0.42;
-  width: 6px;
+  width: 6em;
 }
 
 /* Enabled route gets a soft glow so it reads as available. */
@@ -743,12 +850,12 @@ a:hover {
 }
 
 .supplies-cabin {
-  height: 42px;
+  height: 42em;
   left: 78%;
   pointer-events: none;
   position: absolute;
   top: 58%;
-  width: 54px;
+  width: 54em;
   z-index: 5;
 }
 
@@ -785,14 +892,73 @@ a:hover {
   stroke-width: 1.5;
 }
 
+/* Crash cue: a tiny ski patrol sign near supplies, lit only until the return lift starts. */
+.ski-patrol-cue {
+  bottom: -1em;
+  height: 24em;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: -7em;
+  transition:
+    opacity 160ms ease,
+    filter 160ms ease;
+  width: 18em;
+}
+
+.supplies-cabin.is-recovery-needed .ski-patrol-cue {
+  filter: drop-shadow(0 0 5px rgba(214, 48, 49, 0.85));
+  opacity: 1;
+}
+
+.ski-patrol-cue-post {
+  background: #4b2c16;
+  bottom: 0;
+  height: 16em;
+  left: 8em;
+  position: absolute;
+  width: 3em;
+}
+
+.ski-patrol-cue-sign {
+  background: #fff7d6;
+  border: 2px solid #4b2c16;
+  border-radius: 2em;
+  height: 12em;
+  left: 2em;
+  position: absolute;
+  top: 0;
+  width: 14em;
+}
+
+.ski-patrol-cue-cross::before,
+.ski-patrol-cue-cross::after {
+  background: #d63031;
+  content: "";
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ski-patrol-cue-cross::before {
+  height: 8em;
+  width: 3em;
+}
+
+.ski-patrol-cue-cross::after {
+  height: 3em;
+  width: 8em;
+}
+
 .mountain-skier {
-  height: 18px;
+  height: 18em;
   left: 40%;
   pointer-events: auto;
   position: absolute;
   top: 34%;
   transform-origin: center;
-  width: 23px;
+  width: 23em;
   z-index: 5;
 }
 
@@ -841,6 +1007,20 @@ a:hover {
 .mountain-skier.is-resting .skier-svg {
   animation: none;
   transform: rotate(-12deg);
+}
+
+@media (max-width: 1000px) {
+  .mountain-stage {
+    --mountain-prop-unit: 0.62px;
+  }
+
+  .cabin-character,
+  .route-marker,
+  .lift-terminal,
+  .mountain-skier {
+    cursor: default;
+    pointer-events: none;
+  }
 }
 
 @keyframes skier-bob {

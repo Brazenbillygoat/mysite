@@ -36,9 +36,12 @@ const finalSkierRest = document.querySelector(".final-skier-rest");
 const cabinCharacter = document.querySelector(".cabin-character");
 const skier = document.querySelector(".mountain-skier");
 const pathMarkersLayer = document.querySelector(".path-markers");
+const suppliesCabin = document.querySelector(".supplies-cabin");
 const cabinUnlocksLayer = document.querySelector(".cabin-unlocks");
 const easyRouteMarker = document.querySelector(".route-marker-easy");
 const liftTopTerminal = document.querySelector(".lift-terminal-top");
+const liftCar = document.querySelector(".lift-car");
+const liftCableSegments = [...document.querySelectorAll("[data-lift-cable-segment]")];
 const liftBottomTerminal = document.querySelector(".lift-terminal-bottom");
 const forestMist = document.querySelector(".forest-mist");
 const forestLine = document.querySelector(".forest-line");
@@ -77,6 +80,15 @@ let skierRun = {
   crashProgress: null,
 };
 
+const liftReturnDelay = 4000;
+const liftReturnDuration = 4000;
+
+let liftReturn = {
+  timeoutId: null,
+  animationFrameId: null,
+  startedAt: 0,
+};
+
 let sunAwakened = false;
 let latestMousePosition = null;
 
@@ -85,6 +97,7 @@ let forestMid = null;
 let forestFront = null;
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const compactMountainViewport = window.matchMedia("(max-width: 1000px)");
 
 let parallaxTicking = false;
 
@@ -153,7 +166,55 @@ const getPathPoint = (path, progress) => {
   };
 };
 
+// Lift animation samples the drawn SVG cable instead of duplicating cable coordinates in JS.
+const getLiftCablePoint = (progress) => {
+  if (!liftCableSegments.length) return null;
+
+  // The SVG cable is authored top-to-bottom, but the return lift travels bottom-to-top.
+  const reversedSegments = [...liftCableSegments].reverse();
+
+  // Let the browser measure the real curved SVG paths so JS does not duplicate cable geometry.
+  const segmentLengths = reversedSegments.map((segment) => segment.getTotalLength());
+  const totalLength = segmentLengths.reduce((total, length) => total + length, 0);
+
+  // Progress is a 0-1 value across the whole multi-segment cable.
+  const clampedProgress = Math.min(Math.max(progress, 0), 1);
+  const targetLength = totalLength * clampedProgress;
+
+  let lengthSoFar = 0;
+
+  for (let index = 0; index < reversedSegments.length; index += 1) {
+    const segment = reversedSegments[index];
+    const segmentLength = segmentLengths[index];
+
+    if (targetLength <= lengthSoFar + segmentLength) {
+      const localLength = targetLength - lengthSoFar;
+
+      // Each individual path still runs top-to-bottom, so sample backward within it.
+      return segment.getPointAtLength(segmentLength - localLength);
+    }
+
+    lengthSoFar += segmentLength;
+  }
+
+  // Fallback to the top of the final segment if rounding slips past the loop.
+  return reversedSegments[reversedSegments.length - 1].getPointAtLength(0);
+};
+
+// The sampled SVG point becomes the wheel anchor; CSS draws the chair below it.
+const updateLiftCarPosition = (progress) => {
+  if (!liftCar) return;
+
+  const point = getLiftCablePoint(progress);
+  if (!point) return;
+
+  liftCar.style.left = `${point.x}%`;
+  liftCar.style.top = `${point.y}%`;
+};
+
 const getCabinStateIndex = () => cabinStates.indexOf(progressionState.cabinState);
+
+const isCompactMountainViewport = () => compactMountainViewport.matches;
 
 // SUN / SKY
 
@@ -243,7 +304,11 @@ const setSunPupilTarget = (target) => {
 
 const getSkierGazeTarget = () => {
   // The sun only tracks the skier while a run is active or crashed on-screen.
-  if (!skier || progressionState.skierState === skierStates.hidden || progressionState.skierState === skierStates.complete) {
+  if (
+    !skier ||
+    progressionState.skierState === skierStates.hidden ||
+    progressionState.skierState === skierStates.complete
+  ) {
     return null;
   }
 
@@ -545,6 +610,71 @@ const cancelSkierAnimation = () => {
   skierRun.animationFrameId = null;
 };
 
+const cancelLiftReturn = () => {
+  if (liftReturn.timeoutId) {
+    window.clearTimeout(liftReturn.timeoutId);
+    liftReturn.timeoutId = null;
+  }
+
+  if (liftReturn.animationFrameId) {
+    window.cancelAnimationFrame(liftReturn.animationFrameId);
+    liftReturn.animationFrameId = null;
+  }
+
+  if (liftCar) {
+    liftCar.classList.remove("is-visible");
+  }
+};
+
+const updateLiftReturn = (frameTime = performance.now()) => {
+  if (!liftCar) return;
+
+  const elapsed = frameTime - liftReturn.startedAt;
+  const progress = Math.min(elapsed / liftReturnDuration, 1);
+
+  updateLiftCarPosition(progress);
+
+  if (progress >= 1) {
+    liftReturn.animationFrameId = null;
+    liftCar.classList.remove("is-visible");
+    stageSkierAtRouteStart();
+    return;
+  }
+
+  liftReturn.animationFrameId = window.requestAnimationFrame(updateLiftReturn);
+};
+
+const hideSkierForLift = () => {
+  if (!skier) return;
+
+  skier.classList.add("is-hidden");
+  skier.setAttribute("aria-hidden", "true");
+};
+
+// Crash recovery cue stays on only during the short wait before the lift picks up the skier.
+const setRecoveryCueVisible = (isVisible) => {
+  if (!suppliesCabin) return;
+
+  suppliesCabin.classList.toggle("is-recovery-needed", isVisible);
+};
+
+const scheduleLiftReturn = () => {
+  if (!liftCar || !liftCableSegments.length) return;
+
+  cancelLiftReturn();
+
+  liftReturn.timeoutId = window.setTimeout(() => {
+    liftReturn.timeoutId = null;
+    liftReturn.startedAt = performance.now();
+
+    updateLiftCarPosition(0);
+    setRecoveryCueVisible(false);
+    hideSkierForLift();
+    liftCar.classList.add("is-visible");
+    updateLiftReturn(liftReturn.startedAt);
+  }, liftReturnDelay);
+};
+
 // Keep route availability tied to game state.
 const setRouteMarkerEnabled = (isEnabled) => {
   if (!easyRouteMarker) return;
@@ -579,8 +709,10 @@ const setSkierState = (nextState) => {
 const stageSkierAtRouteStart = () => {
   if (!skier) return;
   if (progressionState.skierState === skierStates.running) return;
+  cancelLiftReturn();
+  setRecoveryCueVisible(false);
 
-  // For now the lift stages instantly. Later, lift animation can end by calling this function.
+  // Reset all run/lift animation state before placing the skier back at the route start.
   skierRun = {
     animationFrameId: null,
     startedAt: 0,
@@ -645,12 +777,15 @@ const finishSkierRun = () => {
   skier.style.top = `${finishPoint.y}%`;
   skier.style.transform = `rotate(0deg)`;
   setSkierState(skierStates.finished);
+  scheduleLiftReturn();
 };
 
 const crashSkierRun = () => {
   // Crashes cost one cabin level instead of wiping all progression.
   setCabinLevel(progressionState.cabinLevel - 1);
   setSkierState(skierStates.crashed);
+  setRecoveryCueVisible(true);
+  scheduleLiftReturn();
 
   if (sunCharacter) {
     sunCharacter.classList.add("is-oof");
@@ -721,6 +856,8 @@ const disableCabinInteraction = () => {
 };
 
 const advanceCabin = () => {
+  if (isCompactMountainViewport()) return;
+
   const cabinStateIndex = getCabinStateIndex();
 
   if (cabinStateIndex < cabinStates.length - 1) {
@@ -750,13 +887,16 @@ const handleCabinKeydown = (event) => {
 };
 
 const handleEasyRouteClick = () => {
+  if (isCompactMountainViewport()) return;
   if (!easyRouteMarker || easyRouteMarker.disabled) return;
 
   // Route marker owns skier launch now that scroll is only scenery.
   launchSkierRun();
 };
 
-const handleLiftTerminalClick  = () => {
+const handleLiftTerminalClick = () => {
+  if (isCompactMountainViewport()) return;
+
   // Lift terminals are the temporary reset: finished/crashed skiers go back to the top.
   if (
     progressionState.skierState !== skierStates.finished &&
@@ -965,7 +1105,7 @@ if (parallaxScene && parallaxLayers.length) {
   }
 
   if (liftBottomTerminal) {
-    liftBottomTerminal.addEventListener("click", handleLiftTerminalClick );
+    liftBottomTerminal.addEventListener("click", handleLiftTerminalClick);
   }
 
   if (sunCharacter) {
