@@ -85,6 +85,7 @@ let forestMid = null;
 let forestFront = null;
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const compactMountainViewport = window.matchMedia("(max-width: 1000px)");
 
 let parallaxTicking = false;
 
@@ -154,6 +155,8 @@ const getPathPoint = (path, progress) => {
 };
 
 const getCabinStateIndex = () => cabinStates.indexOf(progressionState.cabinState);
+
+const isCompactMountainViewport = () => compactMountainViewport.matches;
 
 // SUN / SKY
 
@@ -243,7 +246,11 @@ const setSunPupilTarget = (target) => {
 
 const getSkierGazeTarget = () => {
   // The sun only tracks the skier while a run is active or crashed on-screen.
-  if (!skier || progressionState.skierState === skierStates.hidden || progressionState.skierState === skierStates.complete) {
+  if (
+    !skier ||
+    progressionState.skierState === skierStates.hidden ||
+    progressionState.skierState === skierStates.complete
+  ) {
     return null;
   }
 
@@ -721,6 +728,8 @@ const disableCabinInteraction = () => {
 };
 
 const advanceCabin = () => {
+  if (isCompactMountainViewport()) return;
+
   const cabinStateIndex = getCabinStateIndex();
 
   if (cabinStateIndex < cabinStates.length - 1) {
@@ -750,13 +759,16 @@ const handleCabinKeydown = (event) => {
 };
 
 const handleEasyRouteClick = () => {
+  if (isCompactMountainViewport()) return;
   if (!easyRouteMarker || easyRouteMarker.disabled) return;
 
   // Route marker owns skier launch now that scroll is only scenery.
   launchSkierRun();
 };
 
-const handleLiftTerminalClick  = () => {
+const handleLiftTerminalClick = () => {
+  if (isCompactMountainViewport()) return;
+
   // Lift terminals are the temporary reset: finished/crashed skiers go back to the top.
   if (
     progressionState.skierState !== skierStates.finished &&
@@ -965,7 +977,7 @@ if (parallaxScene && parallaxLayers.length) {
   }
 
   if (liftBottomTerminal) {
-    liftBottomTerminal.addEventListener("click", handleLiftTerminalClick );
+    liftBottomTerminal.addEventListener("click", handleLiftTerminalClick);
   }
 
   if (sunCharacter) {
