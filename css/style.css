@@ -1133,8 +1133,67 @@ a:hover {
 
 /* MIDDLE CONTAINER */
 .profile {
+  align-items: center;
   background-image: linear-gradient(rgb(100, 54, 24), #d8a96b);
-  padding-top: 3rem;
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: 1fr 1fr;
+  padding: 4rem 8vw;
+}
+
+.profile-intro {
+  max-width: 46rem;
+}
+
+.profile-intro p {
+  font-weight: 600;
+  line-height: 1.7;
+  text-align: left;
+}
+
+.profile-recent-work {
+  justify-self: center;
+  max-width: 34rem;
+  text-align: left;
+}
+
+/* Recent work stays text-first now so this space can later host a small interactive panel. */
+.profile-recent-work h3 {
+  font-size: 2.75rem;
+  margin-bottom: 1rem;
+}
+
+.profile-recent-company {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.profile-recent-list {
+  font-size: 1.35rem;
+  line-height: 1.8;
+  list-style: none;
+  padding-left: 0;
+}
+
+.profile-recent-list li {
+  border-left: 3px solid rgba(16, 16, 14, 0.35);
+  font-family: "Merriweather", serif;
+  font-weight: bold;
+  margin-bottom: 0.45rem;
+  padding-left: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .profile {
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+    padding: 3rem 1.25rem;
+  }
+
+  .profile-recent-work {
+    justify-self: stretch;
+    max-width: none;
+  }
 }
 
 .middle-container {
