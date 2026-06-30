@@ -38,7 +38,7 @@ const skier = document.querySelector(".mountain-skier");
 const pathMarkersLayer = document.querySelector(".path-markers");
 const suppliesCabin = document.querySelector(".supplies-cabin");
 const cabinUnlocksLayer = document.querySelector(".cabin-unlocks");
-const easyRouteMarker = document.querySelector(".route-marker-easy");
+const routeMarkers = [...document.querySelectorAll(".route-marker")];
 const liftTopTerminal = document.querySelector(".lift-terminal-top");
 const liftCar = document.querySelector(".lift-car");
 const liftCableSegments = [...document.querySelectorAll("[data-lift-cable-segment]")];
@@ -70,7 +70,7 @@ const cabinStates = ["sleeping", "smoking", "lit", "activated"];
 
 // Time-based route duration keeps skier control separate from scenery scroll.
 const skierRunDuration = 1800;
-const crashChance = 0.22;
+const defaultCrashChance = 0.22;
 
 let skierRun = {
   animationFrameId: null,
@@ -78,6 +78,7 @@ let skierRun = {
   progress: 0,
   hasCrash: false,
   crashProgress: null,
+  routeId: "easyMountainRoute",
 };
 
 const liftReturnDelay = 4000;
@@ -164,6 +165,28 @@ const getPathPoint = (path, progress) => {
     y: lerp(start.y, end.y, segmentProgress),
     angle: Math.min(Math.abs(yDiff / xDiff) * 45, 90) * direction,
   };
+};
+
+const getActiveSkierRoute = () => skierRoutes[skierRun.routeId] || skierRoutes.easyMountainRoute;
+
+const getRouteJumpOffset = (route, progress) => {
+  if (!route.jump) return 0;
+
+  const { start, end, height } = route.jump;
+  if (progress < start || progress > end) return 0;
+
+  const jumpProgress = (progress - start) / (end - start);
+
+  // Keep the skier moving along the route while this visual arc lifts them above it.
+  return -height * Math.sin(jumpProgress * Math.PI);
+};
+
+const setSkierPathPosition = (pathPoint, jumpOffset = 0) => {
+  if (!skier) return;
+
+  skier.style.left = `${pathPoint.x}%`;
+  skier.style.top = `${pathPoint.y}%`;
+  skier.style.transform = `translateY(${jumpOffset}px) rotate(${pathPoint.angle}deg)`;
 };
 
 // Lift animation samples the drawn SVG cable instead of duplicating cable coordinates in JS.
@@ -420,17 +443,33 @@ const updateMousePosition = (event) => {
 
 // MOUNTAIN DATA
 
-// Fixed skier paths for now; this can later hold generated paths or multiple named routes.
-// Every point here becomes a path light except for 0
-const skierPaths = {
-  mainMountain: [
-    { x: 42, y: 24 },
-    { x: 52, y: 37 },
-    { x: 44, y: 43 },
-    { x: 56, y: 48 },
-    { x: 69, y: 55 },
-    { x: 76, y: 65 },
-  ],
+const skierRoutes = {
+  easyMountainRoute: {
+    crashChance: 0.12,
+    path: [
+      { x: 42, y: 24 },
+      { x: 52, y: 37 },
+      { x: 44, y: 43 },
+      { x: 56, y: 48 },
+      { x: 69, y: 55 },
+      { x: 76, y: 65 },
+    ],
+    jump: { start: 0.52, end: 0.68, height: 30 },
+  },
+  intermediateMountainRoute: {
+    crashChance: defaultCrashChance,
+    path: [
+      { x: 45, y: 24 },
+      { x: 39, y: 34 },
+      { x: 45, y: 44 },
+      { x: 57, y: 49 },
+      { x: 65, y: 42 },
+      { x: 73, y: 56 },
+      { x: 79, y: 65 },
+    ],
+    // Visual-only jump: path progress continues while the skier briefly pops above it.
+    jump: { start: 0.42, end: 0.68, height: 170 },
+  },
 };
 
 const cabinUnlocks = [
@@ -543,20 +582,66 @@ const maxCabinLevel = Math.max(...cabinUnlocks.map((unlock) => unlock.level));
 
 // MOUNTAIN RENDERING
 
+const pathMarkerDedupeDistance = 2;
+
+const getPointDistance = (firstPoint, secondPoint) => {
+  const xDistance = firstPoint.x - secondPoint.x;
+  const yDistance = firstPoint.y - secondPoint.y;
+
+  return Math.sqrt(xDistance * xDistance + yDistance * yDistance);
+};
+
 const renderPathMarkers = () => {
   if (!pathMarkersLayer) return;
 
   pathMarkersLayer.textContent = "";
 
-  skierPaths.mainMountain.forEach((node, index) => {
-    if (index === 0) return;
+  const markerNodes = [];
 
-    const marker = document.createElement("span");
-    marker.className = "path-marker";
-    marker.innerHTML = `<span class="path-marker-cap"></span>`;
-    marker.style.left = `${node.x}%`;
-    marker.style.top = `${node.y}%`;
-    pathMarkersLayer.append(marker);
+  Object.entries(skierRoutes).forEach(([routeId, route]) => {
+    route.path.forEach((node, index) => {
+      if (index === 0) return;
+
+      const existingMarker = markerNodes.find((markerNode) => {
+        // Only dedupe across different routes; same-route points stay explicit.
+        return (
+          !markerNode.routeIds.includes(routeId) &&
+          getPointDistance(markerNode, node) < pathMarkerDedupeDistance
+        );
+      });
+
+      if (existingMarker) {
+        existingMarker.routeIds.push(routeId);
+        existingMarker.element.dataset.routeIds = existingMarker.routeIds.join(" ");
+        return;
+      }
+
+      const marker = document.createElement("span");
+      marker.className = "path-marker";
+      marker.dataset.routeIds = routeId;
+      marker.innerHTML = `<span class="path-marker-cap"></span>`;
+      marker.style.left = `${node.x}%`;
+      marker.style.top = `${node.y}%`;
+
+      markerNodes.push({
+        ...node,
+        routeIds: [routeId],
+        element: marker,
+      });
+
+      pathMarkersLayer.append(marker);
+    });
+  });
+};
+
+const setActivePathMarkers = (routeId) => {
+  if (!pathMarkersLayer) return;
+
+  pathMarkersLayer.querySelectorAll(".path-marker").forEach((marker) => {
+    const routeIds = marker.dataset.routeIds?.split(" ") || [];
+
+    // Shared deduped markers light up for either route they belong to.
+    marker.classList.toggle("is-active-route", routeIds.includes(routeId));
   });
 };
 
@@ -675,11 +760,11 @@ const scheduleLiftReturn = () => {
   }, liftReturnDelay);
 };
 
-// Keep route availability tied to game state.
-const setRouteMarkerEnabled = (isEnabled) => {
-  if (!easyRouteMarker) return;
-
-  easyRouteMarker.disabled = !isEnabled;
+// Keep every route marker tied to the same skier state.
+const setRouteMarkersEnabled = (isEnabled) => {
+  routeMarkers.forEach((routeMarker) => {
+    routeMarker.disabled = !isEnabled;
+  });
 };
 
 const setSkierState = (nextState) => {
@@ -719,38 +804,45 @@ const stageSkierAtRouteStart = () => {
     progress: 0,
     hasCrash: false,
     crashProgress: null,
+    routeId: "easyMountainRoute",
   };
 
   // Activation reveals the skier at the first route point without starting the run.
-  const startPoint = getPathPoint(skierPaths.mainMountain, 0);
+  const startPoint = getPathPoint(skierRoutes.easyMountainRoute.path, 0);
 
-  skier.style.left = `${startPoint.x}%`;
-  skier.style.top = `${startPoint.y}%`;
-  skier.style.transform = `rotate(${startPoint.angle}deg)`;
+  setActivePathMarkers(null);
+  setSkierPathPosition(startPoint);
   setSkierState(skierStates.ready);
-  setRouteMarkerEnabled(true);
+  setRouteMarkersEnabled(true);
 };
 
-const launchSkierRun = () => {
+const launchSkierRun = (routeId = "easyMountainRoute") => {
   if (!skier) return;
   // The run only starts when the skier is already staged at the top.
   if (progressionState.skierState !== skierStates.ready) return;
+
+  const route = skierRoutes[routeId] || skierRoutes.easyMountainRoute;
 
   // New run clears the sun's crash reaction because the skier is back on course.
   if (sunCharacter) {
     sunCharacter.classList.remove("is-oof");
   }
 
+  // Light up the active path
+  setActivePathMarkers(routeId);
   cancelSkierAnimation();
-  // Route is unavailable while the skier is already on it.
-  setRouteMarkerEnabled(false);
+  // All route choices are unavailable while the skier is already on one.
+  setRouteMarkersEnabled(false);
+
+  const routeCrashChance = route.crashChance ?? defaultCrashChance;
 
   skierRun = {
     animationFrameId: null,
     startedAt: performance.now(),
     progress: 0,
-    hasCrash: Math.random() < crashChance,
+    hasCrash: Math.random() < routeCrashChance,
     crashProgress: null,
+    routeId,
   };
 
   // Crash is decided once per run so animation stays deterministic.
@@ -759,6 +851,7 @@ const launchSkierRun = () => {
   }
 
   setSkierState(skierStates.running);
+  setSkierPathPosition(getPathPoint(route.path, 0));
   updateSkierRun(skierRun.startedAt);
 };
 
@@ -771,11 +864,10 @@ const finishSkierRun = () => {
     return;
   }
 
-  const finishPoint = getPathPoint(skierPaths.mainMountain, 1);
+  const finishPoint = getPathPoint(getActiveSkierRoute().path, 1);
 
-  skier.style.left = `${finishPoint.x}%`;
-  skier.style.top = `${finishPoint.y}%`;
-  skier.style.transform = `rotate(0deg)`;
+  setSkierPathPosition(finishPoint);
+  skier.style.transform = "rotate(0deg)";
   setSkierState(skierStates.finished);
   scheduleLiftReturn();
 };
@@ -806,22 +898,22 @@ const updateSkierRun = (frameTime = performance.now()) => {
   // If this run has a crash, lock the skier at that point.
   if (skierRun.hasCrash && skierRun.crashProgress && runProgress >= skierRun.crashProgress) {
     skierRun.progress = skierRun.crashProgress;
-    const crashPoint = getPathPoint(skierPaths.mainMountain, skierRun.progress);
+    const activeRoute = getActiveSkierRoute();
+    const crashPoint = getPathPoint(activeRoute.path, skierRun.progress);
+    const jumpOffset = getRouteJumpOffset(activeRoute, skierRun.progress);
 
-    skier.style.left = `${crashPoint.x}%`;
-    skier.style.top = `${crashPoint.y}%`;
-    skier.style.transform = `rotate(${crashPoint.angle}deg)`;
+    setSkierPathPosition(crashPoint, jumpOffset);
 
     crashSkierRun();
     return;
   }
 
   skierRun.progress = runProgress;
-  const pathPoint = getPathPoint(skierPaths.mainMountain, skierRun.progress);
+  const activeRoute = getActiveSkierRoute();
+  const pathPoint = getPathPoint(activeRoute.path, skierRun.progress);
+  const jumpOffset = getRouteJumpOffset(activeRoute, skierRun.progress);
 
-  skier.style.left = `${pathPoint.x}%`;
-  skier.style.top = `${pathPoint.y}%`;
-  skier.style.transform = `rotate(${pathPoint.angle}deg)`;
+  setSkierPathPosition(pathPoint, jumpOffset);
 
   if (skierRun.progress >= 1) {
     finishSkierRun();
@@ -867,7 +959,7 @@ const advanceCabin = () => {
 
     // Activation unlocks the route marker; the player chooses when to launch the skier.
     if (progressionState.cabinState === "activated") {
-      setRouteMarkerEnabled(true);
+      setRouteMarkersEnabled(true);
       stageSkierAtRouteStart();
       disableCabinInteraction();
     }
@@ -876,7 +968,7 @@ const advanceCabin = () => {
   }
 
   // After activation, cabin clicks no longer launch runs; route markers own that interaction.
-  setRouteMarkerEnabled(true);
+  setRouteMarkersEnabled(true);
 };
 
 const handleCabinKeydown = (event) => {
@@ -886,12 +978,14 @@ const handleCabinKeydown = (event) => {
   advanceCabin();
 };
 
-const handleEasyRouteClick = () => {
+const handleRouteClick = (event) => {
   if (isCompactMountainViewport()) return;
-  if (!easyRouteMarker || easyRouteMarker.disabled) return;
 
-  // Route marker owns skier launch now that scroll is only scenery.
-  launchSkierRun();
+  const routeMarker = event.currentTarget;
+  if (!routeMarker || routeMarker.disabled) return;
+
+  // The clicked marker owns route selection; run/reset/lift behavior stays shared.
+  launchSkierRun(routeMarker.dataset.routeId);
 };
 
 const handleLiftTerminalClick = () => {
@@ -1096,9 +1190,9 @@ if (parallaxScene && parallaxLayers.length) {
     cabinCharacter.addEventListener("keydown", handleCabinKeydown);
   }
 
-  if (easyRouteMarker) {
-    easyRouteMarker.addEventListener("click", handleEasyRouteClick);
-  }
+  routeMarkers.forEach((routeMarker) => {
+    routeMarker.addEventListener("click", handleRouteClick);
+  });
 
   if (liftTopTerminal) {
     liftTopTerminal.addEventListener("click", handleLiftTerminalClick);

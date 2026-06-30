@@ -192,11 +192,32 @@
         <div class="path-markers" aria-hidden="true"></div>
         <div class="cabin-unlocks" aria-hidden="true"></div>
 
+        <!-- Decorative ramp for the intermediate route jump. The skier path stays controlled in JS. -->
+        <span class="mountain-ramp mountain-ramp-intermediate" aria-hidden="true">
+          <span class="mountain-ramp-snow"></span>
+          <span class="mountain-ramp-plank mountain-ramp-plank-top"></span>
+          <span class="mountain-ramp-plank mountain-ramp-plank-bottom"></span>
+        </span>
+
         <button
           class="route-marker route-marker-easy"
           type="button"
           disabled
+          data-route-id="easyMountainRoute"
           aria-label="Launch easy ski route"
+        >
+          <span class="route-marker-post" aria-hidden="true"></span>
+          <span class="route-marker-sign" aria-hidden="true">
+            <span class="route-marker-symbol"></span>
+          </span>
+        </button>
+
+        <button
+          class="route-marker route-marker-intermediate"
+          type="button"
+          disabled
+          data-route-id="intermediateMountainRoute"
+          aria-label="Launch intermediate ski route"
         >
           <span class="route-marker-post" aria-hidden="true"></span>
           <span class="route-marker-sign" aria-hidden="true">
