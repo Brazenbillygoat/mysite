@@ -286,60 +286,71 @@
     </div>
 
     <div class="middle-container">
-      <div class="profile" id="profile">
-        <div class="profile-intro">
-          <img class="profile-pic" src="./images/profile-pic.jpeg" alt="Me stiffling a laugh" />
-          <h2>Hello.</h2>
-          <p>
-            I'm a Fullstack Software Developer that loves the outdoors <em>almost</em> as much as
-            technology! I like to untangle old systems, and try to leave the codebase easier to work
-            in than I found it. I like practical tools, clear tradeoffs, and software that holds up
-            outside the happy path.
-          </p>
-          <p>
-            Happiest building things that are boring in the best way: clear, useful, vanilla, and
-            dependable. I’m drawn to the practical side of engineering: making real systems easier
-            to use, maintain, and trust. Good software should feel obvious to use and reasonable to
-            change. That’s usually the bar I’m aiming for.
-          </p>
+      <section class="profile-scene" id="profile" aria-label="Profile overview">
+        <div class="profile-scene-grid">
+          <div class="profile-scene-panel profile-scene-panel-intro">
+            <img class="profile-pic" src="./images/profile-pic.jpeg" alt="Me stiffling a laugh" />
+            <h2>Hello.</h2>
+            <p>
+              I'm a Fullstack Software Developer that loves the outdoors <em>almost</em> as much as
+              technology! I like to untangle old systems, and try to leave the codebase easier to
+              work in than I found it. I like practical tools, clear tradeoffs, and software that
+              holds up outside the happy path.
+            </p>
+            <p>
+              Happiest building things that are boring in the best way: clear, useful, vanilla, and
+              dependable. I’m drawn to the practical side of engineering: making real systems easier
+              to use, maintain, and trust. Good software should feel obvious to use and reasonable
+              to change. That’s usually the bar I’m aiming for.
+            </p>
+          </div>
+
+          <aside class="profile-scene-panel profile-scene-panel-recent" aria-label="Recent work">
+            <h2>Recent Work</h2>
+            <p class="profile-recent-company">AVIXA</p>
+            <ul class="profile-recent-list">
+              <li>Full-stack member dashboards</li>
+              <li>Salesforce + Pardot integrations</li>
+              <li>Sitefinity CMS features</li>
+              <li>Next.js / Storyblok migration</li>
+              <li>Mapbox-powered search tools</li>
+              <li>.NET 8 authentication services</li>
+            </ul>
+          </aside>
+
+          <section class="profile-scene-panel profile-scene-panel-story" id="about-section">
+            <h2>My Story</h2>
+            <p>
+              After finishing a political science degree, I started out in international trade and
+              slowly realized the best part of the job was not the formal side of the work. It was
+              building small scripts and cleaner reports that made the day easier for the people
+              around me. That pushed me back toward school for programming. I kept taking classes
+              online while driving 18-wheelers and later a tour bus for a semi-pro hockey team. When
+              COVID hit with one semester left at Liberty, I shifted into Flatiron School’s software
+              engineering bootcamp for the focused career support and hands-on work. Not long after
+              finishing, I landed my first software developer role. I’ve been building web
+              applications across modern and legacy stacks since, and I still like the same part of
+              the work: untangling practical problems and turning them into tools people can
+              actually use. Today, I’m a full-stack software engineer with 5+ years of experience
+              building enterprise web applications across modern and legacy stacks. Most recently at
+              AVIXA, I worked on member dashboards, Salesforce integrations, Sitefinity CMS
+              features, a Next.js/Storyblok migration, Mapbox-powered search tools, and .NET 8
+              authentication services.
+            </p>
+          </section>
+
+          <section class="profile-scene-panel profile-scene-panel-work">
+            <h2>How I Work</h2>
+            <p>
+              I like to understand a system before changing it, but I know real production work
+              sometimes needs quick decisions. I’m comfortable balancing speed with care: finding
+              the important context, making the right tradeoffs, and shipping changes that fit the
+              system. I’m strongest in messy real-world systems that don’t always line up with what
+              the docs say.
+            </p>
+          </section>
         </div>
-
-        <aside class="profile-recent-work" aria-label="Recent work">
-          <h3>Recent Work</h3>
-          <p class="profile-recent-company">AVIXA</p>
-          <ul class="profile-recent-list">
-            <li>Full-stack member dashboards</li>
-            <li>Salesforce + Pardot integrations</li>
-            <li>Sitefinity CMS features</li>
-            <li>Next.js / Storyblok migration</li>
-            <li>Mapbox-powered search tools</li>
-            <li>.NET 8 authentication services</li>
-          </ul>
-        </aside>
-      </div>
-    </div>
-
-    <div id="about-section" class="about-section">
-      <div class="my-story">
-        <hr class="my-story-hr" />
-        <h2 class="my-story-title">My Story</h2>
-        <hr class="my-story-hr" />
-        <p>
-          I’m a full-stack software engineer with 5+ years of experience building enterprise web
-          applications across modern and legacy stacks. Most recently at AVIXA, I worked on member
-          dashboards, Salesforce integrations, Sitefinity CMS features, a Next.js/Storyblok
-          migration, Mapbox-powered search tools, and .NET 8 authentication services. I like to
-          understand a system before changing it, but I know real production work sometimes needs
-          quick decisions. I’m comfortable balancing speed with care: finding the important context,
-          making the right tradeoffs, and shipping changes that fit the system. I’m strongest in
-          messy real-world systems they don't always line up with what the docs say.
-
-          <!-- <p>My skills include:</p>
-        <ul class="story-skills">
-          Ruby, Rails, SQL, Javascript, React, Redux, HTML, CSS, Git (version control), Rest APIs, and Bootstrap.
-        </ul> -->
-        </p>
-      </div>
+      </section>
     </div>
 
     <div class="story-hole-spacer"></div>

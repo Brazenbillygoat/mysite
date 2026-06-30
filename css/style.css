@@ -1132,35 +1132,47 @@ a:hover {
 }
 
 /* MIDDLE CONTAINER */
-.profile {
-  align-items: center;
-  background-image: linear-gradient(rgb(100, 54, 24), #d8a96b);
+/* Shared profile scene: four content zones now, room for scenery/interactions later. */
+.profile-scene {
+  background-image: linear-gradient(rgb(100, 54, 24), #d8a96b 52%, rgb(215, 170, 114));
+  padding: 5rem 8vw;
+}
+
+.profile-scene-grid {
   display: grid;
-  gap: 4rem;
+  gap: 5rem 6rem;
   grid-template-columns: 1fr 1fr;
-  padding: 4rem 8vw;
+  margin: 0 auto;
+  max-width: 96rem;
 }
 
-.profile-intro {
-  max-width: 46rem;
+.profile-scene-panel {
+  max-width: 42rem;
+  position: relative;
+  text-align: left;
 }
 
-.profile-intro p {
+.profile-scene-panel h2 {
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.profile-scene-panel p {
   font-weight: 600;
   line-height: 1.7;
-  text-align: left;
 }
 
-.profile-recent-work {
+.profile-scene-panel-intro {
   justify-self: center;
-  max-width: 34rem;
+  text-align: center;
+}
+
+.profile-scene-panel-intro p {
   text-align: left;
 }
 
-/* Recent work stays text-first now so this space can later host a small interactive panel. */
-.profile-recent-work h3 {
-  font-size: 2.75rem;
-  margin-bottom: 1rem;
+.profile-scene-panel-recent {
+  justify-self: center;
 }
 
 .profile-recent-company {
@@ -1183,16 +1195,39 @@ a:hover {
   padding-left: 0.85rem;
 }
 
+.profile-pic {
+  border-radius: 50%;
+  height: 200px;
+  padding-top: 10px;
+  width: 200px;
+}
+
 @media (max-width: 768px) {
-  .profile {
-    gap: 2.5rem;
-    grid-template-columns: 1fr;
+  .profile-scene {
     padding: 3rem 1.25rem;
   }
 
-  .profile-recent-work {
+  .profile-scene-grid {
+    gap: 3rem;
+    grid-template-columns: 1fr;
+  }
+
+  .profile-scene-panel {
     justify-self: stretch;
     max-width: none;
+  }
+
+  .profile-scene-panel h2 {
+    text-align: left;
+  }
+
+  .profile-scene-panel-intro h2,
+  .profile-scene-panel-intro {
+    text-align: center;
+  }
+
+  .profile-scene-panel-intro p {
+    text-align: left;
   }
 }
 
@@ -1215,26 +1250,42 @@ a:hover {
 }
 
 /* ABOUT SECTION */
+
+.about-columns {
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 auto;
+  max-width: 86rem;
+  padding: 0 8vw;
+  text-align: left;
+}
+
+.about-column h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.about-column p {
+  line-height: 1.8;
+}
+
 .about-section {
   background-color: rgb(215, 170, 114);
   padding-top: 4rem;
   padding-bottom: 2rem;
 }
 
-.my-story-hr {
-  border-color: black;
-  border-style: solid;
-  border-width: 1px;
-  display: inline-block;
-  margin-bottom: 10px;
-  width: 25%;
-}
+@media (max-width: 768px) {
+  .about-columns {
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+    padding: 0 1.25rem;
+  }
 
-.my-story-title {
-  display: inline-block;
-  margin-left: 5rem;
-  margin-right: 5rem;
-  padding-bottom: 2rem;
+  .about-column h2 {
+    text-align: left;
+  }
 }
 
 .story-hole-spacer {
