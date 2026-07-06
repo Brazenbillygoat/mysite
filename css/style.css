@@ -1639,6 +1639,165 @@ a:hover {
   }
 }
 
+.profile-room-hello {
+  overflow: hidden;
+}
+
+.profile-room-hello h2,
+.profile-room-hello p,
+.profile-pic-hello {
+  position: relative;
+  z-index: 2;
+}
+
+.profile-room-scene-hello {
+  /*
+    SVG gear wall behind the portrait.
+    The room starts text-first; the cart arrival brightens this layer and rolls the portrait aside.
+  */
+  background:
+    linear-gradient(180deg, rgba(85, 53, 32, 0.58), rgba(34, 23, 18, 0.38)),
+    linear-gradient(90deg, transparent 0 7%, rgba(126, 83, 48, 0.9) 8% 10%, transparent 11% 89%, rgba(126, 83, 48, 0.9) 90% 92%, transparent 93%),
+    linear-gradient(180deg, transparent 0 20%, rgba(126, 83, 48, 0.95) 21% 25%, transparent 26% 61%, rgba(126, 83, 48, 0.78) 62% 65%, transparent 66%);
+  border: 2px solid rgba(255, 214, 137, 0.18);
+  border-radius: 0.8rem;
+  height: 13rem;
+  left: 38%;
+  opacity: 0.12;
+  pointer-events: none;
+  position: absolute;
+  right: 2.1rem;
+  top: 1.3rem;
+  transition:
+    opacity 650ms ease,
+    filter 650ms ease;
+  z-index: 1;
+}
+
+.profile-room-hello.has-entered-hello .profile-room-scene-hello {
+  filter: saturate(1.08) brightness(1.05);
+  opacity: 0.88;
+}
+
+.profile-pic-hello {
+  transform: rotate(90deg);
+  transition: transform 850ms ease-in-out;
+}
+
+.profile-room-hello.has-entered-hello .profile-pic-hello {
+  transform: translateX(clamp(-13rem, -16vw, -9rem)) rotate(0deg);
+}
+
+.hello-gear-rack {
+  background:
+    linear-gradient(90deg, rgba(43, 28, 19, 0.9), rgba(43, 28, 19, 0.15), rgba(43, 28, 19, 0.9)),
+    linear-gradient(180deg, rgba(143, 96, 55, 0.9), rgba(96, 61, 36, 0.9));
+  border: 2px solid rgba(43, 28, 19, 0.95);
+  border-radius: 0.35rem;
+  bottom: 0.7rem;
+  left: 0.7rem;
+  position: absolute;
+  right: 0.7rem;
+  top: 0.7rem;
+}
+
+.hello-gear-icon {
+  filter: drop-shadow(0 0.25rem 0.18rem rgba(0, 0, 0, 0.38));
+  position: absolute;
+}
+
+.hello-gear-rope {
+  height: 4.25rem;
+  left: 10%;
+  top: 1.6rem;
+  transform: rotate(-8deg);
+}
+
+.hello-gear-backpack {
+  height: 4.65rem;
+  left: 42%;
+  top: 2rem;
+}
+
+.hello-gear-helmet {
+  height: 3.1rem;
+  right: 9%;
+  top: 1.25rem;
+  transform: rotate(5deg);
+}
+
+.hello-gear-boots {
+  bottom: 1.05rem;
+  height: 2.95rem;
+  left: 12%;
+}
+
+.hello-gear-pickaxe {
+  bottom: 1.55rem;
+  height: 4.35rem;
+  right: 31%;
+  transform: rotate(-34deg);
+}
+
+.hello-gear-shovel {
+  bottom: 1.45rem;
+  height: 4.55rem;
+  right: 14%;
+  transform: rotate(22deg);
+}
+
+.hello-gear-flashlight {
+  bottom: 1.45rem;
+  height: 2.45rem;
+  left: 35%;
+  transform: rotate(-12deg);
+}
+
+.hello-gear-carabiner {
+  height: 2.15rem;
+  left: 25%;
+  top: 5.25rem;
+  transform: rotate(13deg);
+}
+
+.hello-gear-carabiner-secondary {
+  height: 1.8rem;
+  left: 30%;
+  top: 4.55rem;
+  transform: rotate(-18deg);
+}
+
+.hello-gear-carabiner-tertiary {
+  height: 1.65rem;
+  left: 34%;
+  top: 5.55rem;
+  transform: rotate(28deg);
+}
+
+.hello-gear-goggles {
+  height: 2.25rem;
+  right: 26%;
+  top: 1.15rem;
+  transform: rotate(-6deg);
+}
+
+@media (max-width: 900px) {
+  .profile-room-scene-hello {
+    display: none;
+  }
+
+  .profile-pic-hello,
+  .profile-room-hello.has-entered-hello .profile-pic-hello {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-pic-hello {
+    transition: none;
+  }
+}
+
 .middle-container {
   background-image: linear-gradient(#c78e44, rgb(100, 54, 24));
   background:
