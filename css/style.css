@@ -1131,8 +1131,7 @@ a:hover {
   z-index: 4;
 }
 
-/* MIDDLE CONTAINER */
-/* MIDDLE CONTAINER */
+/* PROFILE SCENE: SHELL */
 /*
   Underground profile scene.
   Pass 1 is scenery only: four readable cave rooms, a central shaft, and rails.
@@ -1184,6 +1183,8 @@ a:hover {
   z-index: 1;
 }
 
+/* PROFILE SCENE: RAILS */
+
 .profile-rail-layer {
   inset: 0;
   pointer-events: none;
@@ -1224,6 +1225,8 @@ a:hover {
   transform: rotate(88deg);
   width: 0.45rem;
 }
+
+/* PROFILE SCENE: CART */
 
 .profile-mine-cart {
   /*
@@ -1297,6 +1300,8 @@ a:hover {
   right: 0.85rem;
 }
 
+/* PROFILE SCENE: ACTIVE ROOM STATES */
+
 .profile-room.is-active {
   border-color: rgba(255, 214, 137, 0.86);
   box-shadow:
@@ -1311,11 +1316,6 @@ a:hover {
 .profile-room.is-active .profile-room-prop-lantern,
 .profile-room.is-active .profile-room-prop-campfire {
   filter: brightness(1.16);
-}
-
-.profile-room.is-active .profile-room-prop-sign,
-.profile-room.is-active .profile-room-prop-bench {
-  box-shadow: 0 0 1rem rgba(255, 198, 101, 0.24);
 }
 
 .profile-rail-tie-one {
@@ -1337,6 +1337,8 @@ a:hover {
   right: 20%;
   top: 71.6%;
 }
+
+/* PROFILE SCENE: SHAFT AND LIFT */
 
 .profile-shaft {
   align-self: stretch;
@@ -1422,6 +1424,8 @@ a:hover {
   width: 0.9rem;
 }
 
+/* PROFILE SCENE: ROOMS */
+
 .profile-room {
   background:
     radial-gradient(circle at 50% 0%, rgba(255, 208, 131, 0.16), transparent 14rem),
@@ -1467,6 +1471,49 @@ a:hover {
 
 .profile-room-work {
   grid-area: work;
+}
+
+.profile-room-recent::before,
+.profile-room-story::before,
+.profile-room-work::before {
+  /*
+    Temporary work-zone marker for rooms that do not have their full scene yet.
+    Keeping this as CSS makes it easy to remove when each room gets real props.
+  */
+  background: repeating-linear-gradient(
+    135deg,
+    #f0b33f 0 0.55rem,
+    #2b1c13 0.55rem 1.1rem
+  );
+  border: 2px solid rgba(43, 28, 19, 0.9);
+  border-radius: 0.2rem;
+  content: "";
+  height: 0.75rem;
+  opacity: 0.55;
+  pointer-events: none;
+  position: absolute;
+  right: 2rem;
+  top: 1.7rem;
+  transform: rotate(3deg);
+  width: 5.5rem;
+  z-index: 1;
+}
+
+.profile-room-recent::after,
+.profile-room-story::after,
+.profile-room-work::after {
+  background: rgba(143, 96, 55, 0.72);
+  border: 2px solid rgba(43, 28, 19, 0.85);
+  border-radius: 0.25rem;
+  bottom: 1.4rem;
+  content: "";
+  height: 0.65rem;
+  opacity: 0.45;
+  pointer-events: none;
+  position: absolute;
+  right: 2rem;
+  width: 4.5rem;
+  z-index: 1;
 }
 
 .profile-room h2 {
@@ -1515,6 +1562,8 @@ a:hover {
   padding-left: 0.85rem;
 }
 
+/* PROFILE SCENE: DECORATIVE ROOM PROPS */
+
 .profile-room-prop {
   pointer-events: none;
   position: absolute;
@@ -1530,16 +1579,6 @@ a:hover {
   width: 1rem;
 }
 
-.profile-room-prop-sign {
-  background: #7c5230;
-  border: 3px solid #2b1c13;
-  height: 3rem;
-  right: 2rem;
-  top: 2rem;
-  transform: rotate(2deg);
-  width: 5rem;
-}
-
 .profile-room-prop-campfire {
   background: #ff9f43;
   border-radius: 50% 50% 45% 45%;
@@ -1550,14 +1589,7 @@ a:hover {
   width: 1.2rem;
 }
 
-.profile-room-prop-bench {
-  background: #7b5130;
-  border-radius: 3px;
-  bottom: 1.8rem;
-  height: 0.8rem;
-  right: 2rem;
-  width: 5rem;
-}
+/* PROFILE SCENE: CART ANIMATION */
 
 @keyframes profile-cart-bob {
   0%,
@@ -1580,6 +1612,50 @@ a:hover {
   }
 }
 
+/* PROFILE SCENE: RESPONSIVE LAYOUT */
+
+@media (max-width: 1200px) {
+  .profile-cavern {
+    /*
+      The cart route needs horizontal room to read correctly.
+      At tablet widths we keep the cave rooms and drop the rail machinery instead of squeezing it.
+    */
+    gap: 2.5rem;
+    grid-template-areas:
+      "hello recent"
+      "story work";
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    max-width: 72rem;
+    min-height: 0;
+  }
+
+  .profile-rail-layer,
+  .profile-mine-cart,
+  .profile-shaft {
+    display: none;
+  }
+
+  .profile-room {
+    border-radius: 2.25rem;
+    min-height: 0;
+    padding: 1.75rem;
+  }
+
+  .profile-room h2 {
+    font-size: 1.65rem;
+  }
+
+  .profile-room p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .profile-recent-list {
+    font-size: 1.05rem;
+    line-height: 1.55;
+  }
+}
+
 @media (max-width: 900px) {
   .profile-scene {
     padding: 3rem 1.25rem 4rem;
@@ -1589,7 +1665,6 @@ a:hover {
     display: grid;
     gap: 2rem;
     grid-template-areas:
-      "shaft"
       "hello"
       "recent"
       "story"
@@ -1604,23 +1679,6 @@ a:hover {
 
   .profile-mine-cart {
     display: none;
-    transition:
-      left 850ms ease-in-out,
-      top 850ms ease-in-out,
-      filter 180ms ease;
-  }
-
-  .profile-shaft {
-    height: 9rem;
-  }
-
-  .profile-info-booth {
-    bottom: 1.5rem;
-  }
-
-  .profile-lift-car {
-    top: 1.5rem;
-    transition: top 850ms ease-in-out;
   }
 
   .profile-room {
@@ -1638,6 +1696,8 @@ a:hover {
     text-align: center;
   }
 }
+
+/* PROFILE SCENE: HELLO ROOM GEAR WALL */
 
 .profile-room-hello {
   overflow: hidden;
@@ -1812,6 +1872,20 @@ a:hover {
   }
 }
 
+@media (max-width: 1200px) {
+  .profile-room-scene-hello {
+    display: none;
+  }
+
+  .profile-pic-hello,
+  .profile-room-hello.has-entered-hello .profile-pic-hello {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* MIDDLE CONTAINER */
+
 .middle-container {
   background-image: linear-gradient(#c78e44, rgb(100, 54, 24));
   background:
@@ -1822,13 +1896,6 @@ a:hover {
   -o-background-size: cover;
   background-size: cover;
 }
-
-/* .profile-pic {
-  border-radius: 50%;
-  height: 200px;
-  width: 200px;
-  padding-top: 10px;
-} */
 
 /* ABOUT SECTION */
 
