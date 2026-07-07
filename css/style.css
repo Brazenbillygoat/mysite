@@ -103,6 +103,27 @@ a:hover {
   position: relative;
 }
 
+.top-container::after {
+  /*
+    Dark handoff from forest floor to the underground section.
+    This lives on the hero side so the transition starts before the profile scene begins.
+  */
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(9, 25, 15, 0.52) 42%,
+    rgba(14, 25, 15, 0.92) 100%
+  );
+  bottom: 0;
+  content: "";
+  height: clamp(7rem, 14vw, 13rem);
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 6;
+}
+
 .scene-layer {
   pointer-events: none;
   position: absolute;
@@ -294,7 +315,7 @@ a:hover {
     180deg,
     rgba(8, 39, 23, 0) 0%,
     rgba(8, 39, 23, 0.95) 34%,
-    rgb(100, 54, 24) 100%
+    rgb(14, 25, 15) 100%
   );
   bottom: 0;
   content: "";
@@ -1134,11 +1155,16 @@ a:hover {
 /* PROFILE SCENE: SHELL */
 /*
   Underground profile scene.
-  Pass 1 is scenery only: four readable cave rooms, a central shaft, and rails.
-  The data attributes in HTML are reserved for the later cart/lift movement logic.
+  The room data attributes are used by the cart and lift routing logic.
 */
 .profile-scene {
   background:
+    linear-gradient(
+      180deg,
+      rgba(11, 26, 17, 0.82) 0%,
+      rgba(46, 35, 20, 0.68) 4.5rem,
+      rgba(103, 57, 31, 0) 10rem
+    ),
     radial-gradient(circle at 18% 22%, rgba(238, 188, 113, 0.18), transparent 18rem),
     radial-gradient(circle at 82% 58%, rgba(89, 48, 29, 0.35), transparent 22rem),
     linear-gradient(180deg, rgb(92, 49, 27) 0%, #7a472b 18%, #3e2d25 100%);
@@ -1341,6 +1367,9 @@ a:hover {
 /* PROFILE SCENE: SHAFT AND LIFT */
 
 .profile-shaft {
+  --shaft-beam-top: #26170f;
+  --shaft-beam-base: #51331f;
+
   align-self: stretch;
   background: linear-gradient(
     90deg,
@@ -1353,6 +1382,7 @@ a:hover {
   box-shadow: inset 0 0 2rem rgba(0, 0, 0, 0.45);
   grid-area: shaft;
   position: relative;
+  top: -5.75rem;
   z-index: 3;
 }
 
@@ -1364,9 +1394,9 @@ a:hover {
 }
 
 .profile-shaft-beam {
-  background: #51331f;
+  background: linear-gradient(180deg, var(--shaft-beam-top) 0%, var(--shaft-beam-base) 24%);
   bottom: 0;
-  top: 0;
+  top: -10%;
   width: 0.45rem;
 }
 
@@ -1382,7 +1412,7 @@ a:hover {
   background: rgba(19, 16, 14, 0.9);
   bottom: 8%;
   left: 50%;
-  top: 6%;
+  top: -7%;
   transform: translateX(-50%);
   width: 2px;
 }
@@ -1471,49 +1501,6 @@ a:hover {
 
 .profile-room-work {
   grid-area: work;
-}
-
-.profile-room-recent::before,
-.profile-room-story::before,
-.profile-room-work::before {
-  /*
-    Temporary work-zone marker for rooms that do not have their full scene yet.
-    Keeping this as CSS makes it easy to remove when each room gets real props.
-  */
-  background: repeating-linear-gradient(
-    135deg,
-    #f0b33f 0 0.55rem,
-    #2b1c13 0.55rem 1.1rem
-  );
-  border: 2px solid rgba(43, 28, 19, 0.9);
-  border-radius: 0.2rem;
-  content: "";
-  height: 0.75rem;
-  opacity: 0.55;
-  pointer-events: none;
-  position: absolute;
-  right: 2rem;
-  top: 1.7rem;
-  transform: rotate(3deg);
-  width: 5.5rem;
-  z-index: 1;
-}
-
-.profile-room-recent::after,
-.profile-room-story::after,
-.profile-room-work::after {
-  background: rgba(143, 96, 55, 0.72);
-  border: 2px solid rgba(43, 28, 19, 0.85);
-  border-radius: 0.25rem;
-  bottom: 1.4rem;
-  content: "";
-  height: 0.65rem;
-  opacity: 0.45;
-  pointer-events: none;
-  position: absolute;
-  right: 2rem;
-  width: 4.5rem;
-  z-index: 1;
 }
 
 .profile-room h2 {
@@ -1855,17 +1842,6 @@ a:hover {
   transform: rotate(-6deg);
 }
 
-@media (max-width: 900px) {
-  .profile-room-scene-hello {
-    display: none;
-  }
-
-  .profile-pic-hello,
-  .profile-room-hello.has-entered-hello .profile-pic-hello {
-    transform: none;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .profile-pic-hello {
     transition: none;
@@ -1887,7 +1863,6 @@ a:hover {
 /* MIDDLE CONTAINER */
 
 .middle-container {
-  background-image: linear-gradient(#c78e44, rgb(100, 54, 24));
   background:
     linear-gradient(#000000, #00000010),
     url("../images/laptop-with-plants.jpg") no-repeat center center scroll;
