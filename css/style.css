@@ -1268,9 +1268,14 @@ a:hover {
   transition:
     left 520ms ease-in-out,
     top 520ms ease-in-out,
-    filter 180ms ease;
+    filter 180ms ease,
+    opacity 220ms ease;
   width: 4.4rem;
   z-index: 4;
+}
+
+.profile-cavern.is-profile-cart-hidden .profile-mine-cart {
+  opacity: 0;
 }
 
 .profile-mine-cart-bucket {
@@ -1495,6 +1500,35 @@ a:hover {
   grid-area: recent;
 }
 
+.profile-room-recent::after {
+  /*
+    Temporary marker while this room waits for its full scene treatment.
+    Keep this small and removable so the content stays the point.
+  */
+  background:
+    repeating-linear-gradient(135deg, #e4a932 0 0.45rem, #2b1c13 0.45rem 0.9rem),
+    #8f6037;
+  border: 2px solid rgba(43, 28, 19, 0.95);
+  border-radius: 0.2rem;
+  box-shadow: 0 0.35rem 0.8rem rgba(0, 0, 0, 0.28);
+  color: #1e130d;
+  content: "UNDER CONSTRUCTION";
+  font-family: "Lato", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.04rem;
+  line-height: 1;
+  padding: 0.52rem 0.62rem 0.34rem;
+  pointer-events: none;
+  position: absolute;
+  right: 2rem;
+  text-shadow:
+    0 1px rgba(255, 229, 151, 0.85),
+    0 -1px rgba(255, 229, 151, 0.45);
+  top: 2.75rem;
+  transform: rotate(3deg);
+}
+
 .profile-room-story {
   grid-area: story;
 }
@@ -1640,6 +1674,10 @@ a:hover {
   .profile-recent-list {
     font-size: 1.05rem;
     line-height: 1.55;
+  }
+
+  .profile-room-recent::after {
+    display: none;
   }
 }
 

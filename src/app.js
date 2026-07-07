@@ -116,13 +116,13 @@ const profileCartTargets = {
     parkedStops: [{ x: "25%", y: "22%" }],
   },
   recent: { row: "top", side: "right", x: "76%", y: "30%" },
-  story: { row: "bottom", side: "left", x: "24%", y: "72%" },
-  work: { row: "bottom", side: "right", x: "76%", y: "72%" },
+  story: { row: "bottom", side: "left", x: "24%", y: "72%", hideCartWhenParked: true },
+  work: { row: "bottom", side: "right", x: "76%", y: "72%", hideCartWhenParked: true },
 };
 
 const profileLiftRows = {
-  top: "27%",
-  bottom: "69%",
+  top: "38%",
+  bottom: "80%",
 };
 
 const profileCartShaftX = "50%";
@@ -213,6 +213,12 @@ const setProfileLiftRow = (row) => {
   profileCavern.style.setProperty("--profile-lift-y", profileLiftRows[row]);
 };
 
+const setProfileCartHidden = (isHidden) => {
+  if (!profileCavern) return;
+
+  profileCavern.classList.toggle("is-profile-cart-hidden", isHidden);
+};
+
 const moveProfileCartThroughStops = async (stops, delay = profileCartMoveDelay * 0.55) => {
   for (const stop of stops) {
     setProfileCartPosition(stop);
@@ -263,6 +269,7 @@ const moveProfileCartToRoom = async (roomId) => {
   }
 
   profileCartState.isMoving = true;
+  setProfileCartHidden(false);
   profileCavern.classList.add("is-profile-cart-moving");
   setActiveProfileRoom(null);
 
@@ -309,6 +316,8 @@ const moveProfileCartToRoom = async (roomId) => {
 
   profileCavern.classList.remove("is-profile-cart-moving");
   setActiveProfileRoom(roomId);
+  setProfileCartHidden(Boolean(target.hideCartWhenParked));
+
   if (roomId === "hello") {
     revealHelloRoom();
   }
