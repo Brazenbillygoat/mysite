@@ -45,6 +45,9 @@ const liftCableSegments = [...document.querySelectorAll("[data-lift-cable-segmen
 const liftBottomTerminal = document.querySelector(".lift-terminal-bottom");
 const forestMist = document.querySelector(".forest-mist");
 const forestLine = document.querySelector(".forest-line");
+const profileCavern = document.querySelector(".profile-cavern");
+const profileRooms = [...document.querySelectorAll(".profile-room[data-room]")];
+const profileHelloRoom = document.querySelector(".profile-room-hello");
 
 // STATE AND CONSTANTS
 
@@ -102,6 +105,37 @@ const compactMountainViewport = window.matchMedia("(max-width: 1000px)");
 
 let parallaxTicking = false;
 
+const profileCartTargets = {
+  hello: {
+    row: "top",
+    side: "left",
+    x: "25%",
+    y: "30%",
+    // Room-specific parking stops happen after the normal rail arrival.
+    // They reverse before leaving, so each room can tuck the cart into its own scene.
+    parkedStops: [{ x: "25%", y: "22%" }],
+  },
+  recent: { row: "top", side: "right", x: "76%", y: "30%" },
+  story: { row: "bottom", side: "left", x: "24%", y: "72%", hideCartWhenParked: true },
+  work: { row: "bottom", side: "right", x: "76%", y: "72%", hideCartWhenParked: true },
+};
+
+const profileLiftRows = {
+  top: "38%",
+  bottom: "80%",
+};
+
+const profileCartShaftX = "50%";
+const profileCartMoveDelay = 850;
+
+let profileCartState = {
+  room: null,
+  row: "top",
+  side: "center",
+  isMoving: false,
+  pendingRoom: null,
+};
+
 // SHARED HELPERS
 
 const getScrollProgress = () => {
@@ -144,6 +178,175 @@ const lerpColor = (startColor, endColor, progress) => {
 
 // Convert an RGB array into a CSS color string.
 const rgb = (color) => `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+
+const wait = (duration) =>
+  new Promise((resolve) => {
+    window.setTimeout(resolve, duration);
+  });
+
+const setActiveProfileRoom = (roomId) => {
+  if (profileCavern) {
+    profileCavern.classList.toggle("has-active-room", Boolean(roomId));
+  }
+
+  profileRooms.forEach((room) => {
+    room.classList.toggle("is-active", room.dataset.room === roomId);
+  });
+};
+
+const setProfileCartPosition = (target) => {
+  if (!profileCavern || !target) return;
+
+  profileCavern.style.setProperty("--cart-x", target.x);
+  profileCavern.style.setProperty("--cart-y", target.y);
+};
+
+const setProfileCartDirection = (side) => {
+  if (!profileCavern) return;
+
+  profileCavern.style.setProperty("--cart-direction", side === "left" ? -1 : 1);
+};
+
+const setProfileLiftRow = (row) => {
+  if (!profileCavern || !profileLiftRows[row]) return;
+
+  profileCavern.style.setProperty("--profile-lift-y", profileLiftRows[row]);
+};
+
+const setProfileCartHidden = (isHidden) => {
+  if (!profileCavern) return;
+
+  profileCavern.classList.toggle("is-profile-cart-hidden", isHidden);
+};
+
+const moveProfileCartThroughStops = async (stops, delay = profileCartMoveDelay * 0.55) => {
+  for (const stop of stops) {
+    setProfileCartPosition(stop);
+    await wait(delay);
+  }
+};
+
+const getProfileCartParkedStops = (roomId) => profileCartTargets[roomId]?.parkedStops || [];
+const getProfileCartFinalStop = (roomId) => {
+  const parkedStops = getProfileCartParkedStops(roomId);
+
+  return parkedStops[parkedStops.length - 1] || profileCartTargets[roomId];
+};
+
+const exitProfileCartParking = async () => {
+  if (!profileCartState.room) return;
+
+  const currentTarget = profileCartTargets[profileCartState.room];
+  const parkedStops = getProfileCartParkedStops(profileCartState.room);
+  if (!currentTarget || !parkedStops.length) return;
+
+  // The cart is sitting at the last parked stop. Walk backward through any intermediate
+  // parking stops, then return to the room's rail stop before heading for the shaft.
+  await moveProfileCartThroughStops([...parkedStops].slice(0, -1).reverse());
+  setProfileCartPosition(currentTarget);
+  await wait(profileCartMoveDelay * 0.55);
+};
+
+const revealHelloRoom = () => {
+  // One-way reveal: once the cart has entered Hello, only a page refresh resets it.
+  if (!profileHelloRoom) return;
+
+  profileHelloRoom.classList.add("has-entered-hello");
+};
+
+const moveProfileCartToRoom = async (roomId) => {
+  const target = profileCartTargets[roomId];
+  if (!profileCavern || !target) return;
+
+  if (profileCartState.isMoving) {
+    profileCartState.pendingRoom = roomId;
+    return;
+  }
+
+  if (profileCartState.room === roomId) {
+    setActiveProfileRoom(roomId);
+    return;
+  }
+
+  profileCartState.isMoving = true;
+  setProfileCartHidden(false);
+  profileCavern.classList.add("is-profile-cart-moving");
+  setActiveProfileRoom(null);
+
+  if (reduceMotion.matches) {
+    setProfileCartDirection(target.side);
+    setProfileLiftRow(target.row);
+    setProfileCartPosition(getProfileCartFinalStop(roomId));
+  } else {
+    await exitProfileCartParking();
+
+    // Phase 1: move horizontally from the current room into the central shaft.
+    // If the cart starts in the shaft, there is no room-to-shaft move yet.
+    if (profileCartState.room) {
+      setProfileLiftRow(profileCartState.row);
+      setProfileCartDirection(profileCartState.side === "left" ? "right" : "left");
+      setProfileCartPosition({
+        x: profileCartShaftX,
+        y: profileCartTargets[profileCartState.room].y,
+      });
+      await wait(profileCartMoveDelay);
+    }
+
+    // Phase 2: ride the lift between rail rows when the destination is on another row.
+    if (profileCartState.row !== target.row) {
+      setProfileLiftRow(target.row);
+      setProfileCartPosition({ x: profileCartShaftX, y: target.y });
+      await wait(profileCartMoveDelay);
+    }
+
+    // Phase 3: leave the shaft and roll toward the destination room.
+    setProfileCartDirection(target.side);
+    setProfileCartPosition(target);
+    await wait(profileCartMoveDelay);
+    await moveProfileCartThroughStops(getProfileCartParkedStops(roomId));
+  }
+
+  profileCartState = {
+    ...profileCartState,
+    room: roomId,
+    row: target.row,
+    side: target.side,
+    isMoving: false,
+  };
+
+  profileCavern.classList.remove("is-profile-cart-moving");
+  setActiveProfileRoom(roomId);
+  setProfileCartHidden(Boolean(target.hideCartWhenParked));
+
+  if (roomId === "hello") {
+    revealHelloRoom();
+  }
+
+  if (profileCartState.pendingRoom && profileCartState.pendingRoom !== roomId) {
+    const pendingRoom = profileCartState.pendingRoom;
+    profileCartState.pendingRoom = null;
+    moveProfileCartToRoom(pendingRoom);
+  } else {
+    profileCartState.pendingRoom = null;
+  }
+};
+
+const initProfileCart = () => {
+  if (!profileCavern || !profileRooms.length) return;
+
+  // Start parked in the shaft. Later this can become the forest-floor entry/lift drop.
+  setProfileCartDirection("right");
+  setProfileLiftRow(profileCartState.row);
+  setProfileCartPosition({ x: profileCartShaftX, y: profileCartTargets.hello.y });
+  setActiveProfileRoom(null);
+
+  profileRooms.forEach((room) => {
+    const roomId = room.dataset.room;
+
+    room.addEventListener("mouseenter", () => moveProfileCartToRoom(roomId));
+    room.addEventListener("focus", () => moveProfileCartToRoom(roomId));
+  });
+};
 
 // Converts path progress into a position and facing angle.
 const getPathPoint = (path, progress) => {
@@ -1170,6 +1373,7 @@ const updateParallaxLayers = () => {
 };
 
 createForest();
+initProfileCart();
 
 const requestParallaxUpdate = () => {
   if (reduceMotion.matches || parallaxTicking) return;
