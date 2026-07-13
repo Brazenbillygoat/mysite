@@ -48,6 +48,8 @@ const forestLine = document.querySelector(".forest-line");
 const profileCavern = document.querySelector(".profile-cavern");
 const profileRooms = [...document.querySelectorAll(".profile-room[data-room]")];
 const profileHelloRoom = document.querySelector(".profile-room-hello");
+const profileGearBoard = document.querySelector(".profile-room-scene-hello");
+const profileGearItems = [...document.querySelectorAll("[data-tidy-item]")];
 
 // STATE AND CONSTANTS
 
@@ -252,6 +254,50 @@ const revealHelloRoom = () => {
   if (!profileHelloRoom) return;
 
   profileHelloRoom.classList.add("has-entered-hello");
+  setProfileGearTidyingEnabled(true);
+};
+
+const setProfileGearTidyingEnabled = (isEnabled) => {
+  profileGearItems.forEach((item) => {
+    if (item.classList.contains("is-tidied")) return;
+
+    item.tabIndex = isEnabled ? 0 : -1;
+    item.setAttribute("aria-disabled", isEnabled ? "false" : "true");
+  });
+};
+
+const tidyProfileGearItem = (item) => {
+  if (!item || item.classList.contains("is-tidied")) return;
+
+  // The CSS already knows the final transform for each item. JS only flips the state,
+  // which keeps this interaction cheap and easy to tune from the stylesheet.
+  item.classList.add("is-tidied");
+  item.tabIndex = -1;
+  item.setAttribute("aria-disabled", "true");
+};
+
+const handleProfileGearClick = (event) => {
+  tidyProfileGearItem(event.target.closest("[data-tidy-item]"));
+};
+
+const handleProfileGearKeydown = (event) => {
+  if (event.key !== "Enter" && event.key !== " ") return;
+
+  const item = event.target.closest("[data-tidy-item]");
+  if (!item) return;
+
+  event.preventDefault();
+  tidyProfileGearItem(item);
+};
+
+const initProfileGearTidying = () => {
+  if (!profileGearBoard || !profileGearItems.length) return;
+
+  // The gear starts as scenery behind the portrait. It only joins the tab order
+  // once the room reveal makes the board visible enough to interact with.
+  setProfileGearTidyingEnabled(false);
+  profileGearBoard.addEventListener("click", handleProfileGearClick);
+  profileGearBoard.addEventListener("keydown", handleProfileGearKeydown);
 };
 
 const moveProfileCartToRoom = async (roomId) => {
@@ -1374,6 +1420,7 @@ const updateParallaxLayers = () => {
 
 createForest();
 initProfileCart();
+initProfileGearTidying();
 
 const requestParallaxUpdate = () => {
   if (reduceMotion.matches || parallaxTicking) return;

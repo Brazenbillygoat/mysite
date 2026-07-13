@@ -1505,9 +1505,7 @@ a:hover {
     Temporary marker while this room waits for its full scene treatment.
     Keep this small and removable so the content stays the point.
   */
-  background:
-    repeating-linear-gradient(135deg, #e4a932 0 0.45rem, #2b1c13 0.45rem 0.9rem),
-    #8f6037;
+  background: repeating-linear-gradient(135deg, #e4a932 0 0.45rem, #2b1c13 0.45rem 0.9rem), #8f6037;
   border: 2px solid rgba(43, 28, 19, 0.95);
   border-radius: 0.2rem;
   box-shadow: 0 0.35rem 0.8rem rgba(0, 0, 0, 0.28);
@@ -1760,12 +1758,12 @@ a:hover {
     );
   border: 2px solid rgba(255, 214, 137, 0.18);
   border-radius: 0.8rem;
-  height: 13rem;
-  left: 38%;
+  height: 13.6rem;
+  left: 36%;
   opacity: 0.12;
   pointer-events: none;
   position: absolute;
-  right: 2.1rem;
+  right: 1.65rem;
   top: 1.3rem;
   transition:
     opacity 650ms ease,
@@ -1801,88 +1799,248 @@ a:hover {
 }
 
 .hello-gear-icon {
+  cursor: pointer;
   filter: drop-shadow(0 0.25rem 0.18rem rgba(0, 0, 0, 0.38));
+  outline: none;
+  pointer-events: none;
   position: absolute;
+  transform: var(--messy-transform, var(--tidy-transform, none));
+  transition:
+    filter 180ms ease,
+    opacity 180ms ease,
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.profile-room-hello.has-entered-hello .hello-gear-icon:not(.is-tidied) {
+  pointer-events: auto;
+}
+
+.hello-gear-icon:hover,
+.hello-gear-icon:focus-visible {
+  filter:
+    drop-shadow(0 0.25rem 0.18rem rgba(0, 0, 0, 0.38))
+    drop-shadow(0 0 0.42rem rgba(255, 219, 141, 0.65));
+}
+
+.hello-gear-icon.is-tidied {
+  cursor: default;
+  pointer-events: none;
+  transform: var(--tidy-transform, none);
+}
+
+.hello-gear-icon.is-tidied:hover,
+.hello-gear-icon.is-tidied:focus-visible {
+  filter: drop-shadow(0 0.25rem 0.18rem rgba(0, 0, 0, 0.38));
+}
+
+.hello-gear-calendar {
+  height: 2.55rem;
+  left: 6%;
+  top: 0.95rem;
+  --messy-transform: translate(7.5rem, 2.4rem) rotate(17deg);
+  --tidy-transform: rotate(0deg);
+}
+
+.hello-gear-map {
+  height: 3rem;
+  left: 6%;
+  top: 4.55rem;
+  --messy-transform: translate(2.1rem, -1.2rem) rotate(-14deg);
+  --tidy-transform: rotate(0deg);
+}
+
+.hello-gear-exit-poster {
+  height: 2.8rem;
+  right: 7%;
+  top: 0.85rem;
+  --messy-transform: translate(-4.4rem, 3.3rem) rotate(19deg);
+  --tidy-transform: rotate(0deg);
 }
 
 .hello-gear-rope {
-  height: 4.25rem;
-  left: 10%;
-  top: 1.6rem;
-  transform: rotate(-8deg);
+  height: 3.55rem;
+  left: 18%;
+  top: 4.25rem;
+  --messy-transform: translate(4.2rem, 2.3rem) rotate(-28deg);
+  --tidy-transform: rotate(0deg);
+}
+
+.hello-gear-rope-secondary {
+  height: 2.9rem;
+  left: 22%;
+  top: 4.75rem;
+  --messy-transform: translate(-2rem, -1.3rem) rotate(24deg);
+  --tidy-transform: rotate(0deg);
 }
 
 .hello-gear-backpack {
-  height: 4.65rem;
-  left: 42%;
-  top: 2rem;
+  bottom: 1.35rem;
+  height: 4.25rem;
+  left: 30%;
+  --messy-transform: translate(3.5rem, -1.8rem) rotate(11deg);
+  --tidy-transform: none;
 }
 
 .hello-gear-helmet {
-  height: 3.1rem;
-  right: 9%;
-  top: 1.25rem;
-  transform: rotate(5deg);
+  height: 2.7rem;
+  right: 16%;
+  top: 4rem;
+  --messy-transform: translate(-5.2rem, -1rem) rotate(-18deg);
+  --tidy-transform: rotate(3deg);
+}
+
+.hello-gear-helmet-secondary {
+  height: 2.45rem;
+  right: 20.5%;
+  top: 4.35rem;
+  --messy-transform: translate(-2.8rem, 2.2rem) rotate(21deg);
+  --tidy-transform: rotate(-4deg);
 }
 
 .hello-gear-boots {
-  bottom: 1.05rem;
-  height: 2.95rem;
-  left: 12%;
+  bottom: 1rem;
+  height: 2.65rem;
+  left: 7%;
+  --messy-transform: translate(5.7rem, -0.8rem) rotate(-10deg);
+  --tidy-transform: none;
+}
+
+.hello-gear-boots-secondary {
+  bottom: 1rem;
+  height: 2.35rem;
+  left: 10%;
+  --messy-transform: translate(3.4rem, -2.5rem) rotate(16deg);
+  --tidy-transform: none;
 }
 
 .hello-gear-pickaxe {
-  bottom: 1.55rem;
-  height: 4.35rem;
-  right: 31%;
-  transform: rotate(-34deg);
+  bottom: 0.95rem;
+  height: 4.45rem;
+  right: 30%;
+  --messy-transform: translate(8.2rem, -1.4rem) rotate(-7deg);
+  --tidy-transform: rotate(-46deg);
+}
+
+.hello-gear-pickaxe-secondary {
+  bottom: 0.95rem;
+  height: 4.45rem;
+  right: 27%;
+  --messy-transform: translate(5.6rem, -2.6rem) rotate(-68deg);
+  --tidy-transform: rotate(-46deg);
+}
+
+.hello-gear-pickaxe-tertiary {
+  bottom: 0.95rem;
+  height: 4.45rem;
+  right: 24%;
+  --messy-transform: translate(2rem, -4rem) rotate(-18deg);
+  --tidy-transform: rotate(-46deg);
 }
 
 .hello-gear-shovel {
-  bottom: 1.45rem;
-  height: 4.55rem;
-  right: 14%;
-  transform: rotate(22deg);
+  bottom: 0.95rem;
+  height: 4.6rem;
+  right: 2%;
+  --messy-transform: translate(-5.2rem, -2.6rem) rotate(26deg);
+  --tidy-transform: rotate(-15deg);
+}
+
+.hello-gear-shovel-secondary {
+  bottom: 1.05rem;
+  height: 4.35rem;
+  right: 6%;
+  --messy-transform: translate(-7.2rem, 1.2rem) rotate(-42deg);
+  --tidy-transform: rotate(-15deg);
+}
+
+.hello-gear-shovel-tertiary {
+  bottom: 0.78rem;
+  height: 4.15rem;
+  right: 10%;
+  --messy-transform: translate(-3.8rem, -4rem) rotate(34deg);
+  --tidy-transform: rotate(-15deg);
 }
 
 .hello-gear-flashlight {
-  bottom: 1.45rem;
-  height: 2.45rem;
-  left: 35%;
-  transform: rotate(-12deg);
+  height: 2rem;
+  left: 43%;
+  top: 4.5rem;
+  --messy-transform: translate(-5rem, 1.8rem) rotate(-31deg);
+  --tidy-transform: rotate(45deg);
+}
+
+.hello-gear-flashlight-secondary {
+  height: 2rem;
+  left: 45%;
+  top: 4.5rem;
+  --messy-transform: translate(4.2rem, 2.5rem) rotate(82deg);
+  --tidy-transform: rotate(45deg);
 }
 
 .hello-gear-carabiner {
-  height: 2.15rem;
-  left: 25%;
-  top: 5.25rem;
-  transform: rotate(13deg);
+  height: 1.85rem;
+  left: 33%;
+  top: 5.1rem;
+  --messy-transform: translate(-2.7rem, -2.6rem) rotate(-28deg);
+  --tidy-transform: rotate(0deg);
 }
 
 .hello-gear-carabiner-secondary {
-  height: 1.8rem;
-  left: 30%;
-  top: 4.55rem;
-  transform: rotate(-18deg);
+  height: 1.7rem;
+  left: 34.5%;
+  top: 5.05rem;
+  --messy-transform: translate(2.4rem, -2.1rem) rotate(34deg);
+  --tidy-transform: rotate(0deg);
 }
 
 .hello-gear-carabiner-tertiary {
-  height: 1.65rem;
-  left: 34%;
-  top: 5.55rem;
-  transform: rotate(28deg);
+  height: 1.55rem;
+  left: 36%;
+  top: 5.25rem;
+  --messy-transform: translate(-1.2rem, 2rem) rotate(21deg);
+  --tidy-transform: rotate(0deg);
+}
+
+.hello-gear-carabiner-quaternary {
+  height: 1.45rem;
+  left: 37.4%;
+  top: 5.05rem;
+  --messy-transform: translate(1.8rem, 2.3rem) rotate(-17deg);
+  --tidy-transform: rotate(0deg);
+}
+
+.hello-gear-carabiner-quinary {
+  height: 1.35rem;
+  left: 38.7%;
+  top: 5.28rem;
+  --messy-transform: translate(4.4rem, -1.2rem) rotate(30deg);
+  --tidy-transform: rotate(0deg);
 }
 
 .hello-gear-goggles {
-  height: 2.25rem;
-  right: 26%;
-  top: 1.15rem;
-  transform: rotate(-6deg);
+  height: 2rem;
+  left: 55%;
+  top: 4.5rem;
+  --messy-transform: translate(-3.6rem, 2.1rem) rotate(37deg);
+  --tidy-transform: rotate(90deg);
+}
+
+.hello-gear-goggles-secondary {
+  height: 1.85rem;
+  left: 57.8%;
+  top: 4.55rem;
+  --messy-transform: translate(2.5rem, -2.6rem) rotate(126deg);
+  --tidy-transform: rotate(90deg);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .profile-pic-hello {
     transition: none;
+  }
+
+  .hello-gear-icon {
+    transition-duration: 180ms;
   }
 }
 
