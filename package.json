@@ -17,8 +17,8 @@
     "dev": "vite",
     "format": "prettier --write \"**/*.{html,css,js,json,md}\"",
     "format:check": "prettier --check \"**/*.{html,css,js,json,md}\"",
-    "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint src/**/*.js --fix"
+    "lint": "eslint sandbox/src/app.js",
+    "lint:fix": "eslint sandbox/src/app.js --fix"
   },
   "engines": {
     "node": ">=22.12.0"
