@@ -3,1013 +3,441 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hyrum Butler</title>
-    <link rel="icon" href="./images/favicon.ico" />
-    <!-- Fonts -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap"
+    <title>Hyrum Butler | Full-stack Software Engineer</title>
+    <meta
+      name="description"
+      content="Hyrum Butler is a full-stack software engineer who builds and modernizes dependable web applications across React, TypeScript, Node.js, and .NET."
     />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap" />
-
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-      crossorigin="anonymous"
+    <link rel="canonical" href="https://brazenbillygoat.github.io/mysite/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Hyrum Butler | Full-stack Software Engineer" />
+    <meta
+      property="og:description"
+      content="Dependable software for complicated, real-world systems."
+    />
+    <meta property="og:url" content="https://brazenbillygoat.github.io/mysite/" />
+    <meta
+      property="og:image"
+      content="https://brazenbillygoat.github.io/mysite/assets/og/hyrum-butler-portfolio.png"
+    />
+    <meta
+      property="og:image:alt"
+      content="Hyrum Butler. Dependable software for complicated systems."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hyrum Butler | Full-stack Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Dependable software for complicated, real-world systems."
+    />
+    <meta
+      name="twitter:image"
+      content="https://brazenbillygoat.github.io/mysite/assets/og/hyrum-butler-portfolio.png"
     />
 
-    <!-- Magnific Popup -->
-    <link rel="stylesheet" href="css/magnific-popup.css" />
-    <link rel="stylesheet" href="./css/style.css" />
+    <!-- Relative URLs keep this project-site portable beneath GitHub Pages' /mysite/ path. -->
+    <link rel="icon" href="./assets/images/favicon.ico" />
+    <link rel="stylesheet" href="./styles/portfolio.css" />
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top navbar-container">
-      <a class="navbar-brand top-of-page-link" href="#top">Hyrum Butler</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbar-list"
-        aria-controls="navbar-list"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
 
-      <div class="collapse navbar-collapse" id="navbar-list">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item custom-nav-link-style">
-            <a class="nav-link" href="#profile">Profile</a>
-          </li>
-          <li class="nav-item custom-nav-link-style">
-            <a class="nav-link" href="#skills-section">Skills</a>
-          </li>
-          <li class="nav-item custom-nav-link-style">
-            <a class="nav-link" href="#work">Work</a>
-          </li>
-          <li class="nav-item custom-nav-link-style">
-            <a class="nav-link" href="#blog-section">Technical Blog</a>
-          </li>
-          <li class="nav-item custom-nav-link-style">
-            <a class="nav-link" href="#contact-info-section-title">Contact</a>
-          </li>
-        </ul>
-        <div class="contact-links">
-          <a id="github-logo" href="https://github.com/Brazenbillygoat" target="_blank"
-            ><img class="logo-image" src="./images/github-logo.png" alt="The github octocat logo"
-          /></a>
-          <a href="https://www.linkedin.com/in/hyrum-butler/" target="_blank"
-            ><img class="logo-image" src="./images/linkedin-logo.png" alt="The github octocat logo"
-          /></a>
-        </div>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-brand" href="#top" aria-label="Hyrum Butler, back to top"> Hyrum Butler </a>
+
+        <nav class="site-nav" aria-label="Primary navigation">
+          <ul>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#approach">Approach</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a class="site-nav__sandbox" href="./sandbox/">Hyrum's Sandbox</a></li>
+          </ul>
+        </nav>
       </div>
-    </nav>
+    </header>
 
-    <div class="top-container" id="top">
-      <div
-        class="scene-layer sun-character"
-        data-x-start="0"
-        data-x-end="20rem"
-        data-y-start="0"
-        data-y-end="100rem"
-        data-scale-start="1"
-        data-scale-end="5"
-        aria-label="Awaken the sun"
-        role="button"
-        tabindex="0"
-      >
-        <img class="sun-img" src="./images/summertime.png" alt="" />
+    <main id="main-content">
+      <section class="hero" id="top" aria-labelledby="intro-heading">
+        <div class="contour-field contour-field--hero" aria-hidden="true"></div>
 
-        <!--
-        Screen readers should ignore the face pieces, aria-hidden="true". They are visual decoration,
-        while the wrapper above provides the accessible sun label.
-      -->
-        <div class="sun-face" aria-hidden="true">
-          <span class="sun-eye sun-eye-left">
-            <span class="sun-pupil"></span>
-          </span>
-          <span class="sun-eye sun-eye-right">
-            <span class="sun-pupil"></span>
-          </span>
-          <span class="sun-mouth"></span>
-        </div>
-      </div>
+        <div class="page-shell hero__layout">
+          <div class="hero__copy">
+            <p class="eyebrow">Full-stack software engineer | Greater Kansas City Area</p>
+            <h1 id="intro-heading">
+              I build dependable software for complicated, real-world systems.
+            </h1>
+            <p class="hero__lead">
+              I work across React, TypeScript, Node.js, and .NET, with a focus on modernization,
+              maintainability, and tools that solve real business problems. I like clear tradeoffs,
+              understandable code, and software that works outside the happy path.
+            </p>
+            <p class="availability">
+              <span class="availability__marker" aria-hidden="true"></span>
+              I am currently looking for my next software engineering role.
+            </p>
 
-      <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div> -->
-      <img
-        class="scene-layer top-cloud"
-        src="images/cloud.png"
-        alt="Cloud image"
-        data-x-start="0"
-        data-x-end="-15rem"
-        data-y-start="0"
-        data-y-end="75rem"
-        data-scale-start="1"
-        data-scale-end="6"
-      />
-      <div class="text-layer">
-        <h1>Hyrum Butler</h1>
-        <h2 id="sub-title" class="sub-title">Full-stack software engineer.</h2>
-      </div>
-      <img
-        class="scene-layer bottom-cloud"
-        src="images/cloud.png"
-        alt="Cloud image"
-        data-x-start="0"
-        data-x-end="35rem"
-        data-y-start="0"
-        data-y-end="210"
-        data-scale-start="1"
-        data-scale-end="4"
-      />
-      <div class="mountain-stage">
-        <div class="cabin-character" aria-label="Wake the cabin" role="button" tabindex="0">
-          <svg class="cabin-svg" viewBox="0 0 120 90" aria-hidden="true">
-            <path class="cabin-chimney" d="M82 20 H94 V40 H82 Z" />
-            <path class="cabin-roof" d="M12 44 L60 10 L108 44 Z" />
-            <path class="cabin-body" d="M24 42 H96 V78 Q96 82 92 82 H28 Q24 82 24 78 Z" />
-            <path class="cabin-door" d="M52 58 H68 V82 H52 Z" />
-            <path class="cabin-window cabin-window-left" d="M32 54 H46 V66 H32 Z" />
-            <path class="cabin-window cabin-window-right" d="M74 54 H88 V66 H74 Z" />
-            <g class="cabin-smoke">
-              <circle cx="90" cy="16" r="5" />
-              <circle cx="84" cy="10" r="6" />
-              <circle cx="93" cy="5" r="9" />
-            </g>
-          </svg>
-        </div>
-
-        <div class="mountain-lift" aria-hidden="true">
-          <svg class="lift-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path class="lift-cable" data-lift-cable-segment d="M 48.5 23 C 53 27, 58 31, 61 27" />
-            <path class="lift-cable" data-lift-cable-segment d="M 61 27 C 67 43, 72 56, 78 61" />
-          </svg>
-
-          <span class="lift-tower lift-tower-top">
-            <span class="lift-tower-post"></span>
-            <span class="lift-tower-crossbar"></span>
-            <span class="lift-tower-wheel"></span>
-          </span>
-
-          <span class="lift-tower lift-tower-middle">
-            <span class="lift-tower-post"></span>
-            <span class="lift-tower-crossbar"></span>
-            <span class="lift-tower-wheel"></span>
-          </span>
-
-          <span class="lift-tower lift-tower-bottom">
-            <span class="lift-tower-post"></span>
-            <span class="lift-tower-crossbar"></span>
-            <span class="lift-tower-wheel"></span>
-          </span>
-
-          <button
-            class="lift-terminal lift-terminal-top"
-            type="button"
-            aria-label="Return to route start"
-          ></button>
-          <button
-            class="lift-terminal lift-terminal-bottom"
-            type="button"
-            aria-label="Ride lift to route start"
-          ></button>
-
-          <span class="lift-car" aria-hidden="true">
-            <span class="lift-car-wheel"></span>
-            <span class="lift-car-hanger"></span>
-            <span class="lift-car-seat"></span>
-            <span class="lift-car-skier">
-              <span class="lift-car-skier-head"></span>
-              <span class="lift-car-skier-body"></span>
-              <span class="lift-car-skier-ski"></span>
-            </span>
-          </span>
-        </div>
-
-        <div class="path-markers" aria-hidden="true"></div>
-        <div class="cabin-unlocks" aria-hidden="true"></div>
-
-        <!-- Decorative ramp for the intermediate route jump. The skier path stays controlled in JS. -->
-        <span class="mountain-ramp mountain-ramp-intermediate" aria-hidden="true">
-          <span class="mountain-ramp-snow"></span>
-          <span class="mountain-ramp-plank mountain-ramp-plank-top"></span>
-          <span class="mountain-ramp-plank mountain-ramp-plank-bottom"></span>
-        </span>
-
-        <button
-          class="route-marker route-marker-easy"
-          type="button"
-          disabled
-          data-route-id="easyMountainRoute"
-          aria-label="Launch easy ski route"
-        >
-          <span class="route-marker-post" aria-hidden="true"></span>
-          <span class="route-marker-sign" aria-hidden="true">
-            <span class="route-marker-symbol"></span>
-          </span>
-        </button>
-
-        <button
-          class="route-marker route-marker-intermediate"
-          type="button"
-          disabled
-          data-route-id="intermediateMountainRoute"
-          aria-label="Launch intermediate ski route"
-        >
-          <span class="route-marker-post" aria-hidden="true"></span>
-          <span class="route-marker-sign" aria-hidden="true">
-            <span class="route-marker-symbol"></span>
-          </span>
-        </button>
-
-        <div class="final-skier-rest" aria-hidden="true">
-          <svg class="final-skier-rest-svg" viewBox="0 0 40 40" aria-hidden="true">
-            <circle class="final-skier-head" cx="18" cy="9" r="4" />
-            <path class="final-skier-body" d="M17 14 L24 20 L21 28 L13 22 Z" />
-            <path class="final-skier-limb" d="M15 22 L8 29" />
-            <path class="final-skier-limb" d="M21 27 L31 30" />
-          </svg>
-        </div>
-
-        <div class="supplies-cabin" aria-hidden="true">
-          <svg class="supplies-cabin-svg" viewBox="0 0 70 56" aria-hidden="true">
-            <path class="supplies-cabin-roof" d="M8 25 L35 7 L62 25 Z" />
-            <path class="supplies-cabin-body" d="M16 24 H54 V48 H16 Z" />
-            <path class="supplies-cabin-door" d="M31 34 H40 V48 H31 Z" />
-            <path class="supplies-cabin-window" d="M20 31 H29 V39 H20 Z M43 31 H52 V39 H43 Z" />
-            <path
-              class="supplies-crate"
-              d="M5 43 H17 V53 H5 Z M18 40 H30 V53 H18 Z M50 42 H63 V53 H50 Z"
-            />
-            <path
-              class="supplies-crate-lines"
-              d="M5 48 H17 M11 43 V53 M18 46 H30 M24 40 V53 M50 48 H63 M56 42 V53"
-            />
-          </svg>
-          <span class="ski-patrol-cue" aria-hidden="true">
-            <span class="ski-patrol-cue-post"></span>
-            <span class="ski-patrol-cue-sign">
-              <span class="ski-patrol-cue-cross"></span>
-            </span>
-          </span>
-        </div>
-
-        <div class="mountain-skier is-hidden" aria-hidden="true">
-          <svg class="skier-svg" viewBox="0 0 52 44" aria-hidden="true">
-            <g class="skier-standing">
-              <circle class="skier-head" cx="24" cy="8" r="4" />
-              <path class="skier-torso" d="M22 13 L27 14 L28 25 L20 25 Z" />
-              <path class="skier-limb" d="M22 17 L11 25" />
-              <path class="skier-limb" d="M27 18 L38 26" />
-              <path class="skier-limb" d="M22 25 L15 36" />
-              <path class="skier-limb" d="M27 25 L36 35" />
-              <path class="skier-ski" d="M8 37 C21 40 35 40 47 36" />
-            </g>
-            <g class="skier-fallen">
-              <circle class="skier-head" cx="18" cy="17" r="4" />
-              <path class="skier-torso" d="M22 18 L37 23" />
-              <path class="skier-limb" d="M32 22 L45 15" />
-              <path class="skier-limb" d="M32 23 L45 30" />
-              <path class="skier-ski" d="M6 31 C20 28 36 28 49 32" />
-            </g>
-          </svg>
-        </div>
-
-        <img class="mountain-img" src="images/mountain.png" alt="Mountain image" />
-      </div>
-      <div class="forest-mist" aria-hidden="true"></div>
-      <!-- JS draws this decorative forest line to soften the transition from the mountain hero into the profile section. -->
-      <div class="forest-line" aria-hidden="true"></div>
-    </div>
-
-    <div class="middle-container">
-      <section class="profile-scene" id="profile" aria-label="Profile overview">
-        <!--
-    First pass: this is only the underground set.
-    data-room/data-row/data-side are intentionally here now so the cart logic can target rooms later
-    without needing another markup rewrite.
-  -->
-        <div class="profile-cavern">
-          <div class="profile-rail-layer" aria-hidden="true">
-            <span class="profile-rail profile-rail-top"></span>
-            <span class="profile-rail profile-rail-bottom"></span>
-            <span class="profile-rail-tie profile-rail-tie-one"></span>
-            <span class="profile-rail-tie profile-rail-tie-two"></span>
-            <span class="profile-rail-tie profile-rail-tie-three"></span>
-            <span class="profile-rail-tie profile-rail-tie-four"></span>
+            <div class="hero__actions" aria-label="Introduction links">
+              <a class="button button--primary" href="#work">See selected work</a>
+              <a class="button button--secondary" href="#contact">Get in touch</a>
+              <a class="text-link" href="./assets/Hyrum-Butler-Resume.pdf" download>
+                Download resume
+              </a>
+            </div>
           </div>
 
-          <!-- JS moves this between rooms in three phases: rail to shaft, lift row change, rail to room. -->
-          <span class="profile-mine-cart" aria-hidden="true">
-            <span class="profile-mine-cart-bucket"></span>
-            <span class="profile-mine-cart-lamp"></span>
-            <span class="profile-mine-cart-wheel profile-mine-cart-wheel-left"></span>
-            <span class="profile-mine-cart-wheel profile-mine-cart-wheel-right"></span>
-          </span>
-
-          <aside class="profile-shaft" aria-label="Profile mine lift">
-            <span class="profile-shaft-beam profile-shaft-beam-left" aria-hidden="true"></span>
-            <span class="profile-shaft-beam profile-shaft-beam-right" aria-hidden="true"></span>
-            <span class="profile-shaft-cable" aria-hidden="true"></span>
-            <span class="profile-lift-car" aria-hidden="true"></span>
-            <span class="profile-info-booth" aria-hidden="true">
-              <span class="profile-info-booth-light"></span>
-            </span>
+          <aside class="field-card" aria-label="Professional summary">
+            <p class="field-card__label">Field record 01</p>
+            <dl>
+              <div>
+                <dt>Experience</dt>
+                <dd>5+ years</dd>
+              </div>
+              <div>
+                <dt>Range</dt>
+                <dd>Full stack</dd>
+              </div>
+              <div>
+                <dt>Terrain</dt>
+                <dd>Modern and legacy systems</dd>
+              </div>
+            </dl>
           </aside>
-
-          <article
-            class="profile-room profile-room-hello"
-            data-room="hello"
-            data-row="top"
-            data-side="left"
-            tabindex="0"
-          >
-            <span class="profile-room-prop profile-room-prop-lantern" aria-hidden="true"></span>
-            <!-- Hidden gear alcove. It brightens once the cart actually enters the Hello room. -->
-            <div class="profile-room-scene profile-room-scene-hello">
-              <span class="hello-gear-rack"></span>
-              <img
-                class="hello-gear-icon hello-gear-calendar"
-                src="./images/profile-gear/calendar-svg.svg"
-                alt=""
-                aria-label="Tidy calendar"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-map"
-                src="./images/profile-gear/map-geography-svg.svg"
-                alt=""
-                aria-label="Tidy map"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-exit-poster"
-                src="./images/profile-gear/poster-exit-svg.svg"
-                alt=""
-                aria-label="Tidy exit poster"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-rope"
-                src="./images/profile-gear/rope-svg.svg"
-                alt=""
-                aria-label="Tidy rope"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-rope hello-gear-rope-secondary"
-                src="./images/profile-gear/rope-svg.svg"
-                alt=""
-                aria-label="Tidy rope"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-backpack"
-                src="./images/profile-gear/backpack-svg.svg"
-                alt=""
-                aria-label="Tidy backpack"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-helmet"
-                src="./images/profile-gear/helmet-svg.svg"
-                alt=""
-                aria-label="Tidy helmet"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-helmet hello-gear-helmet-secondary"
-                src="./images/profile-gear/helmet-svg.svg"
-                alt=""
-                aria-label="Tidy helmet"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-boots"
-                src="./images/profile-gear/boots-svg.svg"
-                alt=""
-                aria-label="Tidy boots"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-boots hello-gear-boots-secondary"
-                src="./images/profile-gear/boots-svg.svg"
-                alt=""
-                aria-label="Tidy boots"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-pickaxe"
-                src="./images/profile-gear/pickaxe-svg.svg"
-                alt=""
-                aria-label="Tidy pickaxe"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-pickaxe hello-gear-pickaxe-secondary"
-                src="./images/profile-gear/pickaxe-svg.svg"
-                alt=""
-                aria-label="Tidy pickaxe"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-pickaxe hello-gear-pickaxe-tertiary"
-                src="./images/profile-gear/pickaxe-svg.svg"
-                alt=""
-                aria-label="Tidy pickaxe"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-shovel"
-                src="./images/profile-gear/shovel-svg.svg"
-                alt=""
-                aria-label="Tidy shovel"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-shovel hello-gear-shovel-secondary"
-                src="./images/profile-gear/shovel-svg.svg"
-                alt=""
-                aria-label="Tidy shovel"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-shovel hello-gear-shovel-tertiary"
-                src="./images/profile-gear/shovel-svg.svg"
-                alt=""
-                aria-label="Tidy shovel"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-flashlight"
-                src="./images/profile-gear/flashlight-svg.svg"
-                alt=""
-                aria-label="Tidy flashlight"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-flashlight hello-gear-flashlight-secondary"
-                src="./images/profile-gear/flashlight-svg.svg"
-                alt=""
-                aria-label="Tidy flashlight"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-carabiner"
-                src="./images/profile-gear/carabiner-svg.svg"
-                alt=""
-                aria-label="Tidy carabiner"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-carabiner hello-gear-carabiner-secondary"
-                src="./images/profile-gear/carabiner-svg.svg"
-                alt=""
-                aria-label="Tidy carabiner"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-carabiner hello-gear-carabiner-tertiary"
-                src="./images/profile-gear/carabiner-svg.svg"
-                alt=""
-                aria-label="Tidy carabiner"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-carabiner hello-gear-carabiner-quaternary"
-                src="./images/profile-gear/carabiner-svg.svg"
-                alt=""
-                aria-label="Tidy carabiner"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-carabiner hello-gear-carabiner-quinary"
-                src="./images/profile-gear/carabiner-svg.svg"
-                alt=""
-                aria-label="Tidy carabiner"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-goggles"
-                src="./images/profile-gear/goggles-svg.svg"
-                alt=""
-                aria-label="Tidy goggles"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-              <img
-                class="hello-gear-icon hello-gear-goggles hello-gear-goggles-secondary"
-                src="./images/profile-gear/goggles-svg.svg"
-                alt=""
-                aria-label="Tidy goggles"
-                data-tidy-item
-                role="button"
-                tabindex="0"
-              />
-            </div>
-
-            <img
-              class="profile-pic profile-pic-hello"
-              src="./images/profile-pic.jpeg"
-              alt="Me stifling a laugh"
-            />
-            <h2>Hello.</h2>
-            <p>
-              I'm a Fullstack Software Developer that loves the outdoors <em>almost</em> as much as
-              technology! I like to untangle old systems, and try to leave the codebase easier to
-              work in than I found it. I like practical tools, clear tradeoffs, and software that
-              holds up outside the happy path.
-            </p>
-            <p>
-              Happiest building things that are boring in the best way: clear, useful, vanilla, and
-              dependable. I’m drawn to the practical side of engineering: making real systems easier
-              to use, maintain, and trust. Good software should feel obvious to use and reasonable
-              to change. That’s usually the bar I’m aiming for.
-            </p>
-          </article>
-
-          <article
-            class="profile-room profile-room-recent"
-            data-room="recent"
-            data-row="top"
-            data-side="right"
-            tabindex="0"
-            aria-label="Recent work"
-          >
-            <h2>Recent Work</h2>
-            <p class="profile-recent-company">AVIXA</p>
-            <ul class="profile-recent-list">
-              <li>Full-stack member dashboards</li>
-              <li>Salesforce + Pardot integrations</li>
-              <li>Sitefinity CMS features</li>
-              <li>Next.js / Storyblok migration</li>
-              <li>Mapbox-powered search tools</li>
-              <li>.NET 8 authentication services</li>
-            </ul>
-          </article>
-
-          <article
-            class="profile-room profile-room-story"
-            id="about-section"
-            data-room="story"
-            data-row="bottom"
-            data-side="left"
-            tabindex="0"
-          >
-            <span class="profile-room-prop profile-room-prop-campfire" aria-hidden="true"></span>
-            <h2>My Story</h2>
-            <p>
-              After finishing a political science degree, I started out in international trade and
-              slowly realized the best part of the job was not the formal side of the work. It was
-              building small scripts and cleaner reports that made the day easier for the people
-              around me. That pushed me back toward school for programming. I kept taking classes
-              online while driving 18-wheelers and later a tour bus for a semi-pro hockey team. When
-              COVID hit with one semester left at Liberty, I shifted into Flatiron School’s software
-              engineering bootcamp for the focused career support and hands-on work. Not long after
-              finishing, I landed my first software developer role. I’ve been building web
-              applications across modern and legacy stacks since, and I still like the same part of
-              the work: untangling practical problems and turning them into tools people can
-              actually use. Today, I’m a full-stack software engineer with 5+ years of experience
-              building enterprise web applications across modern and legacy stacks. Most recently at
-              AVIXA, I worked on member dashboards, Salesforce integrations, Sitefinity CMS
-              features, a Next.js/Storyblok migration, Mapbox-powered search tools, and .NET 8
-              authentication services.
-            </p>
-          </article>
-
-          <article
-            class="profile-room profile-room-work"
-            data-room="work"
-            data-row="bottom"
-            data-side="right"
-            tabindex="0"
-          >
-            <h2>How I Work</h2>
-            <p>
-              I like to understand a system before changing it, but I know real production work
-              sometimes needs quick decisions. I’m comfortable balancing speed with care: finding
-              the important context, making the right tradeoffs, and shipping changes that fit the
-              system. I’m strongest in messy real-world systems that don’t always line up with what
-              the docs say. When I’m picking up a new language, framework, repo, or product surface,
-              I like to start with a quick orientation: a teammate walkthrough, vendor demo,
-              conference talk, or focused video that gives me the shape of the thing before I’m deep
-              in details. From there, I want to see it running and read the docs with a real use
-              case in mind, especially when the docs include runnable examples, sandboxes, or API
-              explorers. Then I build something with it, using the mix that makes sense for the
-              problem: documentation, existing code, AI assistance, videos, or a structured course
-              when the topic deserves it.
-            </p>
-          </article>
         </div>
       </section>
-    </div>
 
-    <div class="story-hole-spacer"></div>
-    <div class="hole"></div>
-    <div class="hole-skills-spacer"></div>
+      <section class="section section--work" id="work" aria-labelledby="work-heading">
+        <div class="page-shell">
+          <div class="section-heading">
+            <p class="section-index">01 | Selected work</p>
+            <h2 id="work-heading">Work that shows how I think</h2>
+            <p>The technologies matter, but the decisions around them matter more.</p>
+          </div>
 
-    <div id="skills-section" class="middle-container">
-      <div class="skills-title-bar">
-        <hr class="my-skills-hr" />
-        <h2 class="skills-section-title">My Skills</h2>
-        <hr class="my-skills-hr" />
-      </div>
-      <div class="skills-lists-box">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4">
-              <img
-                class="frontend-icon"
-                src="./images/frontend-icon.png"
-                alt="HTML carrots only containing a forward slash"
-              />
-              <h3>Frontend</h3>
-              <ul class="frontend-list">
-                <li>HTML</li>
-                <li>CSS / SCSS</li>
-                <li>JavaScript</li>
-                <li>TypeScript</li>
-                <li>React</li>
-                <li>Redux</li>
-                <li>Vue.js</li>
-                <li>Next.js</li>
-                <li>Bootstrap</li>
-              </ul>
+          <article class="featured-project" aria-labelledby="ocean-intelligence-heading">
+            <div class="featured-project__intro">
+              <p class="project-status">Current independent project | Source available</p>
+              <h3 id="ocean-intelligence-heading">Ocean Intelligence</h3>
+              <p class="featured-project__summary">
+                A full-stack vessel research application that turns historical AIS observations and
+                public registry records into an explorable research workflow.
+              </p>
+              <a
+                class="featured-project__link"
+                href="https://github.com/Brazenbillygoat/ocean-intelligence"
+              >
+                View the source on GitHub
+                <span aria-hidden="true">↗</span>
+              </a>
             </div>
-            <div class="col-md-4">
-              <img
-                class="backend-icon"
-                src="./images/backend-icon.png"
-                alt="Gear in front of a database page"
-              />
-              <h3>Backend/Platforms</h3>
-              <ul class="backend-list">
-                <li>Ruby</li>
-                <li>Rails</li>
-                <li>node.js</li>
-                <li>C#</li>
-                <li>.NET / ASP.NET Core</li>
-                <li>REST APIs</li>
-                <li>SQL</li>
-                <li>Azure</li>
-                <li>Sitefinity CMS</li>
-                <li>Salesforce integrations</li>
-                <li>OpenID Connect</li>
-              </ul>
+
+            <div class="featured-project__details">
+              <div class="project-detail">
+                <h4>The problem</h4>
+                <p>
+                  Maritime data is incomplete, sometimes conflicting, rate-limited, and easy to
+                  overstate. The application needs to make useful evidence understandable without
+                  presenting historical observations as live or verified truth.
+                </p>
+              </div>
+
+              <div class="project-detail">
+                <h4>What I built</h4>
+                <p>
+                  A React and TypeScript interface backed by an ASP.NET Core API. The backend owns
+                  authenticated Global Fishing Watch requests, validation, caching, concurrency
+                  control, rate limiting, and safe error mapping. The frontend supports cancellable
+                  searches, cached vessel details, keyboard-accessible selection, and a structured
+                  research dossier.
+                </p>
+              </div>
+
+              <div class="project-detail">
+                <h4>The engineering choices</h4>
+                <p>
+                  The system keeps its public contracts separate from upstream response models and
+                  preserves attribution and data caveats in the interface. It deliberately uses
+                  native fetch and local React state, with no database, map library, or
+                  authentication until a real product need justifies them.
+                </p>
+              </div>
             </div>
-            <div class="col-md-4">
-              <img
-                class="team-icon"
-                src="./images/team-icon.png"
-                alt="HTML carrots only containing a forward slash"
-              />
-              <h3>Teams</h3>
-              <ul class="team-list">
-                <li>Git</li>
-                <li>Storyblok</li>
-                <li>Agile/Scrum</li>
-                <li>Jest</li>
-                <li>React Testing Library</li>
-                <li>AI-assisted development</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div id="work" class="portfolio">
-        <hr class="my-work-hr" />
-        <h2 class="work-section-title">My Work</h2>
-        <hr class="my-work-hr" />
-        <div class="project">
-          <a
-            class="popup project-presentation-link"
-            href="https://www.youtube.com/watch?v=X2MY4EMXBnY"
-          >
-            <img
-              class="project-image"
-              src="./images/betaclimberwelcome.png"
-              alt="A screenshot of my beta-climbers app."
-            />
-            <!-- <img class="project-play-button" src="./images/play-button.png" alt="Play button overlayed on the project thumbnail."> -->
-          </a>
-          <h3 id="beta-climbers" class="project-title">Beta Climbers</h3>
-          <div class="project-link">
-            <a href="https://beta-climbers.herokuapp.com/" target="_blank">Visit Site</a>
-            |
-            <a href="https://github.com/Brazenbillygoat/betaclimbers" target="_blank">View Code</a>
-          </div>
-          <p>
-            A social app for climbers to stay in touch and share info about climbing routes. Made
-            using HTML, CSS, and Ruby on Rails for the entire MVC interactions. Climbers(users) can
-            signup and edit their own information but not another climbers information.
-          </p>
-          <hr class="portfolio-description-divide" />
-          <ul class="project-skills">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>Ruby</li>
-            <li>Rails</li>
-            <li>SQlite3 -> Postgres</li>
-            <li>Bcrypt</li>
-            <li>Web APIs</li>
-          </ul>
-        </div>
-
-        <div class="project">
-          <a
-            class="popup project-presentation-link"
-            href="https://www.youtube.com/watch?v=wdIBMDcOk6o"
-            target="_blank"
-          >
-            <img
-              class="project-image"
-              src="./images/adeliwelcome.png"
-              alt="A screenshot of adeli's website"
-            />
-          </a>
-          <h3 class="project-title">aDeli Restaurant, Manassas</h3>
-          <div class="project-link">
-            <a href="https://happy-bartik-85cabe.netlify.app/" target="_blank">Visit Site</a>
-            |
-            <a href="https://github.com/Brazenbillygoat/adeli-frontend" target="_blank"
-              >View Code</a
-            >
-          </div>
-          <p>
-            Pure vanilla javascript frontend allowing a user to switch between menus and simulate a
-            cart. Pop-up menu selection giving the user a choice of size depending on the menu item
-            selected. The cart persists between site visit with local storage.
-          </p>
-          <hr class="portfolio-description-divide" />
-          <ul class="project-skills">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>Javascript</li>
-            <li>Rails</li>
-            <li>Local storage</li>
-            <li>Postgres</li>
-          </ul>
-        </div>
-
-        <div class="project">
-          <a
-            class="popup project-presentation-link"
-            href="https://www.youtube.com/watch?v=uhNcH-GwcW0"
-            target="_blank"
-          >
-            <img
-              class="project-image"
-              src="./images/neighborhoodheroeswelcome.png"
-              alt="A screenshot of my neighborhood heroes app"
-            />
-          </a>
-          <h3 class="project-title">Neighborhood Heroes</h3>
-          <div class="project-link">
-            <a href="https://neighborhood-heroes-frontend.herokuapp.com/home" target="_blank"
-              >Visit Site</a
-            >
-            |
-            <a href="https://github.com/Brazenbillygoat/neighborhood-heros-frontend" target="_blank"
-              >View Code</a
-            >
-          </div>
-          <p>
-            An app for users to create custom tournaments and compete with eachother by creating and
-            logging tasks for points. React and Redux are used for smooth and quick actions during
-            user interface. This application has a lot of potential avenues for exploring user2user
-            features and I looking forward to using this as a bit of a playground for such as time
-            goes on.
-            <br />The app is hosted by Heroku(a free hosting service) and is thus a little slow upon
-            intial opening, but that is not a reflection of the code.
-          </p>
-          <hr class="portfolio-description-divide" />
-          <ul class="project-skills">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>React</li>
-            <li>Redux</li>
-            <li>Ruby</li>
-            <li>Rails</li>
-            <li>Javascript</li>
-            <li>Postgres</li>
-            <li>Bcrypt</li>
-            <li>Custom Built API</li>
-          </ul>
-        </div>
-
-        <div id="contact-me" class="contact-me">
-          <hr class="tech-blog-hr" />
-          <h2 id="blog-section" class="blog-section-title">Technical Blog</h2>
-          <hr class="tech-blog-hr" />
-          <div
-            id="carouselExampleIndicators"
-            class="carousel slide"
-            data-ride="carousel"
-            data-interval="4500"
-          >
-            <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <!-- The architecture remains real text, not a decorative diagram, so it stacks and reads cleanly. -->
+            <ol class="architecture-strip" aria-label="Ocean Intelligence request flow">
+              <li>
+                <span>01</span>
+                React interface
+              </li>
+              <li>
+                <span>02</span>
+                ASP.NET Core API
+              </li>
+              <li>
+                <span>03</span>
+                Global Fishing Watch
+              </li>
             </ol>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <a
-                  class="blog-image-link"
-                  href="https://medium.com/@hyrum.butler3/3-common-git-pitfalls-and-how-to-self-correct-ea9bfdfcb564"
-                  target="_blank"
-                >
-                  <img
-                    class="d-block w-100 blog-image"
-                    src="./images/git-pitfalls.jpeg"
-                    alt="3 common git pitfalls and how to self correct blog tile picture."
-                  />
-                </a>
-                <div class="carousel-caption d-none d-md-block">
-                  <h5 class="blog-caption-title">
-                    <a
-                      class="blog-title-link"
-                      href="https://medium.com/@hyrum.butler3/3-common-git-pitfalls-and-how-to-self-correct-ea9bfdfcb564"
-                      target="_blank"
-                    >
-                      3 Common Git Pitfalls and How to Self-correct
-                    </a>
-                  </h5>
-                  <!-- <p>...</p> -->
-                </div>
-              </div>
-              <div class="carousel-item">
-                <a
-                  class="blog-image-link"
-                  href="https://hyrum-butler.medium.com/the-command-line-terminal-console-shell-76f5c4c34f1c"
-                  target="_blank"
-                >
-                  <img
-                    class="d-block w-100 blog-image"
-                    src="./images/commandline-blog.png"
-                    alt="The Command Line, Terminal, Console, Shell, blog title picture."
-                  />
-                </a>
-                <div class="carousel-caption d-none d-md-block">
-                  <h5 class="blog-caption-title">
-                    <a
-                      class="blog-title-link"
-                      href="https://hyrum-butler.medium.com/the-command-line-terminal-console-shell-76f5c4c34f1c"
-                      target="_blank"
-                    >
-                      The Command Line || Terminal || Console || Shell
-                    </a>
-                  </h5>
-                  <!-- <p>...</p> -->
-                </div>
-              </div>
-              <div class="carousel-item">
-                <a
-                  class="blog-image-link"
-                  href="https://medium.com/@hyrum.butler3/working-with-a-team-git-flow-ea0eeb6fe93b"
-                  target="_blank"
-                >
-                  <img
-                    class="d-block w-100 blog-image"
-                    src="./images/team-git-flow.jpeg"
-                    alt="Working with a Team -- gitflow blog title picture."
-                  />
-                </a>
-                <div class="carousel-caption d-none d-md-block">
-                  <h5 class="blog-caption-title">
-                    <a
-                      class="blog-title-link"
-                      href="https://medium.com/@hyrum.butler3/working-with-a-team-git-flow-ea0eeb6fe93b"
-                      target="_blank"
-                    >
-                      Working with a Team -- Git-flow
-                    </a>
-                  </h5>
-                  <!-- <p>...</p> -->
-                </div>
-              </div>
-              <div class="carousel-item">
-                <a
-                  class="blog-image-link"
-                  href="https://medium.com/@hyrum.butler3/contributing-to-open-source-bf27dc60d526"
-                  target="_blank"
-                >
-                  <img
-                    class="d-block w-100 blog-image"
-                    src="./images/contributing-open-source.jpeg"
-                    alt="Contributing to opensource blog title picture."
-                  />
-                </a>
-                <div class="carousel-caption d-none d-md-block">
-                  <h5 class="blog-caption-title">
-                    <a
-                      class="blog-title-link"
-                      href="https://medium.com/@hyrum.butler3/contributing-to-open-source-bf27dc60d526"
-                      target="_blank"
-                    >
-                      Contributing to Open Source
-                    </a>
-                  </h5>
-                  <!-- <p>...</p> -->
-                </div>
-              </div>
+
+            <p class="stack-line">
+              React 19 | TypeScript | ASP.NET Core | .NET 10 | xUnit | Global Fishing Watch API
+            </p>
+          </article>
+
+          <div class="recent-work">
+            <div class="recent-work__heading">
+              <h3>Recent production work</h3>
+              <p>Selected examples from production systems, without the corporate victory lap.</p>
             </div>
-            <a
-              class="carousel-control-prev"
-              href="#carouselExampleIndicators"
-              role="button"
-              data-slide="prev"
-            >
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a
-              class="carousel-control-next"
-              href="#carouselExampleIndicators"
-              role="button"
-              data-slide="next"
-            >
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
+
+            <div class="recent-work__grid">
+              <article>
+                <p class="work-number">01</p>
+                <h4>Content platform modernization</h4>
+                <p>
+                  Contributed to key parts of a transition from a traditional Sitefinity CMS to a
+                  headless Next.js 15 and Storyblok architecture while continuing to ship production
+                  features.
+                </p>
+              </article>
+
+              <article>
+                <p class="work-number">02</p>
+                <h4>Member-facing systems</h4>
+                <p>
+                  Built an end-to-end member dashboard with more than 12 integrated areas covering
+                  certifications, company rosters, demographics, and support services. Connected
+                  Salesforce and Pardot workflows with role-aware access and CSV/XLSX exports.
+                </p>
+              </article>
+
+              <article>
+                <p class="work-number">03</p>
+                <h4>Search and identity integrations</h4>
+                <p>
+                  Built an accessible Mapbox GL certification search for desktop and touch kiosks,
+                  and contributed to a .NET 8 authentication service using Salesforce OpenID
+                  Connect, claims, and role-based authorization.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="experience" aria-labelledby="experience-heading">
+        <div class="page-shell section-grid">
+          <div class="section-heading section-heading--sticky">
+            <p class="section-index">02 | Experience</p>
+            <h2 id="experience-heading">A practical path through modern and legacy systems</h2>
           </div>
 
-          <h2 class="contact-info-section-title">Get In Touch</h2>
-          <h4>Email:</h4>
-          <p>hyrum.butler3@gmail.com</p>
-          <h4>Phone number:</h4>
-          <p>(540)-816-9487</p>
-          <a class="btn email-link" href="mailto:hyrum.butler3@gmail.com">CONTACT ME</a>
-        </div>
-      </div>
-    </div>
-    <div class="bottom-container">
-      <a class="footer-link" href="https://www.linkedin.com/in/hyrum-butler/" target="_blank"
-        >LinkedIn</a
-      >
-      <a class="footer-link" href="https://www.codewars.com/users/Brazenbillygoat" target="_blank"
-        >Codewars</a
-      >
-      <a class="footer-link" href="https://github.com/Brazenbillygoat" target="_blank">Github</a>
-      <p>Hyrum Butler</p>
-    </div>
+          <div class="timeline">
+            <article class="timeline-entry">
+              <div class="timeline-entry__meta">
+                <p>AVIXA</p>
+                <p>
+                  <time datetime="2024-03">Mar 2024</time> -
+                  <time datetime="2026-06">Jun 2026</time>
+                </p>
+              </div>
+              <div>
+                <h3>Full-stack Software Developer</h3>
+                <p>
+                  Built and modernized member-facing web applications across React, Next.js,
+                  TypeScript, Node.js, Sitefinity, Storyblok, Salesforce integrations, and .NET.
+                </p>
+              </div>
+            </article>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="src/jquery.magnific-popup.min.js"></script>
-    <script src="src/app.js"></script>
+            <article class="timeline-entry">
+              <div class="timeline-entry__meta">
+                <p>Remotasks</p>
+                <p>
+                  <time datetime="2024-01">Jan 2024</time> -
+                  <time datetime="2026-01">Jan 2026</time>
+                </p>
+              </div>
+              <div>
+                <h3>AI Trainer</h3>
+                <p>
+                  Evaluated software-engineering and language-model outputs, then provided
+                  structured feedback to improve correctness, intent alignment, and reliability.
+                </p>
+              </div>
+            </article>
+
+            <article class="timeline-entry">
+              <div class="timeline-entry__meta">
+                <p>RTS Labs</p>
+                <p>
+                  <time datetime="2021-03">Mar 2021</time> -
+                  <time datetime="2023-08">Aug 2023</time>
+                </p>
+              </div>
+              <div>
+                <h3>Software Engineer</h3>
+                <p>
+                  Maintained React applications and legacy Ruby on Rails systems, built a
+                  recruiting-focused single-page application, and contributed to API and database
+                  modernization for property-rental software.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--approach" id="approach" aria-labelledby="approach-heading">
+        <div class="page-shell">
+          <div class="section-heading section-heading--wide">
+            <p class="section-index">03 | Approach</p>
+            <h2 id="approach-heading">
+              Understand the system. Make the tradeoff. Leave it better.
+            </h2>
+            <p>
+              I like to understand a system before changing it, but production work rarely waits for
+              perfect context. My job is to find the important information, make a clear decision,
+              and ship something that fits the system around it.
+            </p>
+          </div>
+
+          <div class="principles">
+            <article>
+              <p class="principle-index">01</p>
+              <h3>Orient first</h3>
+              <p>
+                Learn the shape of the product, its constraints, and the people who depend on it
+                before choosing a solution.
+              </p>
+            </article>
+
+            <article>
+              <p class="principle-index">02</p>
+              <h3>Prefer the smallest useful change</h3>
+              <p>
+                Solve the actual problem without building a platform for hypothetical future
+                requirements.
+              </p>
+            </article>
+
+            <article>
+              <p class="principle-index">03</p>
+              <h3>Design for the unhappy path</h3>
+              <p>
+                Loading, failure, stale data, conflicting records, and maintenance are part of the
+                product, not cleanup for later.
+              </p>
+            </article>
+
+            <article>
+              <p class="principle-index">04</p>
+              <h3>Communicate the tradeoff</h3>
+              <p>
+                Make decisions understandable to technical and non-technical collaborators so the
+                work can be trusted and maintained.
+              </p>
+            </article>
+          </div>
+
+          <div class="toolkit" aria-labelledby="toolkit-heading">
+            <div>
+              <p class="field-note">Field note</p>
+              <h3 id="toolkit-heading">Working toolkit</h3>
+            </div>
+
+            <dl class="toolkit__groups">
+              <div>
+                <dt>Frontend systems</dt>
+                <dd>
+                  React, TypeScript, JavaScript, Next.js, Vue.js, accessible HTML, CSS, and SCSS
+                </dd>
+              </div>
+              <div>
+                <dt>Backend and integrations</dt>
+                <dd>
+                  C#, .NET, ASP.NET Core, Node.js, Express, REST APIs, SQL, Salesforce, and OpenID
+                  Connect
+                </dd>
+              </div>
+              <div>
+                <dt>Platforms and delivery</dt>
+                <dd>
+                  Storyblok, Sitefinity, Azure, Git, automated testing, Agile delivery, and
+                  AI-assisted development
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about" aria-labelledby="about-heading">
+        <div class="page-shell section-grid">
+          <div class="section-heading">
+            <p class="section-index">04 | About</p>
+            <h2 id="about-heading">A crooked route into software</h2>
+          </div>
+
+          <div class="about-copy">
+            <p>
+              My route into software was not direct. I studied political science, worked in
+              international trade, and took programming courses while driving trucks and later a
+              tour bus. That background left me comfortable learning unfamiliar systems, talking
+              with different kinds of people, and caring whether a tool works in the real world.
+            </p>
+            <p>
+              Away from a keyboard, I am usually happier outside: hiking, camping, or building
+              something with my hands. The Sandbox is where the less restrained experiments live.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--contact" id="contact" aria-labelledby="contact-heading">
+        <div class="contour-field contour-field--contact" aria-hidden="true"></div>
+
+        <div class="page-shell contact-layout">
+          <div class="section-heading section-heading--wide">
+            <p class="section-index">05 | Contact</p>
+            <h2 id="contact-heading">Looking for the next useful problem</h2>
+            <p>
+              I am currently looking for my next software engineering role. If you need someone who
+              can work across the stack, learn an existing system, and make it easier to live with,
+              I would like to hear from you.
+            </p>
+          </div>
+
+          <ul class="contact-links" aria-label="Contact links">
+            <li><a href="mailto:hyrum.butler3@gmail.com">Email Hyrum</a></li>
+            <li><a href="https://www.linkedin.com/in/hyrum-butler/">LinkedIn</a></li>
+            <li><a href="https://github.com/Brazenbillygoat">GitHub</a></li>
+            <li>
+              <a href="./assets/Hyrum-Butler-Resume.pdf" download>Download resume</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <aside class="sandbox-invitation" aria-labelledby="sandbox-heading">
+        <div class="page-shell sandbox-invitation__inner">
+          <div>
+            <p class="field-note">Optional side trail</p>
+            <h2 id="sandbox-heading">Curious what happens when I stop being professional?</h2>
+          </div>
+          <a class="button button--sandbox" href="./sandbox/">Visit Hyrum's Sandbox</a>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-shell">
+        <p>Hyrum Butler | Full-stack software engineer | 2026</p>
+        <a href="#top">Back to top</a>
+      </div>
+    </footer>
   </body>
 </html>

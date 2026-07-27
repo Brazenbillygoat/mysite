@@ -1,0 +1,6 @@
+node_modules/
+dist/
+sandbox/
+package-lock.json
+.github/
+prettier.config.js

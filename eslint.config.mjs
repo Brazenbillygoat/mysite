@@ -4,11 +4,11 @@ import globals from "globals";
 
 export default [
   {
-    ignores: ["node_modules/**", "dist/**", "src/jquery.magnific-popup*.js"],
+    ignores: ["node_modules/**", "dist/**", "sandbox/src/jquery.magnific-popup*.js"],
   },
   js.configs.recommended,
   {
-    files: ["src/**/*.js"],
+    files: ["sandbox/src/**/*.js"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "script",
