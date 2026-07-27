@@ -37,10 +37,14 @@ Implemented:
 - A sticky desktop header and an intentionally sticky experience-section
   heading that follows part of the scroll before yielding to the next section.
 - A desktop two-column hero with editorial contour decoration and a field-record
-  summary card.
+  summary card. At wide-desktop widths, the right rail also includes a
+  restrained engineering-focus list.
 - Ocean Intelligence as the primary public case study, followed by selected
   production work, experience, engineering approach, about, contact, and a
   Sandbox invitation.
+- A desktop-specific composition pass with tighter structural spacing, a
+  hero-to-work survey line, a contained sticky Ocean Intelligence field note,
+  and a subtle project-link contour response.
 
 The professional page currently uses no JavaScript. Its behavior comes from
 semantic HTML and CSS. Sandbox JavaScript remains scoped to `sandbox/`.
@@ -104,6 +108,12 @@ explicitly requests a redesign.
 The sticky experience heading is an approved subtle interaction. Preserve it
 when adjusting desktop composition unless a specific requirement conflicts with
 it. Mobile layouts intentionally remove sticky section-heading behavior.
+
+Desktop composition uses two explicit tiers: general desktop begins at
+`56.0625rem`, and wide-desktop enhancements begin at `75rem`. The sticky Ocean
+Intelligence field note is contained by the featured-project wrapper so it
+releases before recent production work. These enhancements remain absent from
+the approved mobile composition.
 
 ## Hosting and URL behavior
 

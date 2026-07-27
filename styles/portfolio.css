@@ -190,6 +190,15 @@ p {
   z-index: 1;
 }
 
+.hero__rail {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-focus {
+  display: none;
+}
+
 .eyebrow,
 .section-index,
 .project-status,
@@ -383,6 +392,10 @@ p {
   background: var(--surface);
 }
 
+.section--work > .page-shell {
+  position: relative;
+}
+
 .section-heading {
   max-width: 45rem;
   margin-bottom: clamp(2.75rem, 6vw, 4.5rem);
@@ -430,6 +443,19 @@ p {
     0 0 0 4.5rem color-mix(in srgb, var(--paper) 3%, transparent);
   content: "";
   pointer-events: none;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+/* The rings respond only to the real project link so the static card never looks clickable. */
+.featured-project:has(.featured-project__link:is(:hover, :focus-visible))::before {
+  border-color: color-mix(in srgb, var(--paper) 24%, transparent);
+  box-shadow:
+    0 0 0 2rem color-mix(in srgb, var(--paper) 6%, transparent),
+    0 0 0 4.5rem color-mix(in srgb, var(--paper) 5%, transparent);
+  transform: translate(-0.4rem, 0.4rem);
 }
 
 .featured-project__intro,
@@ -551,6 +577,10 @@ p {
   font-size: 0.72rem;
   letter-spacing: 0.025em;
   text-transform: uppercase;
+}
+
+.project-field-note {
+  display: none;
 }
 
 .recent-work {
@@ -876,6 +906,154 @@ p {
   color: #ffffff;
 }
 
+@media (min-width: 56.0625rem) {
+  :root {
+    --desktop-section-space: clamp(3.75rem, 6vw, 6rem);
+  }
+
+  .hero__layout {
+    min-height: auto;
+    padding-block: clamp(3.25rem, 5vw, 4.75rem);
+    gap: clamp(2.5rem, 5vw, 5rem);
+    grid-template-columns: minmax(0, 1.45fr) minmax(18rem, 0.75fr);
+  }
+
+  .hero h1 {
+    max-width: 16ch;
+  }
+
+  .section {
+    padding-block: var(--desktop-section-space);
+  }
+
+  .section-heading {
+    margin-bottom: clamp(2.25rem, 3.5vw, 3.25rem);
+  }
+
+  /* This single survey line carries the hero boundary into Selected Work without changing document flow. */
+  .section--work > .page-shell::before {
+    position: absolute;
+    top: calc(-1 * var(--desktop-section-space));
+    left: 0;
+    width: 3rem;
+    height: calc(var(--desktop-section-space) - 0.75rem);
+    border-bottom: 1px solid var(--pine);
+    border-left: 1px solid var(--pine);
+    content: "";
+    pointer-events: none;
+  }
+
+  .featured-project {
+    padding: clamp(1.75rem, 3vw, 2.75rem);
+  }
+
+  .featured-project__intro {
+    margin-bottom: clamp(2rem, 3.5vw, 3.5rem);
+    column-gap: clamp(2rem, 4vw, 4rem);
+  }
+
+  .recent-work {
+    margin-top: clamp(3rem, 5vw, 5.25rem);
+  }
+
+  .section-grid {
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+
+  .toolkit {
+    margin-top: clamp(3rem, 5vw, 4.5rem);
+    column-gap: clamp(3rem, 6vw, 5.25rem);
+  }
+
+  .contact-layout {
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+
+  .sandbox-invitation {
+    padding-block: clamp(2.5rem, 4vw, 4rem);
+  }
+}
+
+@media (min-width: 75rem) {
+  .page-shell,
+  .site-header__inner {
+    width: min(100% - clamp(4rem, 6vw, 6rem), 80rem);
+  }
+
+  .hero__rail {
+    display: grid;
+    align-content: center;
+    gap: 2rem;
+  }
+
+  .hero-focus {
+    display: block;
+    max-width: 19rem;
+  }
+
+  .hero-focus .field-note {
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-focus ul {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    list-style: none;
+    counter-reset: hero-focus;
+  }
+
+  .hero-focus li {
+    display: grid;
+    padding-block: 0.65rem;
+    border-bottom: 1px solid var(--line);
+    gap: 0.75rem;
+    grid-template-columns: 2rem 1fr;
+    font-family: var(--font-display);
+  }
+
+  .hero-focus li::before {
+    color: var(--warm);
+    content: "0" counter(hero-focus);
+    counter-increment: hero-focus;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+  }
+
+  .contour-field--hero {
+    top: 1.5rem;
+    right: -10rem;
+  }
+
+  /* The wrapper ends with the featured project so this note releases before Recent Production Work. */
+  .featured-project-layout {
+    display: grid;
+    align-items: start;
+    gap: clamp(2rem, 3vw, 3rem);
+    grid-template-columns: minmax(0, 1fr) 8.5rem;
+  }
+
+  .project-field-note {
+    position: sticky;
+    top: 7rem;
+    display: block;
+    padding-top: 1rem;
+    border-top: 2px solid var(--pine);
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .project-field-note .field-note {
+    margin-bottom: 0.75rem;
+  }
+
+  .project-field-note p:last-child {
+    margin-bottom: 0;
+  }
+}
+
 @media (max-width: 56rem) {
   .site-header {
     position: static;
@@ -1041,5 +1219,9 @@ p {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .featured-project:has(.featured-project__link:is(:hover, :focus-visible))::before {
+    transform: none;
   }
 }

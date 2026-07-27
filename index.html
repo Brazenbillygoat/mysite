@@ -89,23 +89,34 @@
             </div>
           </div>
 
-          <aside class="field-card" aria-label="Professional summary">
-            <p class="field-card__label">Field record 01</p>
-            <dl>
-              <div>
-                <dt>Experience</dt>
-                <dd>5+ years</dd>
-              </div>
-              <div>
-                <dt>Range</dt>
-                <dd>Full stack</dd>
-              </div>
-              <div>
-                <dt>Terrain</dt>
-                <dd>Modern and legacy systems</dd>
-              </div>
-            </dl>
-          </aside>
+          <div class="hero__rail">
+            <aside class="field-card" aria-label="Professional summary">
+              <p class="field-card__label">Field record 01</p>
+              <dl>
+                <div>
+                  <dt>Experience</dt>
+                  <dd>5+ years</dd>
+                </div>
+                <div>
+                  <dt>Range</dt>
+                  <dd>Full stack</dd>
+                </div>
+                <div>
+                  <dt>Terrain</dt>
+                  <dd>Modern and legacy systems</dd>
+                </div>
+              </dl>
+            </aside>
+
+            <aside class="hero-focus" aria-labelledby="hero-focus-heading">
+              <p class="field-note" id="hero-focus-heading">Engineering focus</p>
+              <ul>
+                <li>Modernization</li>
+                <li>Maintainability</li>
+                <li>Systems integration</li>
+              </ul>
+            </aside>
+          </div>
         </div>
       </section>
 
@@ -117,75 +128,85 @@
             <p>The technologies matter, but the decisions around them matter more.</p>
           </div>
 
-          <article class="featured-project" aria-labelledby="ocean-intelligence-heading">
-            <div class="featured-project__intro">
-              <p class="project-status">Current independent project | Source available</p>
-              <h3 id="ocean-intelligence-heading">Ocean Intelligence</h3>
-              <p class="featured-project__summary">
-                A full-stack vessel research application that turns historical AIS observations and
-                public registry records into an explorable research workflow.
+          <div class="featured-project-layout">
+            <article class="featured-project" aria-labelledby="ocean-intelligence-heading">
+              <div class="featured-project__intro">
+                <p class="project-status">Current independent project | Source available</p>
+                <h3 id="ocean-intelligence-heading">Ocean Intelligence</h3>
+                <p class="featured-project__summary">
+                  A full-stack vessel research application that turns historical AIS observations
+                  and public registry records into an explorable research workflow.
+                </p>
+                <a
+                  class="featured-project__link"
+                  href="https://github.com/Brazenbillygoat/ocean-intelligence"
+                >
+                  View the source on GitHub
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+
+              <div class="featured-project__details">
+                <div class="project-detail">
+                  <h4>The problem</h4>
+                  <p>
+                    Maritime data is incomplete, sometimes conflicting, rate-limited, and easy to
+                    overstate. The application needs to make useful evidence understandable without
+                    presenting historical observations as live or verified truth.
+                  </p>
+                </div>
+
+                <div class="project-detail">
+                  <h4>What I built</h4>
+                  <p>
+                    A React and TypeScript interface backed by an ASP.NET Core API. The backend owns
+                    authenticated Global Fishing Watch requests, validation, caching, concurrency
+                    control, rate limiting, and safe error mapping. The frontend supports
+                    cancellable searches, cached vessel details, keyboard-accessible selection, and
+                    a structured research dossier.
+                  </p>
+                </div>
+
+                <div class="project-detail">
+                  <h4>The engineering choices</h4>
+                  <p>
+                    The system keeps its public contracts separate from upstream response models and
+                    preserves attribution and data caveats in the interface. It deliberately uses
+                    native fetch and local React state, with no database, map library, or
+                    authentication until a real product need justifies them.
+                  </p>
+                </div>
+              </div>
+
+              <!-- The architecture remains real text, not a decorative diagram, so it stacks and reads cleanly. -->
+              <ol class="architecture-strip" aria-label="Ocean Intelligence request flow">
+                <li>
+                  <span>01</span>
+                  React interface
+                </li>
+                <li>
+                  <span>02</span>
+                  ASP.NET Core API
+                </li>
+                <li>
+                  <span>03</span>
+                  Global Fishing Watch
+                </li>
+              </ol>
+
+              <p class="stack-line">
+                React 19 | TypeScript | ASP.NET Core | .NET 10 | xUnit | Global Fishing Watch API
               </p>
-              <a
-                class="featured-project__link"
-                href="https://github.com/Brazenbillygoat/ocean-intelligence"
-              >
-                View the source on GitHub
-                <span aria-hidden="true">↗</span>
-              </a>
-            </div>
+            </article>
 
-            <div class="featured-project__details">
-              <div class="project-detail">
-                <h4>The problem</h4>
-                <p>
-                  Maritime data is incomplete, sometimes conflicting, rate-limited, and easy to
-                  overstate. The application needs to make useful evidence understandable without
-                  presenting historical observations as live or verified truth.
-                </p>
-              </div>
-
-              <div class="project-detail">
-                <h4>What I built</h4>
-                <p>
-                  A React and TypeScript interface backed by an ASP.NET Core API. The backend owns
-                  authenticated Global Fishing Watch requests, validation, caching, concurrency
-                  control, rate limiting, and safe error mapping. The frontend supports cancellable
-                  searches, cached vessel details, keyboard-accessible selection, and a structured
-                  research dossier.
-                </p>
-              </div>
-
-              <div class="project-detail">
-                <h4>The engineering choices</h4>
-                <p>
-                  The system keeps its public contracts separate from upstream response models and
-                  preserves attribution and data caveats in the interface. It deliberately uses
-                  native fetch and local React state, with no database, map library, or
-                  authentication until a real product need justifies them.
-                </p>
-              </div>
-            </div>
-
-            <!-- The architecture remains real text, not a decorative diagram, so it stacks and reads cleanly. -->
-            <ol class="architecture-strip" aria-label="Ocean Intelligence request flow">
-              <li>
-                <span>01</span>
-                React interface
-              </li>
-              <li>
-                <span>02</span>
-                ASP.NET Core API
-              </li>
-              <li>
-                <span>03</span>
-                Global Fishing Watch
-              </li>
-            </ol>
-
-            <p class="stack-line">
-              React 19 | TypeScript | ASP.NET Core | .NET 10 | xUnit | Global Fishing Watch API
-            </p>
-          </article>
+            <aside class="project-field-note" aria-label="Ocean Intelligence field note">
+              <p class="field-note">Field note 02</p>
+              <p>
+                Public source. Protected upstream access. Historical data presented with its caveats
+                intact.
+              </p>
+            </aside>
+          </div>
 
           <div class="recent-work">
             <div class="recent-work__heading">
