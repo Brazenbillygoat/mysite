@@ -37,6 +37,70 @@
 
     <!-- Relative URLs keep this project-site portable beneath GitHub Pages' /mysite/ path. -->
     <link rel="icon" href="./assets/images/favicon.ico" />
+    <script>
+      (() => {
+        const storageKey = "professional-portfolio-theme";
+        const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        let storedTheme;
+
+        try {
+          const value = localStorage.getItem(storageKey);
+          if (value === "light" || value === "dark") {
+            storedTheme = value;
+            document.documentElement.dataset.theme = value;
+          }
+        } catch {
+          storedTheme = undefined;
+        }
+
+        const initializeToggle = () => {
+          const toggle = document.querySelector(".theme-toggle");
+          if (!toggle) {
+            return;
+          }
+
+          const state = toggle.querySelector(".theme-toggle__state");
+          const isDark = () => {
+            const theme = document.documentElement.dataset.theme;
+            return theme === "dark" || (theme !== "light" && darkModeQuery.matches);
+          };
+          const synchronizeToggle = () => {
+            const dark = isDark();
+            toggle.setAttribute("aria-pressed", String(dark));
+            state.textContent = dark ? "On" : "Off";
+          };
+
+          toggle.addEventListener("click", () => {
+            const theme = isDark() ? "light" : "dark";
+            document.documentElement.dataset.theme = theme;
+            storedTheme = theme;
+
+            try {
+              localStorage.setItem(storageKey, theme);
+            } catch {
+              // The selected theme still applies for the current document.
+            }
+
+            synchronizeToggle();
+          });
+
+          darkModeQuery.addEventListener("change", () => {
+            if (!storedTheme && !document.documentElement.dataset.theme) {
+              synchronizeToggle();
+            }
+          });
+
+          synchronizeToggle();
+          toggle.hidden = false;
+        };
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initializeToggle);
+        } else {
+          initializeToggle();
+        }
+      })();
+    </script>
     <link rel="stylesheet" href="./styles/portfolio.css" />
   </head>
 
@@ -47,16 +111,23 @@
       <div class="site-header__inner">
         <a class="site-brand" href="#top" aria-label="Hyrum Butler, back to top"> Hyrum Butler </a>
 
-        <nav class="site-nav" aria-label="Primary navigation">
-          <ul>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#approach">Approach</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a class="site-nav__sandbox" href="./sandbox/">Hyrum's Sandbox</a></li>
-          </ul>
-        </nav>
+        <div class="site-header__controls">
+          <nav class="site-nav" aria-label="Primary navigation">
+            <ul>
+              <li><a href="#work">Work</a></li>
+              <li><a href="#experience">Experience</a></li>
+              <li><a href="#approach">Approach</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li><a class="site-nav__sandbox" href="./sandbox/">Hyrum's Sandbox</a></li>
+            </ul>
+          </nav>
+
+          <button class="theme-toggle" type="button" aria-pressed="false" hidden>
+            <span>Dark mode</span>
+            <span class="theme-toggle__state" aria-hidden="true">Off</span>
+          </button>
+        </div>
       </div>
     </header>
 

@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --paper: #f3f0e7;
   --paper-strong: #e7e1d4;
   --surface: #fbfaf6;
@@ -10,10 +11,48 @@
   --warm: #956247;
   --line: #c9c1b3;
   --focus: #166f8f;
+  --surface-featured: #203c34;
+  --surface-contact: #4c6877;
+  --surface-footer: #202a26;
+  --text-on-dark: #fbfaf6;
+  --focus-on-dark: #fbfaf6;
+  --featured-ring: #f3f0e7;
   --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --font-body:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #161d1a;
+  --paper-strong: #1d2723;
+  --surface: #202c27;
+  --ink: #edf0ea;
+  --ink-soft: #bcc7c0;
+  --pine: #8db8a4;
+  --pine-dark: #b0cfbf;
+  --slate: #91b1bf;
+  --warm: #d39a77;
+  --line: #46534d;
+  --focus: #79c7e3;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --paper: #161d1a;
+    --paper-strong: #1d2723;
+    --surface: #202c27;
+    --ink: #edf0ea;
+    --ink-soft: #bcc7c0;
+    --pine: #8db8a4;
+    --pine-dark: #b0cfbf;
+    --slate: #91b1bf;
+    --warm: #d39a77;
+    --line: #46534d;
+    --focus: #79c7e3;
+  }
 }
 
 *,
@@ -89,7 +128,7 @@ p {
 .featured-project :focus-visible,
 .section--contact :focus-visible,
 .site-footer :focus-visible {
-  outline-color: var(--surface);
+  outline-color: var(--focus-on-dark);
 }
 
 .skip-link {
@@ -141,6 +180,14 @@ p {
   text-decoration: none;
 }
 
+.site-header__controls {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem 1.25rem;
+}
+
 .site-nav ul {
   display: flex;
   margin: 0;
@@ -168,6 +215,40 @@ p {
   margin-left: 0.35rem;
   content: "↗";
   color: var(--warm);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  min-height: 2.75rem;
+  padding: 0.45rem 0.7rem;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 0.2rem;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.theme-toggle[hidden] {
+  display: none;
+}
+
+.theme-toggle:hover {
+  background: var(--paper-strong);
+}
+
+.theme-toggle__state {
+  color: var(--pine);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .hero {
@@ -426,8 +507,8 @@ p {
   position: relative;
   overflow: hidden;
   padding: clamp(1.5rem, 4vw, 3.25rem);
-  background: var(--pine-dark);
-  color: var(--paper);
+  background: var(--surface-featured);
+  color: var(--text-on-dark);
 }
 
 .featured-project::before {
@@ -436,11 +517,11 @@ p {
   right: -9rem;
   width: 25rem;
   height: 25rem;
-  border: 1px solid color-mix(in srgb, var(--paper) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--featured-ring) 16%, transparent);
   border-radius: 50%;
   box-shadow:
-    0 0 0 2rem color-mix(in srgb, var(--paper) 4%, transparent),
-    0 0 0 4.5rem color-mix(in srgb, var(--paper) 3%, transparent);
+    0 0 0 2rem color-mix(in srgb, var(--featured-ring) 4%, transparent),
+    0 0 0 4.5rem color-mix(in srgb, var(--featured-ring) 3%, transparent);
   content: "";
   pointer-events: none;
   transition:
@@ -451,10 +532,10 @@ p {
 
 /* The rings respond only to the real project link so the static card never looks clickable. */
 .featured-project:has(.featured-project__link:is(:hover, :focus-visible))::before {
-  border-color: color-mix(in srgb, var(--paper) 24%, transparent);
+  border-color: color-mix(in srgb, var(--featured-ring) 24%, transparent);
   box-shadow:
-    0 0 0 2rem color-mix(in srgb, var(--paper) 6%, transparent),
-    0 0 0 4.5rem color-mix(in srgb, var(--paper) 5%, transparent);
+    0 0 0 2rem color-mix(in srgb, var(--featured-ring) 6%, transparent),
+    0 0 0 4.5rem color-mix(in srgb, var(--featured-ring) 5%, transparent);
   transform: translate(-0.4rem, 0.4rem);
 }
 
@@ -493,7 +574,7 @@ p {
 }
 
 .featured-project__link {
-  color: var(--paper);
+  color: var(--text-on-dark);
   font-size: 0.9rem;
   font-weight: 750;
 }
@@ -557,7 +638,7 @@ p {
   z-index: 1;
   width: 1.05rem;
   height: 1.05rem;
-  background: var(--pine-dark);
+  background: var(--surface-featured);
   color: #b7cbc1;
   content: "→";
   line-height: 1;
@@ -781,8 +862,8 @@ p {
 .section--contact {
   position: relative;
   overflow: hidden;
-  background: var(--slate);
-  color: var(--surface);
+  background: var(--surface-contact);
+  color: var(--text-on-dark);
 }
 
 .contact-layout {
@@ -818,7 +899,7 @@ p {
   justify-content: space-between;
   gap: 1rem;
   border-bottom: 1px solid #91a7b2;
-  color: var(--surface);
+  color: var(--text-on-dark);
   font-family: var(--font-display);
   font-size: 1.2rem;
   text-decoration: none;
@@ -848,7 +929,7 @@ p {
   background: repeating-radial-gradient(
     ellipse at 48% 52%,
     transparent 0 1.75rem,
-    color-mix(in srgb, var(--surface) 20%, transparent) 1.8rem 1.88rem,
+    color-mix(in srgb, var(--text-on-dark) 20%, transparent) 1.8rem 1.88rem,
     transparent 1.93rem 3.35rem
   );
 }
@@ -885,7 +966,7 @@ p {
 
 .site-footer {
   padding-block: 1.5rem;
-  background: var(--ink);
+  background: var(--surface-footer);
   color: #d8ded9;
 }
 
@@ -1066,6 +1147,12 @@ p {
     gap: 0.25rem;
   }
 
+  .site-header__controls {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
   .site-nav ul {
     gap: 0 1rem;
     flex-wrap: wrap;
@@ -1126,8 +1213,13 @@ p {
     width: min(100% - 2.5rem, 72rem);
   }
 
-  .site-nav {
+  .site-nav,
+  .theme-toggle {
     width: 100%;
+  }
+
+  .theme-toggle {
+    justify-content: space-between;
   }
 
   .site-nav ul {
