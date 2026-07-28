@@ -1,6 +1,6 @@
 # Portfolio project context
 
-Last verified against the repository: 2026-07-27
+Last verified against the repository: 2026-07-28
 
 This file is the durable current-state handoff for future development sessions.
 Read it with `AGENTS.md` before proposing or implementing work. If
@@ -32,6 +32,8 @@ Implemented:
   vendor scripts, and images.
 - A downloadable resume at `assets/Hyrum-Butler-Resume.pdf`.
 - Professional-page favicon and social-preview assets under `assets/`.
+- System-preference light and dark themes on the professional page, with a
+  persisted manual header toggle that uses `data-theme` for explicit choices.
 - Semantic page regions, a keyboard-visible skip link, responsive layouts,
   visible focus states, reduced-motion handling, and WCAG AA-oriented contrast.
 - A sticky desktop header and an intentionally sticky experience-section
@@ -46,8 +48,12 @@ Implemented:
   hero-to-work survey line, a contained sticky Ocean Intelligence field note,
   and a subtle project-link contour response.
 
-The professional page currently uses no JavaScript. Its behavior comes from
-semantic HTML and CSS. Sandbox JavaScript remains scoped to `sandbox/`.
+The professional page uses one small inline theme controller in `index.html`.
+It validates stored `light` and `dark` choices, applies a valid choice before
+the stylesheet loads, synchronizes the header toggle, and safely tolerates
+unavailable storage. With JavaScript unavailable or no manual choice stored,
+CSS follows `prefers-color-scheme`. Sandbox JavaScript remains scoped to
+`sandbox/`.
 
 Not implemented:
 
@@ -188,6 +194,8 @@ constitute visual verification.
 - Preserve the Sandbox rather than redesigning or broadly reformatting it.
 - Prefer native HTML and CSS over JavaScript for professional-page behavior.
 - Preserve accessibility behavior while refining visual composition.
+- Preserve CSS-only system theming when JavaScript is unavailable, and use
+  `data-theme` only for a visitor's explicit light or dark choice.
 - Use desktop-specific composition when useful without weakening the strong
   mobile experience.
 - Keep subtle editorial interactions restrained and non-distracting.

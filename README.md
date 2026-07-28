@@ -22,9 +22,11 @@ The repository contains two intentionally different experiences:
 `-- AGENTS.md                  Repository development guidance
 ```
 
-The professional page uses semantic HTML and CSS without client-side JavaScript.
-The Sandbox keeps its original JavaScript and legacy dependencies isolated under
-`sandbox/`.
+The professional page uses semantic HTML and CSS, plus one small inline
+controller for its persisted light and dark theme toggle. When JavaScript is
+unavailable or no manual preference is stored, CSS continues to follow the
+visitor's system color preference. The Sandbox keeps its original JavaScript
+and legacy dependencies isolated under `sandbox/`.
 
 ## Local development
 
