@@ -1,6 +1,6 @@
 # Portfolio project context
 
-Last verified against the repository: 2026-07-28
+Last verified against the repository: 2026-08-03
 
 This file is the durable current-state handoff for future development sessions.
 Read it with `AGENTS.md` before proposing or implementing work. If
@@ -30,7 +30,7 @@ Implemented:
 - One focused professional stylesheet in `styles/portfolio.css`.
 - A preserved Sandbox under `sandbox/`, including its HTML, CSS, JavaScript,
   vendor scripts, and images.
-- A downloadable resume at `assets/Hyrum-Butler-Resume.pdf`.
+- The approved 2026 resume at `assets/Hyrum-Butler-Resume.pdf`.
 - Professional-page favicon and social-preview assets under `assets/`.
 - System-preference light and dark themes on the professional page, with a
   persisted manual header toggle that uses `data-theme` for explicit choices.
@@ -38,12 +38,18 @@ Implemented:
   visible focus states, reduced-motion handling, and WCAG AA-oriented contrast.
 - A sticky desktop header and an intentionally sticky experience-section
   heading that follows part of the scroll before yielding to the next section.
-- A desktop two-column hero with editorial contour decoration and a field-record
-  summary card. At wide-desktop widths, the right rail also includes a
-  restrained engineering-focus list.
-- Ocean Intelligence as the primary public case study, followed by selected
-  production work, experience, engineering approach, about, contact, and a
-  Sandbox invitation.
+- A desktop two-column hero that leads with 5+ years of enterprise full-stack
+  work across .NET and React, with editorial contour decoration and a
+  field-record summary card. At wide-desktop widths, the right rail also
+  includes a restrained engineering-focus list.
+- Ocean Intelligence as the primary public case study, with scannable evidence
+  for its API boundaries, protected upstream access, reliability controls, and
+  test coverage.
+- Warple as a quieter, text-led secondary public case study covering its
+  browser, game-engine, and native responsibilities; data-only profile security
+  boundary; delivery evidence; and WindowPet and Blooky attribution.
+- Selected production work, experience, engineering approach, about, contact,
+  and a Sandbox invitation after the public case studies.
 - A desktop-specific composition pass with tighter structural spacing, a
   hero-to-work survey line, a contained sticky Ocean Intelligence field note,
   and a subtle project-link contour response.
@@ -98,8 +104,8 @@ The page currently flows through these regions:
 1. Sticky site header and section navigation.
 2. Hero with headline, supporting copy, availability, actions, contour field,
    and field-record card.
-3. Selected work with the Ocean Intelligence case study and recent production
-   examples.
+3. Selected work with Ocean Intelligence as the primary public case study,
+   Warple as the secondary public case study, and recent production examples.
 4. Experience timeline with a sticky desktop section heading.
 5. Engineering approach, principles, and toolkit.
 6. About.
@@ -118,8 +124,8 @@ it. Mobile layouts intentionally remove sticky section-heading behavior.
 Desktop composition uses two explicit tiers: general desktop begins at
 `56.0625rem`, and wide-desktop enhancements begin at `75rem`. The sticky Ocean
 Intelligence field note is contained by the featured-project wrapper so it
-releases before recent production work. These enhancements remain absent from
-the approved mobile composition.
+releases before the Warple case study. These enhancements remain absent from the
+approved mobile composition.
 
 ## Hosting and URL behavior
 
@@ -182,6 +188,13 @@ The preserved Sandbox and generated lockfile are excluded from broad formatting
 to avoid behavior-obscuring churn. There is no production build command to
 validate.
 
+The portfolio credibility and evidence pass completed automated verification
+on 2026-08-03. Lint, focused Prettier checks for the changed text files,
+`git diff --check`, static HTML structure and local-link checks, public source
+link checks, theme and responsive-rule checks, color-contrast calculations, and
+binary PDF verification passed. Repository-wide formatting still reports
+pre-existing out-of-scope files separately.
+
 The user owns browser, responsive, and visual review. Automated checks do not
 constitute visual verification.
 
@@ -204,7 +217,7 @@ constitute visual verification.
 - Do not introduce a new hosting or deployment system as part of ordinary
   portfolio refinement.
 
-## Related repository
+## Related repositories
 
 Ocean Intelligence is maintained separately at:
 
@@ -215,3 +228,14 @@ Its local checkout may exist at
 from portfolio sessions unless the user explicitly authorizes changes there.
 Use its current code, tests, `AGENTS.md`, and `docs/PROJECT_CONTEXT.md` when
 verifying case-study claims.
+
+Warple is maintained separately at:
+
+`https://github.com/Brazenbillygoat/warple`
+
+Its local checkout may exist at `C:\Users\hyrum\repos\warple`. Treat that
+repository as read-only from portfolio sessions unless the user explicitly
+authorizes changes there. Use its current public `main` branch, README, code,
+and tests when verifying case-study claims. Preserve WindowPet and retained
+Blooky attribution, and do not present cross-platform runtime behavior as
+manually verified.

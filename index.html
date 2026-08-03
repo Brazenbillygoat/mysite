@@ -6,14 +6,14 @@
     <title>Hyrum Butler | Full-stack Software Engineer</title>
     <meta
       name="description"
-      content="Hyrum Butler is a full-stack software engineer who builds and modernizes dependable web applications across React, TypeScript, Node.js, and .NET."
+      content="Hyrum Butler is a full-stack software engineer with 5+ years building and modernizing enterprise applications across .NET, React, TypeScript, SQL, and Azure."
     />
     <link rel="canonical" href="https://brazenbillygoat.github.io/mysite/" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Hyrum Butler | Full-stack Software Engineer" />
     <meta
       property="og:description"
-      content="Dependable software for complicated, real-world systems."
+      content="Enterprise full-stack software across .NET and React, backed by public work that makes the engineering decisions visible."
     />
     <meta property="og:url" content="https://brazenbillygoat.github.io/mysite/" />
     <meta
@@ -22,13 +22,13 @@
     />
     <meta
       property="og:image:alt"
-      content="Hyrum Butler. Dependable software for complicated systems."
+      content="Hyrum Butler. Full-stack software across .NET and React."
     />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Hyrum Butler | Full-stack Software Engineer" />
     <meta
       name="twitter:description"
-      content="Dependable software for complicated, real-world systems."
+      content="Enterprise full-stack software across .NET and React, backed by public work that makes the engineering decisions visible."
     />
     <meta
       name="twitter:image"
@@ -139,12 +139,14 @@
           <div class="hero__copy">
             <p class="eyebrow">Full-stack software engineer | Greater Kansas City Area</p>
             <h1 id="intro-heading">
-              I build dependable software for complicated, real-world systems.
+              I build and modernize full-stack software across .NET and React.
             </h1>
             <p class="hero__lead">
-              I work across React, TypeScript, Node.js, and .NET, with a focus on modernization,
-              maintainability, and tools that solve real business problems. I like clear tradeoffs,
-              understandable code, and software that works outside the happy path.
+              I have 5+ years building enterprise web applications with C#, ASP.NET Core, React,
+              TypeScript, SQL, and Azure. The work has included CMS modernization, member-facing
+              systems, authentication services, and Salesforce integrations, with an emphasis on
+              maintainability, clear tradeoffs, and software that still works when the happy path
+              ends.
             </p>
             <p class="availability">
               <span class="availability__marker" aria-hidden="true"></span>
@@ -173,8 +175,8 @@
                   <dd>Full stack</dd>
                 </div>
                 <div>
-                  <dt>Terrain</dt>
-                  <dd>Modern and legacy systems</dd>
+                  <dt>Focus</dt>
+                  <dd>Modernization and integrations</dd>
                 </div>
               </dl>
             </aside>
@@ -182,9 +184,9 @@
             <aside class="hero-focus" aria-labelledby="hero-focus-heading">
               <p class="field-note" id="hero-focus-heading">Engineering focus</p>
               <ul>
-                <li>Modernization</li>
-                <li>Maintainability</li>
+                <li>Enterprise web applications</li>
                 <li>Systems integration</li>
+                <li>Reliable delivery</li>
               </ul>
             </aside>
           </div>
@@ -249,6 +251,28 @@
                 </div>
               </div>
 
+              <div class="engineering-evidence">
+                <h4>Engineering evidence</h4>
+                <ol>
+                  <li>
+                    Application-owned API contracts stay separate from upstream Global Fishing Watch
+                    response models.
+                  </li>
+                  <li>
+                    The access token and all Global Fishing Watch communication remain on the
+                    ASP.NET Core backend.
+                  </li>
+                  <li>
+                    Caching, request cancellation, concurrency coordination, and rate limiting
+                    protect upstream access and user interactions.
+                  </li>
+                  <li>
+                    Problem Details and xUnit coverage exercise validation, mapping, upstream
+                    failures, caching, and irregular registry data.
+                  </li>
+                </ol>
+              </div>
+
               <!-- The architecture remains real text, not a decorative diagram, so it stacks and reads cleanly. -->
               <ol class="architecture-strip" aria-label="Ocean Intelligence request flow">
                 <li>
@@ -279,6 +303,82 @@
             </aside>
           </div>
 
+          <article class="secondary-project" aria-labelledby="warple-heading">
+            <div class="secondary-project__intro">
+              <div>
+                <p class="project-status">Current independent project | Source available</p>
+                <h3 id="warple-heading">Warple</h3>
+              </div>
+
+              <div>
+                <p class="secondary-project__summary">
+                  A manually launched, tray-resident desktop companion with animated behavior,
+                  physics-based movement, dragging, throwing, climbing, and a transparent desktop
+                  overlay.
+                </p>
+                <a class="secondary-project__link" href="https://github.com/Brazenbillygoat/warple">
+                  View the source on GitHub
+                  <span aria-hidden="true">&#8599;</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="secondary-project__details">
+              <div>
+                <h4>Browser to native</h4>
+                <p>
+                  React mounts a Phaser scene while Tauri and Rust own native lifecycle, display
+                  geometry, tray behavior, and narrow desktop integration.
+                </p>
+              </div>
+              <div>
+                <h4>Security boundary</h4>
+                <p>
+                  Versioned, validated, data-only companion profiles cannot execute code, choose
+                  arbitrary paths, or grant themselves permissions.
+                </p>
+              </div>
+              <div>
+                <h4>Delivery evidence</h4>
+                <p>
+                  JavaScript and Rust tests, compiler and lint checks, dependency auditing, build
+                  validation, and Windows installer generation keep the release path honest.
+                </p>
+              </div>
+            </div>
+
+            <ol class="responsibility-strip" aria-label="Warple responsibility flow">
+              <li>
+                <span>01</span>
+                <strong>React</strong>
+                <span class="responsibility-strip__text">Mounts the application surface</span>
+              </li>
+              <li>
+                <span>02</span>
+                <strong>Phaser + Matter.js</strong>
+                <span class="responsibility-strip__text">
+                  Own animation, behavior, movement, and physics
+                </span>
+              </li>
+              <li>
+                <span>03</span>
+                <strong>Tauri + Rust</strong>
+                <span class="responsibility-strip__text">
+                  Own native lifecycle and desktop integration
+                </span>
+              </li>
+            </ol>
+
+            <p class="secondary-project__stack">
+              Tauri | React | TypeScript | Phaser | Matter.js | Rust
+            </p>
+            <p class="secondary-project__attribution">
+              Warple began as a re-architecture of WindowPet. Its current Blooky definition and
+              artwork remain credited placeholder material, not original Warple artwork or the
+              project's permanent identity.
+            </p>
+          </article>
+
           <div class="recent-work">
             <div class="recent-work__heading">
               <h3>Recent production work</h3>
@@ -300,7 +400,7 @@
                 <p class="work-number">02</p>
                 <h4>Member-facing systems</h4>
                 <p>
-                  Built an end-to-end member dashboard with more than 12 integrated areas covering
+                  Built an end-to-end member dashboard with 12+ integrated modules covering
                   certifications, company rosters, demographics, and support services. Connected
                   Salesforce and Pardot workflows with role-aware access and CSV/XLSX exports.
                 </p>

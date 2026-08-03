@@ -16,7 +16,7 @@ The repository contains two intentionally different experiences:
 .
 |-- index.html                 Professional portfolio
 |-- styles/portfolio.css       Professional styles and responsive behavior
-|-- assets/                    Resume, favicon, and social-preview image
+|-- assets/                    Approved 2026 resume, favicon, and social-preview image
 |-- sandbox/                   Preserved interactive portfolio
 |-- docs/PROJECT_CONTEXT.md    Current architecture and project decisions
 `-- AGENTS.md                  Repository development guidance
@@ -56,3 +56,8 @@ relative URLs.
 The primary public case study is
 [Ocean Intelligence](https://github.com/Brazenbillygoat/ocean-intelligence), a
 separate React and .NET vessel-research application.
+
+[Warple](https://github.com/Brazenbillygoat/warple) is the secondary public case
+study. It is a Tauri, React, Phaser, Matter.js, and Rust desktop companion
+re-architected from WindowPet with a validated data-only profile boundary and
+credited placeholder artwork.
