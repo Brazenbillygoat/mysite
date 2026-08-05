@@ -540,6 +540,7 @@ p {
 }
 
 .featured-project__intro,
+.ocean-visual,
 .featured-project__details,
 .engineering-evidence,
 .architecture-strip,
@@ -659,6 +660,102 @@ p {
   font-size: 0.72rem;
   letter-spacing: 0.025em;
   text-transform: uppercase;
+}
+
+/* Ocean Intelligence research-view composition. Static-first: the figure is already
+   complete without JavaScript. The motion classes below only add a narrow desktop entrance. */
+.ocean-visual {
+  --ocean-cyan: #6fc6d8; /* scoped cyan for the survey line only; the global theme palette is untouched */
+  margin: clamp(2rem, 4vw, 3rem) 0;
+}
+
+.ocean-visual__stage {
+  position: relative;
+  isolation: isolate; /* keep the overlap and survey line contained on the dark featured surface */
+  display: grid;
+  gap: 1.25rem;
+}
+
+.ocean-visual__frame {
+  position: relative;
+  min-width: 0;
+  border: 1px solid #58756a; /* existing dark-surface rule color */
+  background: color-mix(in srgb, #0c1a17 35%, transparent);
+  border-radius: 0.25rem;
+}
+
+.ocean-visual__frame img {
+  display: block;
+  width: 100%;
+  height: auto; /* preserve each screenshot's intrinsic aspect ratio, uncropped */
+}
+
+.ocean-visual__frame--search {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
+}
+
+.ocean-visual__frame--research {
+  box-shadow: 0 0.4rem 1.25rem rgba(0, 0, 0, 0.35); /* lifts the dominant frame off the search frame */
+}
+
+/* The decorative scan line is hidden in the static completed state and on narrow layouts. */
+.ocean-visual__survey-line {
+  display: none;
+}
+
+.ocean-visual__caption {
+  margin: 1.5rem 0 0;
+  max-width: 52ch;
+  color: #cedbd4; /* matches existing dark-surface body text for AA contrast */
+}
+
+.ocean-visual__label {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: #9fb6ac; /* existing mono label color on the dark surface */
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.065em;
+  text-transform: uppercase;
+}
+
+.ocean-visual__caption p {
+  margin: 0;
+}
+
+/* Decorative observation-particle field. The layer is created from JavaScript only when
+   the full eligibility query (wide screen, fine pointer, no reduced-motion) matches, so the
+   default and fallback output never contain it. It paints nothing meaningful itself. */
+.ocean-visual__particles {
+  position: absolute;
+  inset: 0;
+  z-index: 4; /* above the screenshots (1/2) and the scanner (3) */
+  overflow: hidden; /* clipped to the stage so particles never escape the composition */
+  pointer-events: none; /* the stage keeps receiving pointer events normally */
+  display: none; /* hidden until the script adds the Ocean-scoped particle-ready class */
+}
+
+.ocean-visual--particles-ready .ocean-visual__particles {
+  display: block;
+}
+
+.ocean-visual__particle {
+  position: absolute;
+  box-sizing: border-box; /* via the global rule; restated for the border math below */
+  border: 1px solid var(--ocean-cyan);
+  background: color-mix(in srgb, var(--ocean-cyan) 10%, transparent);
+  /* Restrained cyan edge glow so hollow particles read over the dark screenshots. */
+  box-shadow: 0 0 0.3rem 0 color-mix(in srgb, var(--ocean-cyan) 25%, transparent);
+  border-radius: 50%;
+  opacity: 0.45; /* resting opacity within the approved 0.3-0.55 band */
+  transform: translate3d(var(--particle-x, 0px), var(--particle-y, 0px), 0);
+  transition: transform 0.18s ease-out;
+  pointer-events: none;
+}
+
+/* Calmer eased return after the pointer leaves the stage. */
+.ocean-visual__particles.is-returning .ocean-visual__particle {
+  transition: transform 0.65s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .engineering-evidence {
@@ -1239,6 +1336,28 @@ p {
   }
 }
 
+/* Completed wide Ocean composition. Narrower layouts keep the stacked static layout
+   from the base rules; this block only applies the overlapping two-panel view at 70rem+. */
+@media (min-width: 70rem) {
+  .ocean-visual__stage {
+    grid-template-columns: minmax(0, 0.38fr) minmax(0, 0.62fr);
+    gap: 0;
+    align-items: start;
+    padding: 0.75rem 1.5rem 0.75rem 0.75rem; /* room so borders, the scanner, and the overlap shadow do not clip */
+  }
+
+  /* Screenshot 2 sits behind and lower; the offset is structural, not a permanent transform. */
+  .ocean-visual__frame--search {
+    margin-top: 2rem;
+    z-index: 1;
+  }
+
+  .ocean-visual__frame--research {
+    z-index: 2; /* above the search frame */
+    margin-left: -3rem; /* restrained overlap onto the search frame's right edge */
+  }
+}
+
 @media (min-width: 75rem) {
   .page-shell,
   .site-header__inner {
@@ -1510,6 +1629,70 @@ p {
   }
 }
 
+/* Narrow one-shot desktop entrance for the Ocean composition. AGENTS.md generally
+   prohibits reveal-on-scroll; this is the approved Ocean-only exception. The completed
+   composition is already visible; these classes only nudge the frames into place. */
+@media (min-width: 70rem) and (prefers-reduced-motion: no-preference) {
+  .ocean-visual--motion-ready:not(.is-settled) .ocean-visual__frame--search {
+    transform: translate(-1.5rem, 1.5rem);
+  }
+
+  .ocean-visual--motion-ready:not(.is-settled) .ocean-visual__frame--research {
+    transform: translateX(2rem);
+  }
+
+  .ocean-visual--motion-ready .ocean-visual__frame {
+    transition: transform 1.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .ocean-visual--motion-ready .ocean-visual__frame--research {
+    transition-delay: 0.075s; /* <=75ms so the two frames read as one composition */
+  }
+
+  .ocean-visual--motion-ready.is-settled .ocean-visual__frame {
+    transform: none;
+  }
+
+  /* Vertical scanner: one left-to-right pass above both frames, then hidden. */
+  .ocean-visual--motion-ready .ocean-visual__survey-line {
+    display: block;
+    position: absolute;
+    z-index: 3; /* above both frames */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    width: 2px;
+    height: auto;
+    background: var(--ocean-cyan);
+    /* Restrained cyan glow so the scanner stays visible over the dark screenshots. */
+    box-shadow: 0 0 0.5rem 0.15rem color-mix(in srgb, var(--ocean-cyan) 45%, transparent);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* The scanner crosses once shortly after the frames begin settling, then disappears. */
+  .ocean-visual--motion-ready.is-settled .ocean-visual__survey-line {
+    animation: ocean-survey-pass 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.25s forwards;
+  }
+
+  @keyframes ocean-survey-pass {
+    0% {
+      left: 0;
+      opacity: 0;
+    }
+
+    20% {
+      opacity: 0.9;
+    }
+
+    100% {
+      left: calc(100% - 2px);
+      opacity: 0;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1524,5 +1707,22 @@ p {
 
   .featured-project:has(.featured-project__link:is(:hover, :focus-visible))::before {
     transform: none;
+  }
+
+  /* Defensive Ocean fallback: force the completed static state even if motion classes linger. */
+  .ocean-visual__frame {
+    transform: none !important;
+  }
+
+  .ocean-visual__survey-line {
+    display: none !important;
+  }
+
+  .ocean-visual__particles {
+    display: none !important;
+  }
+
+  .ocean-visual__particle {
+    transform: none !important;
   }
 }

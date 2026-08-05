@@ -1,6 +1,6 @@
 # Portfolio project context
 
-Last verified against the repository: 2026-08-03
+Last verified against the repository: 2026-08-05
 
 This file is the durable current-state handoff for future development sessions.
 Read it with `AGENTS.md` before proposing or implementing work. If
@@ -53,6 +53,29 @@ Implemented:
 - A desktop-specific composition pass with tighter structural spacing, a
   hero-to-work survey line, a contained sticky Ocean Intelligence field note,
   and a subtle project-link contour response.
+- A two-screenshot Ocean Intelligence research-view composition: screenshot 2
+  provides search/results context and the dominant organized vessel research
+  view uses the approved `915x900` capture of filtered results and the JUST
+  HANGIN' dossier. Global Fishing Watch attribution and the historical AIS caveat
+  remain visible in both the research image and real caption text. The
+  overlapping two-panel view begins at `70rem`; narrower layouts stack the
+  screenshots for readability. The wide composition gives screenshot 3 a clearer
+  38/62 visual emphasis with a restrained `3rem` overlap.
+- A narrow, one-shot desktop-only entrance for the Ocean composition is the only
+  new professional-page motion behavior. It triggers from the screenshot stage
+  at `70rem` and above with larger opposing frame movement (search context
+  entering left/down, dossier entering from the right) and a single vertical
+  cyan scanner that crosses left to right once. Mobile, reduced-motion,
+  unavailable-JavaScript, and unsupported-`IntersectionObserver` cases show the
+  completed static composition with no entrance.
+- A user-approved Ocean-specific pointer interaction: a deterministic 18-particle
+  decorative field of hollow observation bubbles generated over the screenshot
+  stage. Nearby particles repel from a fine pointer and ease back to fixed home
+  positions when the pointer leaves, with no idle animation, recursive frame loop,
+  or custom cursor. The field exists only at `70rem` and above with `hover` and a
+  fine pointer and no reduced-motion preference, and it tears down cleanly when
+  eligibility changes so static, touch, coarse-pointer, reduced-motion, and
+  narrow-layout output stay unchanged.
 
 The professional page uses one small inline theme controller in `index.html`.
 It validates stored `light` and `dark` choices, applies a valid choice before
@@ -81,6 +104,15 @@ Primary professional files:
 - `assets/Hyrum-Butler-Resume.pdf`: approved downloadable resume.
 - `assets/images/favicon.ico`: professional favicon.
 - `assets/og/hyrum-butler-portfolio.png`: social-preview image.
+- `assets/images/ocean-intelligence-search-results.png`: Ocean Intelligence
+  search/results context screenshot (screenshot 2).
+- `assets/images/ocean-intelligence-research-view.png`: Ocean Intelligence
+  organized vessel research screenshot (the approved `915x900` JUST HANGIN'
+  capture and dominant visual).
+- `scripts/ocean-visual.js`: scoped progressive-enhancement controller for the
+  Ocean composition's one-shot desktop entrance and the optional pointer-repelled
+  particle field. The particle layer is generated in JavaScript at runtime; it is
+  not a committed asset and never appears when JavaScript is unavailable.
 
 Preserved Sandbox files:
 
@@ -106,6 +138,9 @@ The page currently flows through these regions:
    and field-record card.
 3. Selected work with Ocean Intelligence as the primary public case study,
    Warple as the secondary public case study, and recent production examples.
+   The Ocean case study now includes a two-screenshot research-view composition
+   (search/results context leading into the organized vessel dossier) with a
+   narrow one-shot desktop entrance.
 4. Experience timeline with a sticky desktop section heading.
 5. Engineering approach, principles, and toolkit.
 6. About.
@@ -122,10 +157,12 @@ when adjusting desktop composition unless a specific requirement conflicts with
 it. Mobile layouts intentionally remove sticky section-heading behavior.
 
 Desktop composition uses two explicit tiers: general desktop begins at
-`56.0625rem`, and wide-desktop enhancements begin at `75rem`. The sticky Ocean
-Intelligence field note is contained by the featured-project wrapper so it
-releases before the Warple case study. These enhancements remain absent from the
-approved mobile composition.
+`56.0625rem`, and wide-desktop enhancements begin at `75rem`. The Ocean
+Intelligence overlapping two-panel composition is a `70rem` Ocean-specific
+tier, separate from those general breakpoints; below it the screenshots stack.
+The sticky Ocean Intelligence field note is contained by the featured-project
+wrapper so it releases before the Warple case study. These enhancements remain
+absent from the approved mobile composition.
 
 ## Hosting and URL behavior
 
@@ -195,6 +232,21 @@ link checks, theme and responsive-rule checks, color-contrast calculations, and
 binary PDF verification passed. Repository-wide formatting still reports
 pre-existing out-of-scope files separately.
 
+The Ocean Intelligence research-view slice completed automated verification on
+2026-08-05, with a follow-up emphasis iteration and a pointer-particle iteration
+verified the same day. Lint, focused Prettier checks for the changed text files,
+`node --check` and a browser-global-aware ESLint pass for
+`scripts/ocean-visual.js`, `git diff --check`, SHA-256 checks for the two
+screenshots, and scope checks passed. The emphasis iteration moved the
+overlapping two-panel composition to `70rem`, applied the 38/62 wide hierarchy,
+strengthened the opposing frame entrance, and replaced the horizontal line with
+a single vertical cyan scanner. The particle iteration added the deterministic
+18-particle decorative field and the fine-pointer repulsion behavior with dynamic
+eligibility teardown. Repository-wide formatting still reports pre-existing
+out-of-scope files (`AGENTS.md`, `package.json`) separately. Hyrum approved the
+particle interaction in browser on 2026-08-05, then separately approved the
+updated JUST HANGIN' research-view screenshot.
+
 The user owns browser, responsive, and visual review. Automated checks do not
 constitute visual verification.
 
@@ -214,6 +266,14 @@ constitute visual verification.
 - Keep subtle editorial interactions restrained and non-distracting.
 - Add comments for non-obvious accessibility, responsive, positioning, overlap,
   or project-path decisions. Do not comment obvious syntax.
+- The Ocean Intelligence screenshot composition may use one narrow, one-shot
+  desktop entrance as an approved exception to the general no reveal-on-scroll
+  rule; the entrance and the overlapping two-panel layout apply only at `70rem`
+  and above, and every fallback shows the completed static composition.
+- A user-approved Ocean-specific pointer exception allows the deterministic
+  particle field's fine-pointer repulsion over the screenshot stage only. It does
+  not authorize novelty pointer effects elsewhere on the professional portfolio,
+  and `AGENTS.md` remains the default guardrail outside this exact feature.
 - Do not introduce a new hosting or deployment system as part of ordinary
   portfolio refinement.
 
