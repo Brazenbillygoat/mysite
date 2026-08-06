@@ -1,6 +1,6 @@
 # Portfolio project context
 
-Last verified against the repository: 2026-08-05
+Last verified against the repository: 2026-08-06
 
 This file is the durable current-state handoff for future development sessions.
 Read it with `AGENTS.md` before proposing or implementing work. If
@@ -65,17 +65,26 @@ Implemented:
   new professional-page motion behavior. It triggers from the screenshot stage
   at `70rem` and above with larger opposing frame movement (search context
   entering left/down, dossier entering from the right) and a single vertical
-  cyan scanner that crosses left to right once. Mobile, reduced-motion,
+  thin lime scanner that crosses left to right once. Mobile, reduced-motion,
   unavailable-JavaScript, and unsupported-`IntersectionObserver` cases show the
   completed static composition with no entrance.
-- A user-approved Ocean-specific pointer interaction: a deterministic 18-particle
-  decorative field of hollow observation bubbles generated over the screenshot
-  stage. Nearby particles repel from a fine pointer and ease back to fixed home
-  positions when the pointer leaves, with no idle animation, recursive frame loop,
-  or custom cursor. The field exists only at `70rem` and above with `hover` and a
-  fine pointer and no reduced-motion preference, and it tears down cleanly when
-  eligibility changes so static, touch, coarse-pointer, reduced-motion, and
-  narrow-layout output stay unchanged.
+- A user-approved Ocean-specific decorative and pointer interaction scoped to a
+  dedicated negative-space rail beside the Ocean caption: exactly 7 deterministic
+  hollow observation bubbles and 2 staggered one-shot lime sonar pings, all
+  generated inside the rail so no circle, bubble, or ping appears over the
+  screenshots, caption, headings, evidence, or request-flow strip. Nearby bubbles
+  repel from a fine pointer and ease back to fixed home positions when the pointer
+  leaves, with no idle animation, recursive frame loop, or custom cursor. The rail
+  exists at `70rem` and above when reduced motion is not requested and
+  `IntersectionObserver` is available. Wide coarse-pointer devices receive the
+  static rail without pointer listeners; fine-pointer repulsion is enabled only
+  when hover and fine-pointer queries match. Reduced-motion, unavailable-JavaScript,
+  unsupported-observer, and narrow-layout output remain unchanged.
+- Scoped dark-surface refinements: slightly lighter Ocean body copy, marginally
+  larger small text, a restrained stronger border and shadow on the dominant
+  research screenshot, and a one-pixel lime scanner that still sweeps once and
+  fades. The old card-wide concentric ring behind the featured-project intro has
+  been removed; all Ocean circles now live inside the ambient rail.
 
 The professional page uses one small inline theme controller in `index.html`.
 It validates stored `light` and `dark` choices, applies a valid choice before
@@ -110,9 +119,10 @@ Primary professional files:
   organized vessel research screenshot (the approved `915x900` JUST HANGIN'
   capture and dominant visual).
 - `scripts/ocean-visual.js`: scoped progressive-enhancement controller for the
-  Ocean composition's one-shot desktop entrance and the optional pointer-repelled
-  particle field. The particle layer is generated in JavaScript at runtime; it is
-  not a committed asset and never appears when JavaScript is unavailable.
+  Ocean composition's one-shot desktop entrance and the optional ambient rail of
+  hollow observation bubbles, fine-pointer repulsion, and one-shot sonar pings. The
+  rail, bubbles, and pings are generated in JavaScript at runtime; they are not
+  committed assets and never appear when JavaScript is unavailable.
 
 Preserved Sandbox files:
 
@@ -247,6 +257,17 @@ out-of-scope files (`AGENTS.md`, `package.json`) separately. Hyrum approved the
 particle interaction in browser on 2026-08-05, then separately approved the
 updated JUST HANGIN' research-view screenshot.
 
+The Ocean Intelligence visual-polish slice completed automated verification on
+2026-08-06. It moved all decorative bubbles and sonar pings into a dedicated
+negative-space rail beside the caption, retuned the scanner to a one-pixel lime
+beam, added two staggered one-shot lime sonar pings, slightly improved small-copy
+readability on the dark Ocean surface, and strengthened the dominant research
+screenshot's border and shadow. Lint, focused Prettier checks for the changed text
+files, `node --check` and a browser-global-aware ESLint pass for
+`scripts/ocean-visual.js`, `git diff --check`, and SHA-256 checks for the two
+screenshots passed. Repository-wide formatting still reports pre-existing
+out-of-scope files separately. Hyrum approved browser visual review on 2026-08-06.
+
 The user owns browser, responsive, and visual review. Automated checks do not
 constitute visual verification.
 
@@ -270,10 +291,15 @@ constitute visual verification.
   desktop entrance as an approved exception to the general no reveal-on-scroll
   rule; the entrance and the overlapping two-panel layout apply only at `70rem`
   and above, and every fallback shows the completed static composition.
-- A user-approved Ocean-specific pointer exception allows the deterministic
-  particle field's fine-pointer repulsion over the screenshot stage only. It does
-  not authorize novelty pointer effects elsewhere on the professional portfolio,
-  and `AGENTS.md` remains the default guardrail outside this exact feature.
+- A user-approved Ocean-specific decorative and pointer exception allows the
+  deterministic ambient rail's hollow bubbles, one-shot sonar pings, and
+  fine-pointer repulsion in the caption-row negative space only. No circle,
+  bubble, or ping may appear over screenshots, text, headings, evidence, or the
+  request-flow strip. It does not authorize novelty pointer effects elsewhere on
+  the professional portfolio, and `AGENTS.md` remains the default guardrail
+  outside this exact feature.
+- The old card-wide concentric ring behind the featured-project intro has been
+  removed. All Ocean circles now live inside the dedicated ambient rail.
 - Do not introduce a new hosting or deployment system as part of ordinary
   portfolio refinement.
 
